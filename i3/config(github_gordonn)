@@ -11,7 +11,7 @@
 
 set $mod Mod4
 
-exec_always --no-startup-id feh --bg-scale ~/.config/wallpapers/copland_os_blue.jpg
+exec_always --no-startup-id feh --bg-scale ~/.config/wallpapers/copland_os_green.png
 exec_always --no-startup-id killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
@@ -32,7 +32,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -i ~/.config/wallpapers/copland_os_green.jpg \
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -n -i ~/.config/wallpapers/copland_os_blue.png \
                                                        --insidecolor=373445ff --ringcolor=ffffffff --line-uses-inside \
                                                        --keyhlcolor=d23c3dff --bshlcolor=d23c3dff --separatorcolor=00000000 \
                                                        --insidevercolor=fecf4dff --insidewrongcolor=d23c3dff \
