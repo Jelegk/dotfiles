@@ -18,7 +18,7 @@ exec --no-startup-id xdotool key --clearmodifiers Num_Lock
 # Displays background (home screen only)
 exec_always --no-startup-id feh --bg-scale ~/.config/wallpapers/copland_os_green.png
 # Taskbar
-exec_always --no-startup-id pkill '^polybar$' && ~/.config/polybar/launch_polybar.sh
+exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
