@@ -14,11 +14,12 @@ set $mod Mod4
 # Activates NumLock after login
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock
 # Sets explicitly monitor resolution
-#exec_always --no-startup-id xrandr --output [Display_name] --mode 1920x1080
+exec_always --no-startup-id xrandr --output Virtual1 --mode 1920x1080
+#exec_always --no-startup-id xrandr --output Virtual1 --mode 1280x720
 # Displays background (home screen only)
 exec_always --no-startup-id feh --bg-scale ~/.config/wallpapers/copland_os_green.png
 # Taskbar
-exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
+exec_always --no-startup-id sh ~/.config/polybar/launch_polybar.sh
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
