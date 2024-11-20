@@ -55,21 +55,34 @@ local function resize_progressbar()
     --alternatively:  vid_margin_x = px_to_osd_scale(math.ceil((win_w - vid_w) * 0.5))
 end
 
+
 local paused = false
-local function slimbar_handler()
-    local _, m_pos_y = mp.get_mouse_pos()
-    m_pos_y = m_pos_y / win_h
-
-    -- hardcoded values (normalized) from mpv-osc-simple
-    if paused and m_pos_y < 0.85 and m_pos_y > 0.025 then render_progressbar() 
-    else erase_progressbar() end 
-end
-
+local osc_hidden = true
 
 mp.observe_property("pause", "bool", function(_, pause_prop)
     paused = pause_prop
-    slimbar_handler()
+    if paused and osc_hidden then render_progressbar()
+    else erase_progressbar() end
 end)
-mp.register_event("seek", slimbar_handler)
-mp.observe_property("mouse-pos", "native", slimbar_handler)
+
+mp.register_event("seek", function()
+    if paused and osc_hidden then render_progressbar() end
+end)
+
+mp.register_event('file-loaded', function()
+    if paused and osc_hidden then erase_progressbar() end
+end)
+
+mp.observe_property("mouse-pos", "native", function()
+    if paused then
+        local _, m_pos_y = mp.get_mouse_pos()
+        m_pos_y = m_pos_y / win_h
+        osc_hidden = m_pos_y < 0.9 and m_pos_y > 0.025
+
+        -- hardcoded values (normalized) from mpv-osc-simple
+        if osc_hidden then render_progressbar()
+        else erase_progressbar() end
+    end
+end)
+
 mp.observe_property("osd-dimensions", "native", resize_progressbar)
