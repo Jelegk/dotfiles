@@ -408,6 +408,7 @@ ne.layer = 30
 ne.barHeight = 12
 ne.style1 = styles.button
 ne.style2 = styles.seekbarB
+ne.geo.w = 50
 ne.responder['resize'] = function(self)
         self.geo.x = player.geo.width - 45
         self.geo.y = player.geo.refY

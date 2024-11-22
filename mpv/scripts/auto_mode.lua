@@ -1,5 +1,4 @@
 --[[
-
     https://github.com/stax76/mpv-scripts
 
     This script changes options depending on what type of
@@ -16,18 +15,21 @@
     3. Send messages
 
     The configuration is done in code.
-
 ]]--
+
+local utils = require 'mp.utils'
 
 local AV_SCRIPTS_DIR = "~~/scripts-if-AV"
 function audiovisual_profile()
     mp.set_property("cover-art-file", string.format("%s/cover-placeholder.png", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/mpv-osc-simple", AV_SCRIPTS_DIR))
+    mp.command(string.format("load-script %s/appendURL.lua", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/cut.lua", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/evafast.lua", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/pause_indicator_lite.lua", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/persist-properties.lua ", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/slim-progressbar.lua ", AV_SCRIPTS_DIR))
+    mp.command(string.format("load-script %s/visualizer.lua ", AV_SCRIPTS_DIR))
 end
 
 ----- start config
@@ -110,7 +112,7 @@ image_mode_bindings = {
 
 -- extension configuration
 
-image_file_extensions = { ".jpg", ".png", ".bmp", ".gif", ".webp" }
+image_file_extensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp" }
 audio_file_extensions = { ".mp3", ".ogg", ".opus", ".flac", ".m4a", ".mka", ".ac3", ".dts", ".dtshd", ".dtshr", ".dtsma", ".eac3", ".mp2", ".mpa", ".thd", ".w64", ".wav", ".aac" }
 
 ----- end config
