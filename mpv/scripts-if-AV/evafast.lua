@@ -49,6 +49,8 @@ local options = {
 mp.options = require "mp.options"
 mp.options.read_options(options, "evafast")
 
+local init_speed = 1
+
 local uosc_available = false
 local repeated = false
 local speed_timer = nil
@@ -77,12 +79,12 @@ local function speed_transition(test_speed, target)
                 end
             else
                 if options.multiply_modifier then
-                    test_speed = math.max(test_speed - (test_speed * options.speed_decrease), 1)
+                    test_speed = math.max(test_speed - (test_speed * options.speed_decrease), init_speed)
                 else
-                    test_speed = math.max(test_speed - options.speed_decrease, 1)
+                    test_speed = math.max(test_speed - options.speed_decrease, init_speed)
                 end
             end
-            if test_speed == 1 then break end
+            if test_speed == init_speed then break end
         end
     end
     return time_for_correction
@@ -91,7 +93,7 @@ end
 local function adjust_speed()
     local no_sub_speed = not options.subs_speed_cap or mp.get_property("sub-start") == nil
     local effective_speed_cap = no_sub_speed and options.speed_cap or options.subs_speed_cap
-    local speed = mp.get_property_number("speed", 1)
+    local speed = mp.get_property_number("speed", init_speed)
     local old_speed = speed
 
     if options.lookahead and options.subs_speed_cap and no_sub_speed and not use_forced_speed_cap then
@@ -124,9 +126,9 @@ local function adjust_speed()
             repeated = false
             freeze = false
         else
-            local time_for_correction = speed_transition(speed, math.max(math.min(options.speed_cap, options.subs_speed_cap and options.subs_speed_cap or options.speed_cap), 1.1)) -- not effective_speed_cap because it may lead to huge fluctuations in transition speed
+            local time_for_correction = speed_transition(speed, math.max(math.min(options.speed_cap, options.subs_speed_cap and options.subs_speed_cap or options.speed_cap), init_speed + 0.1)) -- not effective_speed_cap because it may lead to huge fluctuations in transition speed
             if (time_for_correction * speed + current_time) > speedup_target then
-                effective_speed_cap = 1.1 -- >1 so we don't get stuck trying to catch the target
+                effective_speed_cap = init_speed + 0.1 -- >1 so we don't get stuck trying to catch the target
                 use_forced_speed_cap = true
                 forced_speed_cap = effective_speed_cap
             else
@@ -151,9 +153,9 @@ local function adjust_speed()
             end
         else
             if options.multiply_modifier then
-                speed = math.max(speed - (speed * options.speed_decrease), 1)
+                speed = math.max(speed - (speed * options.speed_decrease), init_speed)
             else
-                speed = math.max(speed - options.speed_decrease, 1)
+                speed = math.max(speed - options.speed_decrease, init_speed)
             end
         end
         if forced_speed_cap ~= nil and not use_forced_speed_cap then
@@ -177,7 +179,7 @@ local function adjust_speed()
         end
     end
 
-    if speed == 1 and effective_speed_cap ~= 1 then
+    if speed == init_speed then
         if speed_timer ~= nil and not toggle_state then
             speed_timer:kill()
             speed_timer = nil
@@ -251,6 +253,7 @@ local function evafast(keypress)
         speedup = true
         no_speedup = false
         if not repeated then
+            init_speed = mp.get_property_number("speed", 1)
             adjust_speed()
         end
         repeated = true
@@ -311,3 +314,5 @@ mp.add_forced_key_binding(nil, "slowdown", evafast_slowdown)
 mp.add_forced_key_binding(nil, "toggle", evafast_toggle)
 
 mp.commandv("script-message-to", "uosc", "get-version", mp.get_script_name())
+
+mp.msg.fatal("LOADED")

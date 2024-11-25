@@ -475,3 +475,5 @@ function activate()
 end
 
 mp.add_forced_key_binding(settings.navigator_mainkey, "navigator", activate)
+
+mp.msg.fatal("LOADED")

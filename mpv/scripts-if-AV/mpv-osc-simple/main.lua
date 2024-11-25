@@ -833,3 +833,5 @@ ne.responder['mbtn_left_up'] = function(self, pos)
     end
 ne:init()
 addToPlayLayout('winMin')
+
+mp.msg.fatal("LOADED")

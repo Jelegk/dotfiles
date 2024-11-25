@@ -413,3 +413,5 @@ local function find_and_add_entries()
 end
 
 mp.register_event("file-loaded", find_and_add_entries)
+
+mp.msg.fatal("LOADED")

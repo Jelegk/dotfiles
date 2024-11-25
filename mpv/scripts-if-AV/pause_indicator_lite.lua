@@ -161,3 +161,5 @@ mp.observe_property("osd-dimensions", "native", function()
         indicator:update()
     end
 end)
+
+mp.msg.fatal("LOADED")

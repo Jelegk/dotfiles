@@ -28,3 +28,10 @@ mp.add_forced_key_binding("Ctrl+4" , "grain-toggle", graintoggle)
 mp.add_forced_key_binding("Ctrl+5" , "noise-toggle", noisetoggle)
 mp.add_forced_key_binding("Ctrl+6" , "filmgrain-toggle", filmgraintoggle)
 --mp.add_forced_key_binding("Ctrl+7" , "crt-toggle", crttoggle)
+
+--mp.msg.info()      -- blanc
+--mp.msg.warn()      -- jaune
+--mp.msg.fatal()     -- orange
+--mp.msg.error()     -- rouge
+
+mp.msg.fatal("LOADED")

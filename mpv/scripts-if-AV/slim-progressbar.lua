@@ -69,8 +69,10 @@ mp.observe_property("pause", "bool", function(_, pause_prop)
     if paused and osc_not_hovered() then render_progressbar()
     else erase_progressbar() end
 end)
+mp.register_event('file-loaded', function() if paused then erase_progressbar() end end)
 mp.register_event("seek", function() if paused and osc_not_hovered() then render_progressbar() end end)
-mp.register_event('file-loaded', function() if paused and osc_not_hovered() then erase_progressbar() end end)
 mp.observe_property("mouse-pos", "native", function() if paused then erase_progressbar() end end)
 
 mp.observe_property("osd-dimensions", "native", resize_progressbar)
+
+mp.msg.fatal("LOADED")

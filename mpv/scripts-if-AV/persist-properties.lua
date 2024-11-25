@@ -112,3 +112,5 @@ mp.register_event("shutdown", function()
         save_config(PCONFIG, properties)
     end
 end)
+
+mp.msg.fatal("LOADED")

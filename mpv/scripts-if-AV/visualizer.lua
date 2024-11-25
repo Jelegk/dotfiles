@@ -136,7 +136,7 @@ local function get_visualizer(name, quality)
                 "size           =" .. w .. "x" .. h .. ":" ..
                 "count          =" .. count .. ":" ..
                 "csp            = bt709:" ..
-                "bar_h          =" .. h * 0.3 .. ":" ..
+                "bar_h          =" .. h * 0.2 .. ":" ..
                 "bar_g          = 2:" ..
                 "sono_g         = 4:" ..
                 "bar_v          = 9:" ..
@@ -197,7 +197,7 @@ local function get_visualizer(name, quality)
             end
         end
         if hasvideo then
-            return "[aid1] anull [ao]; [vid1] null [vo]" -- "[aid1] asetpts=PTS [ao]; [vid1] setpts=PTS [vo]"
+            return "[aid1] asetpts=PTS [ao]; [vid1] setpts=PTS [vo]" -- "[aid1] anull [ao]; [vid1] null [vo]"
         else
             return "[aid1] asplit [ao]," ..
                 "showfreqs          =" ..
@@ -263,10 +263,6 @@ local function visualizer_hook()
     end
 end
 
-mp.add_hook("on_preloaded", 50, visualizer_hook)
-mp.observe_property("current-tracks/audio", "native", visualizer_hook)
-mp.observe_property("current-tracks/video", "native", visualizer_hook)
-
 local function cycle_visualizer()
     local i = 1
     local index = 1
@@ -283,4 +279,11 @@ local function cycle_visualizer()
     visualizer_hook()
 end
 
+--mp.add_hook("on_preloaded", 50, visualizer_hook)
+--mp.observe_property("current-tracks/audio", "native", visualizer_hook)
+--mp.observe_property("current-tracks/video", "native", visualizer_hook)
+mp.register_event('file-loaded', visualizer_hook)
+
 mp.add_forced_key_binding(cycle_key, "cycle-visualizer", cycle_visualizer)
+
+mp.msg.fatal("LOADED")
