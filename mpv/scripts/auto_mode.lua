@@ -29,7 +29,7 @@ function audiovisual_profile()
     mp.command(string.format("load-script %s/pause_indicator_lite.lua", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/persist-properties.lua ", AV_SCRIPTS_DIR))
     mp.command(string.format("load-script %s/slim-progressbar.lua ", AV_SCRIPTS_DIR))
-    local work_path = mp.get_property_native("working-directory")
+    local work_path = mp.get_property_native("working-directory") -- If the file is being streamed, don't autoload visualizer.lua. Sometimes interferes with hls.
     local file_path = string.sub(utils.split_path(mp.get_property_native("path")), 1, -2)
     if work_path == file_path then mp.command(string.format("load-script %s/visualizer.lua ", AV_SCRIPTS_DIR)) 
     else mp.add_forced_key_binding("Ctrl+1", "visualizer", mp.command(string.format("load-script %s/visualizer.lua ", AV_SCRIPTS_DIR))) end

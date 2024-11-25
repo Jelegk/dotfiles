@@ -197,7 +197,7 @@ local function get_visualizer(name, quality)
             end
         end
         if hasvideo then
-            return "[aid1] asetpts=PTS [ao]; [vid1] setpts=PTS [vo]" -- "[aid1] anull [ao]; [vid1] null [vo]"
+            return "[aid1] anull [ao]; [vid1] null [vo]" -- "[aid1] asetpts=PTS [ao]; [vid1] setpts=PTS [vo]"
         else
             return "[aid1] asplit [ao]," ..
                 "showfreqs          =" ..
