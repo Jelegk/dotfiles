@@ -1,0 +1,75 @@
+/**********************************************/
+/* Color definitions */
+/**********************************************/
+
+@define-color white_color #ffffff;
+@define-color black_color #000000;
+@define-color lighter_color #ffffff;
+@define-color light_color #ffffff;
+@define-color base_color #c0c0c0;
+@define-color dark_color #808080; 
+@define-color darker_color #7f9faa;
+@define-color darkest_color #2a0000;
+@define-color edit_color #ffffff;
+@define-color high_color #2adfff;
+@define-color high_dark_color #557faa;
+@define-color high_light_color #7fffff;
+@define-color tab_color #a0a0a4;
+@define-color red_color #d40000;
+@define-color titlebar_color #2a7faa;
+@define-color titlebar_lighter_color #ffffff;
+@define-color titlebar_light_color #2adfff;
+@define-color titlebar_dark_color #2a3faa;
+@define-color titlebar_darker_color #2a5faa;
+@define-color titlebar_button_text_color #000000;
+@define-color titlebar_backdrop_color #808080;
+@define-color titlebar_backdrop_light_color #ffffff;
+@define-color titlebar_backdrop_dark_color #2a1f00;
+@define-color tooltip_color #2a3faa; /*#ffbf00*/
+@define-color tooltip_text_color #ffffff;
+@define-color title_color #ffffff;
+@define-color text_color #000000;
+@define-color text2_color #ffffff;
+@define-color text3_color #000000;
+
+@define-color panel_color #c0c0c0;
+@define-color panel_light_color #ffffff;
+@define-color panel_lighter_color #ffffff;
+@define-color panel_dark_color #808080;
+@define-color panel_darker_color #7f9faa;
+
+/**********************************************/
+/* Derived colors */
+/**********************************************/
+
+@define-color headerbar_bg_color @base_color;
+@define-color button_selected_bg_color @lighter_color;
+@define-color text_selected_bg_color @high_color;
+@define-color text_selected_fg_color @black_color;
+@define-color menuitem_selected_bg_color @high_color;
+@define-color menuitem_selected_fg_color @black_color;
+@define-color listitem_selected_bg_color @high_color;
+@define-color listitem_selected_fg_color @black_color;
+@define-color text_view_bg @edit_color;
+
+
+/**********************************************/
+/* Color names curiously hardcoded in some gnome applications */
+/**********************************************/
+
+@define-color theme_base_color @base_color;
+@define-color theme_text_color @black_color;
+@define-color theme_bg_color @edit_color;
+@define-color theme_fg_color @black_color;
+@define-color theme_selected_bg_color @high_color; /* list select */
+@define-color theme_selected_fg_color @black_color;
+@define-color theme_tooltip_bg_color @titlebar_dark_color;
+@define-color theme_tooltip_fg_color @white_color;
+@define-color text_view_bg @edit_color;
+@define-color content_view_bg @edit_color;
+@define-color bg_color @base_color;
+@define-color fg_color @black_color;
+@define-color selected_bg_color @high_color; /* list select */
+@define-color selected_fg_color @black_color;
+@define-color tooltip_bg_color @titlebar_dark_color;
+@define-color tooltip_fg_color @white_color;

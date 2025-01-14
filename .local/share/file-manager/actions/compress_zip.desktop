@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Action
+Name=Compress to .zip (7zip)
+Icon=archive-insert.png
+Profiles=compress
+
+[X-Action-Profile compress]
+MimeTypes=inode/directory;video/*;audio/*;image/*;application/*;text/*
+Exec=7zz a -ssp %f.zip %f

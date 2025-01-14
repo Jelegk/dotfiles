@@ -1,0 +1,3510 @@
+/***********************************************/
+/* general */
+/**********************************************/
+
+* {
+    -GtkScrollbar-has-backward-stepper: true;
+    -GtkScrollbar-has-forward-stepper: true;
+    -GtkScrollbar-has-secondary-forward-stepper: false;
+    -GtkScrollbar-has-secondary-backward-stepper: false;
+    -GtkEntry-shadow-type: GTK_SHADOW_NONE;
+    -GtkScrolledWindow-scrollbar-spacing: 0;
+
+    -GtkWidget-window-dragging: false;
+        }
+
+.background {
+    background-color: @base_color;
+    color: @text_color;
+}
+
+
+
+
+/**********************************************/
+/* headerbar */
+/**********************************************/
+
+headerbar, messagedialog .titlebar {
+    background-color: @base_color; /* fond de barre */
+}
+
+.pathbar { /* dconf-editor */
+    color: @text2_color;
+    font-weight: bold;
+}
+
+decoration {
+    border-radius: 0px;
+    border: 1px solid @black_color; 
+    /* the resize cursor area */
+    margin: 10px;
+}
+
+
+window.csd.unified deck .vertical > stack, window deck deck overlay stack > box.vertical, deck box.vertical > scrolledwindow, deck box.vertical paned > box.vertical{
+padding-bottom:10px;
+padding-left:5px;
+padding-right:5px;
+}
+
+leaflet.unfolded > .vertical > scrolledwindow{
+padding-left: 4px;
+padding-top: 0px;
+padding-right: 0px;
+padding-bottom: 8px;
+}
+
+leaflet.unfolded > separator{
+margin: 0px;
+}
+
+.sidebar-pane > * > scrolledwindow{
+margin: 4px;}
+
+window.csd > contents, window.csd > decoration, dialog.csd > decoration, window.csd.unified, messagedialog.csd > decoration {
+    border-radius: 0px;
+    border: 1px solid @black_color;
+
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, transparent 2px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, @dark_color 1px, @dark_color 20px, @lighter_color 20px, @lighter_color 21px, @dark_color 21px, @dark_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @dark_color 1px, @dark_color 20px, @darkest_color 20px, @darkest_color 21px, @lighter_color 21px, @lighter_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 4px, @base_color 5px, @lighter_color 5px, @lighter_color 6px, @dark_color 6px, @dark_color 7px, transparent 7px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(180deg, transparent 0px, transparent 80px, @black_color 80px, @black_color 81px, transparent 81px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 2px, @lighter_color 2px, @lighter_color 3px, @dark_color 3px, @dark_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @base_color 1px, @base_color 2px, @dark_color 2px, @dark_color 3px, transparent 3px, transparent 100%);
+
+background-position: 2px 2px, 0px 1px, right top, right bottom, right bottom, left bottom, left bottom, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+background-size: 1px 2px, 2px 3px, 4px 4px, 21px 6px, 22px 6px, 21px 6px, 22px 6px, auto auto, auto auto, auto auto, 4px 82px, 60px 80px, auto auto, auto auto; /* 60px > 80px */
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat, repeat, no-repeat, no-repeat, repeat, repeat;
+
+padding: 4px;
+padding-bottom: 7px;
+    /*margin: 10px;*/
+}
+
+
+window.csd:backdrop > contents, window.csd:backdrop > decoration, dialog.csd:backdrop > decoration, window.csd.unified:backdrop, messagedialog.csd:backdrop > decoration {
+
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 2px, transparent 2px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, @dark_color 1px, @dark_color 20px, @lighter_color 20px, @lighter_color 21px, @dark_color 21px, @dark_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @dark_color 1px, @dark_color 20px, @darkest_color 20px, @darkest_color 21px, @lighter_color 21px, @lighter_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 4px, @base_color 5px, @lighter_color 5px, @lighter_color 6px, @dark_color 6px, @dark_color 7px, transparent 7px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(180deg, transparent 0px, transparent 80px, @black_color 80px, @black_color 81px, transparent 81px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 2px, @lighter_color 2px, @lighter_color 3px, @dark_color 3px, @dark_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @base_color 1px, @base_color 2px, @dark_color 2px, @dark_color 3px, transparent 3px, transparent 100%);
+
+background-position: 2px 2px, 0px 1px, right top, right bottom, right bottom, left bottom, left bottom, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+background-size: 1px 2px, 2px 3px, 4px 4px, 21px 6px, 22px 6px, 21px 6px, 22px 6px, auto auto, auto auto, auto auto, 4px 82px, 60px 80px, auto auto, auto auto; /* 60px > 80px */
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat, repeat, no-repeat, no-repeat, repeat, repeat;
+
+}
+
+window > paned.titlebar > headerbar {
+background-color: transparent;}
+
+.titlebar .title, .titlebar .title:backdrop {
+color: @title_color;
+font-weight: bold;
+margin:0px;
+}
+
+.titlebar .subtitle, .titlebar .subtitle:backdrop{
+color: @title_color;
+font-size: 10px;
+margin:0px;
+margin-top: -2px;
+}
+
+window.csd headerbar.titlebar button:selected{
+box-shadow: none;
+}
+
+window.csd > headerbar.titlebar, dialog.csd > headerbar.titlebar, window.csd.unified deck headerbar.titlebar, window > paned.titlebar, messagedialog.csd > .titlebar, .windowhandle .titlebar > headerbar {
+background-color: @titlebar_color;
+
+margin-top: -4px;
+margin-left: -4px;
+margin-right: -4px;
+min-height: 33px;
+background-image:
+
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, transparent 2px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_dark_color 2px, @titlebar_dark_color 3px, transparent 3px, transparent 100%),
+
+url('img/marble.png');
+
+background-position: right bottom, 0px 1px, bottom left,  0px 0px, 0px 0px, 0px 0px;
+background-size: 4px 1px, 2px auto,  3px 2px,  auto auto, auto auto, auto auto;
+background-repeat: no-repeat, no-repeat, no-repeat,  repeat-x, repeat-x, repeat;
+padding:0;
+}
+
+window.csd.maximized > headerbar.titlebar, dialog.csd.maximized > headerbar.titlebar, window.csd.unified.maximized deck headerbar.titlebar, window.maximized > paned.titlebar, messagedialog.csd.maximized > .titlebar {
+margin-top: 0px;
+}
+
+window.csd:backdrop > headerbar.titlebar, dialog.csd:backdrop > headerbar.titlebar, window.csd.unified:backdrop deck headerbar.titlebar, window:backdrop > paned.titlebar, messagedialog.csd:backdrop > .titlebar, .windowhandle .titlebar > headerbar:backdrop {
+background-color: @titlebar_backdrop_color;
+
+background-image:
+
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(180deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_backdrop_dark_color 2px, @titlebar_backdrop_dark_color 3px,  transparent 3px, transparent 100%),
+
+url('img/marble-inactive.png');
+
+}
+
+
+window.csd.unified deck headerbar.titlebar, deck .titlebar > headerbar{
+border-top: 1px solid @black_color;
+border-left: 1px solid @black_color;
+border-right: 1px solid @black_color;
+margin-top: 0;
+margin-left: 0;
+margin-right: 0;
+}
+
+.windowhandle .titlebar > headerbar{
+margin-top: 0;
+margin-left: 0;
+margin-right: 0;
+}
+
+window.csd.popup > decoration{
+    border-radius: 0px;
+    border: 1px solid @black_color; 
+padding: 0;
+background-image:none;
+    /* the resize cursor area */
+    margin: 10px;
+}
+
+decoration:backdrop {
+   /* box-shadow: 0px 3px 3px 1px @black_color, 0px 0px 0px 1px @black_color; */
+}
+
+window.csd > headerbar.titlebar .horizontal.right, dialog.csd > headerbar.titlebar .horizontal.right, window.csd.unified deck headerbar.titlebar .horizontal.right, window > paned.titlebar > headerbar .horizontal.right, .titlebar > headerbar > .right{
+background-color: @base_color;
+padding-top: 0px;
+padding-right: 4px;
+padding-left: 0px;
+padding-bottom: 0px;
+min-height: 33px;
+background-image:
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_dark_color 2px, @titlebar_dark_color 3px, transparent 3px, transparent 100%),
+linear-gradient(180deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @titlebar_color 0px, @titlebar_color 1px, @titlebar_dark_color 1px, @titlebar_dark_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%);
+background-position: left top, left bottom, left top,  left bottom, right bottom, left bottom, 0px 0px, right bottom;
+background-size:  2px 2px, 3px 1px, 3px 1px, 2px 3px, auto auto, auto auto, auto auto, 4px 1px;
+background-repeat: no-repeat, no-repeat, no-repeat,   no-repeat, repeat, repeat, repeat, no-repeat;
+}
+
+window.csd:backdrop > headerbar.titlebar .horizontal.right, dialog.csd:backdrop > headerbar.titlebar .horizontal.right, window.csd.unified:backdrop deck headerbar.titlebar .horizontal.right, window:backdrop > paned.titlebar > headerbar .horizontal.right, .titlebar > headerbar:backdrop > .right{
+
+background-image:
+
+linear-gradient(180deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_backdrop_dark_color 2px, @titlebar_backdrop_dark_color 3px, transparent 3px, transparent 100%),
+linear-gradient(180deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @titlebar_backdrop_color 0px, @titlebar_backdrop_color 1px, @titlebar_backdrop_dark_color 1px, @titlebar_backdrop_dark_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%);
+}
+
+headerbar.titlebar separator, paned.titlebar > headerbar separator{
+        margin: 2px;
+        padding: 0px;
+	background-color: @titlebar_color;
+box-shadow: inset 2px 0px @titlebar_light_color, inset 1px 0px @titlebar_dark_color;
+        border: none;
+min-width: 2px;
+margin-top: 7px;
+margin-bottom: 9px;
+}
+
+headerbar.titlebar:backdrop separator, paned.titlebar > headerbar:backdrop separator{
+        margin: 2px;
+        padding: 0px;
+	background-color: @titlebar_backdrop_color;
+box-shadow: inset 2px 0px @titlebar_backdrop_light_color, inset 1px 0px @titlebar_backdrop_dark_color;
+        border: none;
+min-width: 2px;
+margin-top: 7px;
+margin-bottom: 9px;
+}
+
+headerbar.titlebar .horizontal.right separator, paned.titlebar > headerbar .horizontal.right separator, .titlebar > headerbar > .right separator{
+border: none;
+min-width: 0px;
+opacity: 0; 
+margin: 1px;
+padding: 0px;
+}
+
+headerbar.titlebar menu > separator, headerbar .menu separator{
+        margin: 1px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 0px 2px @lighter_color, inset 0px 1px @dark_color;
+        border: none;
+min-height: 2px;
+}
+
+
+headerbar button{
+border: none;
+box-shadow: none;
+background-color: transparent;
+color: @titlebar_button_text_color;
+text-shadow: 0px 1px @titlebar_light_color, 0px -1px @titlebar_dark_color;
+-gtk-icon-shadow: 0px 1px @titlebar_light_color, 0px -1px @titlebar_dark_color;
+padding: 2px;
+margin: 2px;
+font-weight: bold;
+}
+
+headerbar button:backdrop{
+color: @darkest_color;
+background-color: transparent;
+text-shadow: 0px 1px @titlebar_backdrop_light_color, 0px -1px @titlebar_backdrop_dark_color;
+-gtk-icon-shadow: 0px 1px @titlebar_backdrop_light_color, 0px -1px @titlebar_backdrop_dark_color;
+padding: 2px;
+margin: 2px;
+font-weight: bold;
+}
+
+headerbar button:disabled{
+border: none;
+box-shadow: none;
+color: @base_color;
+background-color: transparent;
+padding: 2px;
+margin: 2px;
+font-weight: bold;
+}
+
+headerbar button:disabled label{
+color: @base_color;
+}
+
+headerbar button:focus{
+border: none;
+box-shadow: inset 0px 1px @high_color, inset 1px 0px @high_color, inset 0px -1px @high_color, inset -1px 0px @high_color;
+background-color: transparent;
+color: @titlebar_button_text_color;
+text-shadow: 0px 1px @titlebar_light_color, 0px -1px @titlebar_dark_color;
+-gtk-icon-shadow: 0px 1px @titlebar_light_color, 0px -1px @titlebar_dark_color;
+padding: 2px;
+margin: 2px;
+font-weight: bold;
+border-radius: 4px;
+}
+
+headerbar button:hover, headerbar button:focus:hover, headerbar button:checked, headerbar button:checked:hover, headerbar button:checked:focus, headerbar button:checked:focus:hover, headerbar button:active, headerbar button:active:hover, headerbar button:checked:active:hover, headerbar button:active:hover:focus {
+border: none;
+box-shadow: none;
+color: @titlebar_color;
+background-color: @high_color;
+text-shadow: 0px 1px @white_color, 0px -1px @titlebar_dark_color;
+-gtk-icon-shadow: 0px 1px @white_color, 0px -1px @titlebar_dark_color;
+border-radius: 4px;
+padding: 2px;
+margin: 2px;
+font-weight: bold;
+}
+
+headerbar button:checked:backdrop {
+border: none;
+box-shadow: none;
+color: @darkest_color;
+background-color: @high_color;
+text-shadow: 0px 1px @white_color, 0px -1px @titlebar_dark_color;
+-gtk-icon-shadow: 0px 1px @white_color, 0px -1px @titlebar_dark_color;
+border-radius: 4px;
+padding: 2px;
+margin: 2px;
+font-weight: bold;
+}
+
+
+headerbar button.titlebutton.minimize, headerbar button.titlebutton.maximize, headerbar button.titlebutton.close {
+border: none;
+box-shadow: none;
+min-height: 28px;
+min-width: 28px;
+padding: 0px;
+margin: 3px -2px;
+color: transparent;
+border-radius: 0px;
+background-color: transparent;
+}
+
+headerbar button.titlebutton.minimize{
+background-image: url('img/hide-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.minimize:hover{
+background-image: url('img/hide-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.minimize:backdrop{
+background-image: url('img/hide-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.minimize:active, headerbar button.titlebutton.minimize:active:hover{
+background-image: url('img/hide-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.maximize{
+background-image: url('img/maximize-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.maximize:hover{
+background-image: url('img/maximize-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.maximize:backdrop{
+background-image: url('img/maximize-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.maximize:active, headerbar button.titlebutton.maximize:active:hover{
+background-image: url('img/maximize-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized headerbar button.titlebutton.maximize{
+background-image: url('img/maximize-toggled-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized headerbar button.titlebutton.maximize:hover{
+background-image: url('img/maximize-toggled-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized headerbar button.titlebutton.maximize:backdrop{
+background-image: url('img/maximize-toggled-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized headerbar button.titlebutton.maximize:active, window.maximized headerbar button.titlebutton.maximize:active:hover{
+background-image: url('img/maximize-toggled-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.close{
+background-image: url('img/close-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.close:hover{
+background-image: url('img/close-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.close:backdrop{
+background-image: url('img/close-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton.close:active, headerbar button.titlebutton.close:active:hover{
+background-image: url('img/close-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+headerbar button.titlebutton:last-child{
+margin-right: 0px;
+}
+
+window.maximized headerbar button.titlebutton:last-child{
+margin-right: 4px;
+}
+
+headerbar button.titlebutton:first-child{
+margin-left: 6px;
+}
+
+headerbar entry, headerbar entry:backdrop, headerbar entry:disabled{
+margin: 7px 2px;
+min-height: 10px;
+padding: 2px;
+border-top: 1px solid @titlebar_dark_color;
+border-left: 1px solid @titlebar_dark_color;
+border-bottom: 1px solid @titlebar_light_color;
+border-right: 1px solid @titlebar_light_color;
+}
+
+headerbar:backdrop entry, headerbar:backdrop entry:backdrop, headerbar:backdrop entry:disabled{
+margin: 7px 2px;
+min-height: 10px;
+padding: 2px;
+border-top: 1px solid @titlebar_backdrop_dark_color;
+border-left: 1px solid @titlebar_backdrop_dark_color;
+border-bottom: 1px solid @titlebar_backdrop_light_color;
+border-right: 1px solid @titlebar_backdrop_light_color;
+}
+
+.extra-thin-window stack .titlebutton.close{
+margin: 6px;
+}
+
+
+/**********************************************/
+/* button */
+/**********************************************/
+
+
+
+button{
+    background-color: @base_color;
+    color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @lighter_color,
+	inset 0px 2px @lighter_color,
+	inset 0px -2px @dark_color,
+	inset -2px 0px @dark_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+
+button:active, button:checked, button:active:hover{
+background-color: @darker_color;
+color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+button:hover {
+    background-color: @lighter_color;
+    color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @white_color,
+	inset 0px 2px @white_color,
+	inset 0px -2px @base_color,
+	inset -2px 0px @base_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+button:focus {
+    box-shadow:
+	inset -2px 0px @dark_color,
+	inset 0px -2px @dark_color,
+	inset 0px 2px @lighter_color,
+	inset 2px 0px @lighter_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+button:focus:hover {
+    box-shadow:
+	inset 2px 0px @white_color,
+	inset 0px 2px @white_color,
+	inset 0px -2px @base_color,
+	inset -2px 0px @base_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+button:active:focus, button:active:focus:hover, button:checked:focus, button:checked:focus:hover {
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+
+button:checked:hover{
+    background-color: @base_color;
+color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+button:disabled{
+background-color: @base_color;
+    color: @dark_color;
+border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+
+
+
+
+treeview header button{
+    background-color: @base_color;
+    color: @text_color;
+margin:0;
+border: none;	
+    box-shadow:
+	inset 1px 0px @lighter_color,
+	inset 0px 1px @lighter_color,
+	inset 0px -1px @dark_color,
+	inset -1px 0px @dark_color;
+	padding: 4px;
+}
+
+treeview header button:active, treeview header button:checked, treeview header button:active:hover{
+background-color: @darker_color;
+color: @text_color;
+margin:0;
+border: none;
+    box-shadow:
+	inset 1px 0px @dark_color,
+	inset 0px 1px @dark_color,
+	inset 0px -1px @lighter_color,
+	inset -1px 0px @lighter_color;
+	padding: 4px;
+}
+
+treeview header button:hover {
+    background-color: @lighter_color;
+    color: @text_color;
+margin:0;
+border: none;
+    box-shadow:
+	inset 1px 0px @white_color,
+	inset 0px 1px @white_color,
+	inset 0px -1px @base_color,
+	inset -1px 0px @base_color;
+	padding: 4px;
+}
+
+treeview header button:focus {
+margin:0;
+border: none;
+    box-shadow:
+	inset -1px 0px @dark_color,
+	inset 0px -1px @dark_color,
+	inset 0px 1px @lighter_color,
+	inset 1px 0px @lighter_color;
+}
+
+
+treeview header button:checked:hover{
+    background-color: @base_color;
+color: @text_color;
+margin:0;
+border: none;
+    box-shadow:
+	inset 1px 0px @dark_color,
+	inset 0px 1px @dark_color,
+	inset 0px -1px @lighter_color,
+	inset -1px 0px @lighter_color;
+	padding: 4px;
+}
+
+view:disabled, .view:disabled, row:disabled, treeview:disabled, label:disabled{
+color: @dark_color;
+}
+
+toolbutton button, toolbar > button.flat.toggle {
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(180deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%),
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%);
+}
+
+toolbutton button:active, toolbutton button:checked, toolbutton button:active:hover,
+toolbar > button.flat.toggle:active, toolbar > button.flat.toggle:checked, toolbar > button.flat.toggle:active:hover{
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(180deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%),
+linear-gradient(90deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%);
+}
+
+toolbutton button:hover, toolbar > button.flat.toggle:hover {
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(180deg, @white_color 0px, @white_color 2px, transparent 2px, transparent 100%),
+linear-gradient(90deg, @white_color 0px, @white_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @base_color 0px, @base_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @base_color 0px, @base_color 2px, transparent 2px, transparent 100%);
+}
+
+
+toolbutton button:focus, toolbar > button.flat.toggle:focus {
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(180deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%),
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%);
+}
+
+toolbutton button:focus:hover, toolbar > button.flat.toggle:focus:hover {
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @high_color 0px, @high_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(180deg, @white_color 0px, @white_color 2px, transparent 2px, transparent 100%),
+linear-gradient(90deg, @white_color 0px, @white_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @base_color 0px, @base_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @base_color 0px, @base_color 2px, transparent 2px, transparent 100%);
+}
+
+
+toolbutton button:checked:hover, toolbar > button.flat.toggle:checked:hover{
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(180deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%),
+linear-gradient(90deg, @dark_color 0px, @dark_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @lighter_color 0px, @lighter_color 2px, transparent 2px, transparent 100%);
+}
+
+toolbutton button:disabled, toolbar > button.flat.toggle:disabled{
+padding: 4px;
+	margin:1px;
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%);
+}
+
+
+/**********************************************/
+/* menu */
+/**********************************************/
+
+menubar {
+    padding: 1px 0px;
+}
+
+menu, window menu, menupopup menu {
+    padding: 1px;
+    padding-right: 2px;
+/*border: 1px solid @black_color;*/
+box-shadow: none;
+background-color: @base_color;
+}
+
+button menu menuitem {
+text-shadow: none;
+font-weight: normal;
+}
+
+menuitem, menubar item {
+    padding: 4px 6px;
+}
+
+menubar menuitem:active, menubar menuitem:hover, menuitem:active, menuitem:hover {
+    background-color: @high_color;
+    color: @text_color;
+}
+/*
+window.popup menu{
+border: 1px solid @black_color;
+}*/
+
+combobox menu, .context-menu, menuitem .popup {
+/*border: 1px solid @black_color;*/
+box-shadow: none;
+}
+
+/**********************************************/
+/* toolbar */
+/**********************************************/
+.thunar toolbar {
+padding: 1px;
+margin: 4px;
+}
+
+/*
+.thunar toolbar {
+border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-bottom: 1px solid @lighter_color;
+border-right: 1px solid @lighter_color;
+box-shadow:
+inset 0px 1px @darkest_color,
+inset 0px -1px @darkest_color,
+inset 1px 0px @darkest_color,
+inset -1px 0px @darkest_color;
+padding: 1px;
+margin: 4px;
+}
+
+.thunar toolbar button, .thunar toolbar button.toggle {
+border: none;
+background-image:none;
+box-shadow:
+inset 0px 1px @lighter_color,
+inset 0px -1px @dark_color,
+inset 1px 0px @lighter_color,
+inset -1px 0px @dark_color;
+margin: 0;
+padding: 4px;
+}
+
+.thunar toolbar button:hover, .thunar toolbar button.toggle:hover {
+margin: 0;
+background-image:none;
+padding: 4px;
+border: none;
+box-shadow:
+inset 0px 1px @white_color,
+inset 0px -1px @base_color,
+inset 1px 0px @white_color,
+inset -1px 0px @base_color;
+}
+
+.thunar toolbar button:checked, .thunar toolbar button:active, .thunar toolbar button.toggle:checked, .thunar toolbar button.toggle:active {
+    background-color: @darker_color;
+margin: 0;
+background-image:none;
+padding: 4px;
+border: none;
+box-shadow:
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+}
+
+.thunar toolbar button:checked:hover, .thunar toolbar button.toggle:checked:hover {
+    background-color: @base_color;
+margin: 0;
+background-image:none;
+padding: 4px;
+border: none;
+box-shadow:
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+}
+
+.thunar toolbar button:disabled, .thunar toolbar button.toggle:disabled {
+    background-color: @base_color;
+margin: 0;
+background-image:none;
+padding: 4px;
+border: none;
+box-shadow: none;
+}
+*/
+
+
+.thunar toolbar .path-bar{
+box-shadow: inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+background-color: @edit_color;
+        border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+   box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+
+}
+
+.thunar toolbar .path-bar button{
+box-shadow: none;
+background-color: transparent;
+border: 1px solid transparent;
+margin: 2px;
+padding: 5px;
+
+}
+
+.thunar toolbar .horizontal entry{
+background-color: @edit_color;
+        border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+   box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+padding: 7px;
+margin: 0px;
+}
+
+.thunar toolbar .path-bar button:hover, .thunar toolbar .path-bar button:checked, .thunar toolbar .path-bar button:active, .thunar toolbar .path-bar button:checked:hover{
+background-color: @high_color;
+margin: 2px;
+padding: 5px;
+border: 1px solid transparent;
+box-shadow:none;
+
+}
+
+
+.thunar paned notebook.frame{
+border: none;
+padding: 0px;
+box-shadow: none;
+margin: 0px;
+}
+
+.thunar paned notebook.frame scrolledwindow{
+    box-shadow: 
+inset 0px 2px @high_color,
+inset 0px -2px @high_color,
+inset 2px 0px @high_color,
+inset -2px 0px @high_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+}
+
+/**********************************************/
+/* scale */
+/**********************************************/
+ 
+scale.horizontal trough {
+    margin: 6px 20px;
+    background-color: transparent;
+background-image: 
+linear-gradient(270deg, transparent 0px, transparent 1px, @darkest_color 1px, @darkest_color 2px),
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 7px, @dark_color 7px, @dark_color 8px),
+linear-gradient(90deg, transparent 0px, transparent 1px, @darkest_color 1px, @darkest_color 2px),
+linear-gradient(180deg, @dark_color 0px, @dark_color 7px, @lighter_color 7px, @lighter_color 8px),
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, @darkest_color 1px, @darkest_color 2px, @darker_color 2px, @darker_color 6px, @darkest_color 6px, @darkest_color 7px, @lighter_color 7px, @lighter_color 8px);
+background-size: 2px 6px, 1px 8px, 2px 6px, 1px 8px, auto 8px;
+background-position: right center, right center, left center, left center, center center;
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+min-height: 18px;
+}
+
+.xfce4-panel scale.horizontal trough {
+    margin: 4px 10px;
+    background-color: transparent;
+background-image: 
+linear-gradient(270deg, transparent 0px, transparent 1px, @darkest_color 1px, @darkest_color 2px),
+linear-gradient(0deg, @panel_light_color 0px, @panel_light_color 7px, @panel_dark_color 7px, @panel_dark_color 8px),
+linear-gradient(90deg, transparent 0px, transparent 1px, @darkest_color 1px, @darkest_color 2px),
+linear-gradient(180deg, @panel_dark_color 0px, @panel_dark_color 7px, @panel_light_color 7px, @panel_light_color 8px),
+linear-gradient(180deg, @panel_dark_color 0px, @panel_dark_color 1px, @darkest_color 1px, @darkest_color 2px, @darker_color 2px, @darker_color 6px, @darkest_color 6px, @darkest_color 7px, @panel_light_color 7px, @panel_light_color 8px);
+background-size: 2px 6px, 1px 8px, 2px 6px, 1px 8px, auto 8px;
+background-position: right center, right center, left center, left center, center center;
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+min-height: 18px;
+}
+
+row scale.horizontal trough {
+    margin: 6px 8px;
+min-height: 18px;
+}
+
+menuitem scale.horizontal trough{
+margin: 6px 8px;
+}
+
+
+scale.horizontal highlight {
+
+    background-color: @high_color;
+margin: 8px 2px;
+min-height: 4px;
+}
+
+scale.vertical trough {
+    margin: 10px 6px;
+    background-color: transparent;
+background-image: 
+linear-gradient(0deg, transparent 0px, transparent 1px, @darkest_color 1px, @darkest_color 2px),
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px),
+linear-gradient(180deg, transparent 0px, transparent 1px, @darkest_color 1px, @darkest_color 2px),
+linear-gradient(90deg, @dark_color 0px, @dark_color 1px),
+linear-gradient(90deg, @dark_color 0px, @dark_color 1px, @darkest_color 1px, @darkest_color 2px, @darker_color 2px, @darker_color 6px, @darkest_color 6px, @darkest_color 7px, @lighter_color 7px, @lighter_color 8px);
+background-size: 6px 2px, 8px 1px, 6px 2px, 8px 1px, 8px auto;
+background-position: center bottom, center bottom, center top, center top, center center;
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+min-width: 18px;
+}
+
+
+scale.vertical highlight {
+
+    background-color: @high_color;
+margin: 2px 8px;
+min-width: 4px;
+}
+
+scale.vertical highlight:disabled, scale.horizontal highlight:disabled{
+background-color: @base_color;
+}
+
+scale.horizontal slider, scale.vertical slider {
+    min-width: 18px;
+    min-height: 18px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: @base_color;
+    border-left: 1px solid @lighter_color;
+    border-top: 1px solid @lighter_color;
+    border-right: 1px solid @dark_color;
+    border-bottom: 1px solid @dark_color;
+border-radius: 9px;
+}
+
+.xfce4-panel scale.horizontal slider, .xfce4-panel scale.vertical slider{
+    min-width: 18px;
+    min-height: 18px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: @panel_color;
+    border-left: 1px solid @panel_light_color;
+    border-top: 1px solid @panel_light_color;
+    border-right: 1px solid @panel_dark_color;
+    border-bottom: 1px solid @panel_dark_color;
+border-radius: 9px;
+}
+
+scale.horizontal slider:hover, scale.vertical slider:hover{
+background-color: @lighter_color;
+    border-left: 1px solid @white_color;
+    border-top: 1px solid @white_color;
+    border-right: 1px solid @base_color;
+    border-bottom: 1px solid @base_color;
+}
+
+.xfce4-panel scale.horizontal slider:hover, .xfce4-panel scale.vertical slider:hover, .xfce4-panel menuitem:hover scale.horizontal slider, .xfce4-panel menuitem:hover scale.vertical slider{
+background-color: @panel_light_color;
+    border-left: 1px solid @panel_lighter_color;
+    border-top: 1px solid @panel_lighter_color;
+    border-right: 1px solid @panel_color;
+    border-bottom: 1px solid @panel_color;
+}
+
+scale.horizontal indicator {
+    min-width: 1px;
+    min-height: 6px;
+    background: @black_color;
+}
+
+scale.vertical indicator {
+    min-width: 6px;
+    min-height: 1px;
+    background: @black_color;
+}
+
+#SpinScale, #InkSpinScale, #InkScale, spinbutton{
+background-color: @base_color;
+}
+
+#SpinScale scale trough{
+margin: 0px 2px;
+padding: 0;
+border-right: 1px solid @lighter_color;
+border-left: 1px solid @dark_color;
+border-bottom: 1px solid @lighter_color;
+border-top: 1px solid @dark_color;
+    box-shadow: 
+inset 0px 1px @darkest_color,
+inset 0px -1px @darkest_color,
+inset 1px 0px @darkest_color,
+inset -1px 0px @darkest_color;
+background-image: none;
+background-color: @darker_color;
+min-height: 18px;
+}
+
+#SpinScale scale highlight{
+    background-color: @high_color;
+margin: 0;
+    box-shadow: 
+inset 0px 1px @darkest_color,
+inset 0px -1px @darkest_color,
+inset 1px 0px @darkest_color,
+inset -1px 0px @darkest_color;
+min-height: 18px;
+
+}
+
+#InkSpinScale slider{
+opacity: 0;
+background-color: transparent;
+border:none;
+}
+
+
+/**********************************************/
+/* progressbar */
+/**********************************************/
+
+progressbar {
+    color: @text_color;
+    /*background-color: @base_color;*/
+}
+
+progressbar.vertical trough, levelbar.vertical trough  {
+    margin: 6px;
+    background-color: @darker_color;
+    box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+min-width: 18px;
+padding: 0px;
+}
+
+progressbar.horizontal trough, levelbar.horizontal trough {
+    margin: 6px;
+    background-color: @darker_color;
+    box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+min-height: 18px;
+padding: 0px;
+}
+
+levelbar.vertical block{
+margin: 2px 4px;}
+
+levelbar.horizontal block{
+margin: 4px 2px;}
+
+progressbar.vertical progress, levelbar.vertical block.filled, levelbar.vertical.continuous block.filled.high {
+margin: 2px;
+    min-width: 14px;
+background-color: @high_color;
+box-shadow: inset 1px 0px @high_light_color, inset -1px 0px @high_dark_color;
+}
+
+progressbar.horizontal progress, levelbar.horizontal block.filled {
+margin: 2px;
+    min-height: 14px;
+background-color: @high_color;
+box-shadow: inset 0px 1px @high_light_color, inset 0px -1px @high_dark_color;
+}
+
+
+levelbar.discrete.horizontal block.filled{
+margin: 1px;
+box-shadow: inset 0px 2px @high_light_color, inset 0px -2px @high_dark_color,
+inset 0px 1px @darkest_color,
+inset 0px -1px @darkest_color,
+inset 1px 0px @darkest_color,
+inset -1px 0px @darkest_color;
+}
+
+levelbar.discrete.vertical block.filled{
+margin: 1px;
+box-shadow: inset 2px 0px @high_light_color, inset -2px 0px @high_dark_color,
+inset 0px 1px @darkest_color,
+inset 0px -1px @darkest_color,
+inset 1px 0px @darkest_color,
+inset -1px 0px @darkest_color;
+}
+
+/*
+progressbar.vertical text {
+    margin-right: 25px;
+}*/
+
+/* progressbars are different in GtkTreeView (monitor) */
+treeview.view.progressbar {
+    min-height: 14px;
+    background-color: @high_color;
+box-shadow: inset 0px 1px @high_light_color, inset 0px -1px @high_dark_color;
+}
+
+treeview.view.trough,
+treeview.view.trough:selected {
+    min-height: 18px;
+    background-color: @darker_color;
+    color: @text2_color;
+    box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+padding: 2px;
+}
+
+.xfce4-panel progressbar trough, .xfce4-panel levelbar trough{
+margin: 0px;
+padding: 0px;
+    box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @panel_dark_color,
+inset 0px -1px @panel_light_color,
+inset 1px 0px @panel_dark_color,
+inset -1px 0px @panel_light_color;
+}
+
+.xfce4-panel progressbar.vertical.normal trough{
+margin: 0px;
+padding: 0px 2px;
+}
+
+.xfce4-panel progressbar.horizontal.normal trough{
+margin: 0px;
+padding: 2px 0px;
+}
+
+.xfce4-panel progressbar progress, .xfce4-panel levelbar block{
+box-shadow: none;
+padding: 0px;
+}
+
+levelbar.vertical block, levelbar.horizontal block{
+background-color: @darker_color;
+}
+
+.xfce4-panel levelbar trough{
+padding:2px;
+margin: 1px;}
+
+
+
+/**********************************************/
+/* scrollbar */
+/**********************************************/
+
+scrollbar.vertical{
+border-left: 1px solid @darkest_color;
+background-color: @base_color;
+}
+scrollbar.horizontal{
+border-top: 1px solid @darkest_color;
+background-color: @base_color;
+}
+
+scrollbar trough  {
+    background-color: @darker_color;
+    box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+min-width: 18px;
+min-height: 18px;
+border-radius: 0px;
+margin:2px;
+}
+
+#whiskermenu-window scrollbar{
+background-color: @panel_color;
+}
+
+#whiskermenu-window scrollbar trough  {
+    background-color: @darker_color;
+    box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @panel_dark_color,
+inset 0px -1px @panel_light_color,
+inset 1px 0px @panel_dark_color,
+inset -1px 0px @panel_light_color;
+min-width: 18px;
+min-height: 18px;
+border-radius: 0px;
+margin:2px;
+}
+
+scrollbar slider {
+    background-color: @titlebar_color;
+    min-width: 14px;
+    min-height: 14px;
+margin:2px;
+    box-shadow: 
+inset 1px 0px @titlebar_light_color,
+inset -1px 0px @titlebar_dark_color,
+inset 0px -1px @titlebar_dark_color,
+inset 0px 1px @titlebar_light_color;
+background-image: url('img/marble.png');
+border-radius: 0px;
+}
+
+#whiskermenu-window scrollbar slider{
+background-color: @panel_color;
+    box-shadow: 
+inset 1px 0px @titlebar_light_color,
+inset -1px 0px @titlebar_dark_color,
+inset 0px -1px @titlebar_dark_color,
+inset 0px 1px @titlebar_light_color;
+background-image: url('img/marble.png');
+}
+
+scrollbar:backdrop slider {
+    background-color: @titlebar_backdrop_color;
+    min-width: 14px;
+    min-height: 14px;
+margin:2px;
+    box-shadow: 
+inset 1px 0px @titlebar_backdrop_light_color,
+inset -1px 0px @titlebar_backdrop_dark_color,
+inset 0px -1px @titlebar_backdrop_dark_color,
+inset 0px 1px @titlebar_backdrop_light_color;
+background-image: url('img/marble-inactive.png');
+border-radius: 0px;
+}
+
+scrollbar slider:hover {
+    background-color: @titlebar_light_color;
+    min-width: 14px;
+    min-height: 14px;
+margin:2px;
+    box-shadow: 
+inset 1px 0px @white_color,
+inset -1px 0px @titlebar_color,
+inset 0px -1px @titlebar_color,
+inset 0px 1px @white_color;
+background-image: url('img/marble-prelight.png');
+border-radius: 0px;
+}
+
+#whiskermenu-window scrollbar slider:hover{
+background-color: @panel_light_color;
+    box-shadow: 
+inset 1px 0px @panel_lighter_color,
+inset -1px 0px @panel_color,
+inset 0px -1px @panel_color,
+inset 0px 1px @panel_lighter_color;
+background-image: url('img/marble-prelight.png');
+}
+
+scrollbar.vertical slider {
+        min-height: 30px;
+}
+
+scrollbar.horizontal slider {
+        min-width: 30px;
+}
+
+
+scrollbar button,
+scrollbar.horizontal button,
+scrollbar.vertical button {
+	min-width: 10px;
+	min-height: 10px;
+}
+	
+scrollbar.vertical button.down {
+	-gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+	     min-height: 10px;
+     min-height: 10px;
+}
+
+scrollbar.vertical button.up {
+	-gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+     min-height: 10px;
+     min-height: 10px;
+}
+
+scrollbar.horizontal button.down {
+	-gtk-icon-source: -gtk-icontheme("pan-end-symbolic");
+     min-height: 10px;
+     min-height: 10px;
+}
+
+scrollbar.horizontal button.up {
+	-gtk-icon-source: -gtk-icontheme("pan-start-symbolic");
+     min-height: 10px;
+     min-height: 10px;
+}
+
+
+/**********************************************/
+/* entry, treeview, textview, iconwiew, grid */
+/**********************************************/
+
+entry, entry:backdrop {
+    background-color: @edit_color;
+    color: @text3_color;
+    padding: 6px;
+        border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+   box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+}
+
+#whiskermenu-window entry, #whiskermenu-window entry:backdrop, .xfce4-panel entry, .xfce4-panel entry:backdrop {
+background-color: @edit_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+color: @black_color;
+}
+
+entry:focus {
+   box-shadow:
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+entry:disabled {
+    background-color: @base_color;
+    color: @dark_color;
+}
+
+label:disabled {
+    color: @dark_color;
+}
+
+treeview, treeview.view {
+    background-color: @edit_color;
+
+}
+
+selection, textview selection {
+    background-color: @high_color;
+    color: @text_color;
+}
+
+.thunar .sidebar .view {
+    background-color: @base_color;
+}
+
+textview {
+    background-color: @edit_color;
+    color: @text3_color;
+
+}
+
+iconview {
+    background-color: @edit_color;
+    color: @text3_color;
+
+}
+
+
+view, .view{
+     background-color: @base_color;
+     color: @text3_color;
+
+}
+
+.view text, iconview text, textview text {
+     background-color: @edit_color;
+     color: @text3_color;
+
+}
+/*
+.vertical, .horizontal{
+     background-color: @base_color;
+}*/
+
+.exoiconview, .exoiconview .view, scrolledwindow .view {
+     background-color: @edit_color;
+     color: @text3_color;
+
+}
+
+
+/*
+scrolledwindow scrolledwindow .view, scrolledwindow scrolledwindow.frame {
+     background-color: @edit_color;
+}*/
+
+iconview{
+background-color: @edit_color;
+     color: @text3_color;
+}
+
+
+/* selection */
+
+ .view:selected, .view selection, iconview:selected, .view:selected:focus, iconview:selected:focus, .view text:selected, iconview text:selected, textview text:selected, .view text:selected:focus, iconview text:selected:focus, textview text:selected:focus {
+     background-color: alpha(@high_color,0.6);
+     /*border: 1px solid @high_color;*/
+}
+
+ .thunar .view:selected, .nemo-window .view:selected, .thunar .view:hover, .nemo-window .view:hover {
+    background-color: @high_color;
+}
+
+
+.thunar .view:drop(active){
+border: 1px solid @high_color;
+}
+
+
+ .view:selected, iconview:selected, .view:selected:focus, iconview:selected:focus, .view text:selected, iconview text:selected, textview text:selected, iconview text:selected:focus, textview text:selected:focus, .view text selection:focus, iconview text selection:focus, .view text selection, iconview text selection, textview text selection:focus, textview text selection, flowbox flowboxchild:selected, entry selection, entry selection:focus, row:selected,
+
+.view:hover, iconview:hover, .view:hover:focus, iconview:hover:focus, .view text:hover, iconview text:hover, textview text:hover, iconview text:hover:focus, textview text:hover:focus, flowbox flowboxchild:hover, row:hover 
+{
+     background-color: @high_color;
+     /*border: 1px solid @high_color;*/
+}
+
+/* Catfish sidebar highlights */
+scrolledwindow.sidebar > .sidebar > .sidebar > .vertical * treeview.view:hover {
+background-image: linear-gradient(0deg, @high_color 0% , @high_color 100%);
+}
+
+ label:selected, .view:selected, iconview:selected, .view:selected:focus, iconview:selected:focus, .view text:selected, iconview text:selected, textview text:selected, iconview text:selected:focus, textview text:selected:focus, .view text selection:focus, iconview text selection:focus, .view text selection, iconview text selection, textview text selection:focus, textview text selection, flowbox flowboxchild:selected, entry selection, entry selection:focus, row:selected {
+     background-color: @high_color;
+	color: @text_color;
+}
+
+ entry selection {
+     color: @text3_color;
+     caret-color: @edit_color;
+}
+
+ .nemo-window rubberband, .nemo-window flowbox rubberband, .nemo-window treeview.view rubberband, .nemo-window .content-view rubberband, .nemo-window .rubberband, .thunar rubberband, .thunar .rubberband {
+     background-color: alpha(@high_color,0.3);
+     border: 1px solid @high_color;
+}
+
+/*
+iconview *:selected, iconview *:active {
+    background-color: @high_color;
+    color: @text_color;
+}*/
+/*
+grid *:selected, grid *:active {
+    background-color: @high_color;
+    color: @text_color;
+}*/
+
+/**********************************************/
+/* frame, notebook, tab */
+/**********************************************/
+
+
+infobar.info > revealer > box, infobar.question > revealer > box, infobar.warning > revealer > box, infobar.error > revealer > box {
+background-color: @edit_color;
+border: 1px solid @black_color;
+margin: 4px;
+}
+
+/*
+notebook {
+    background-color: @base_color;
+    color: @text_color;
+    border:1px solid @darker_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+   box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+padding: 1px;
+}
+*/
+notebook {
+    background-color: @base_color;
+    color: @text_color;
+
+ }
+
+notebook header {
+padding: 1px;
+}
+
+
+frame {
+    background-color: @base_color;
+  /* padding: 4px;*/
+}
+/* kritikus */
+
+window.background > frame, window .emoji-completion { 
+ border:1px solid @black_color; 
+}
+ /* kritikus */
+notebook .frame, notebook frame {
+    background-color: @base_color;
+}
+
+
+/* kritikus */
+/*
+notebook stack box.vertical, notebook stack box.horizontal  {
+border: 1px solid @darker_color;
+}*/
+
+/* notebook.frame {
+    background-color: @edit_color;
+}*/
+
+ notebook .view {
+    background-color: @edit_color; /* kritikus */
+
+}
+
+
+notebook tab, tabbox tab {
+    background-color: @tab_color;
+    border: none;
+background-image:
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%);
+
+/*border-top-right-radius: 5px;*/
+}
+
+tabbox {
+padding: 2px 8px;}
+
+tab{
+  padding: 4px 10px;
+}
+
+notebook header.top tab, notebook header.bottom tab {
+background-image:
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%);
+}
+
+notebook header.right tab, notebook header.left tab {
+background-image:
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%);
+}
+
+
+notebook tab:checked, notebook tab:hover, notebook tab:checked:hover, notebook tab:active,
+tabbox tab:checked, tabbox tab:hover, tabbox tab:checked:hover, tabbox tab:active {
+    background-color: @high_color;
+}
+
+notebook header tab:first-child, notebook header tab:first-child, tabs arrow+tab:nth-child(2), tabs arrow+tab:nth-child(2), tabbox tab:first-child {
+background-color: transparent;
+background-image:
+
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(135deg, transparent 0px, transparent 6px, @black_color 6px, @black_color 7px, @high_dark_color 7px, @high_dark_color 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 9px, @black_color 9px, @black_color 100%),
+linear-gradient(180deg, transparent 0px, transparent 9px, @black_color 9px, @black_color 100%),
+
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(135deg, transparent 0px, transparent 7px, @tab_color 7px, @tab_color 100%);
+
+background-size: 9px 9px, 9px 9px, 9px 9px, auto 1px, 1px auto, auto auto, auto auto, auto auto;
+background-position: left top, left top, left top, center top, left center, center center, center center, center center; 
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat;
+}
+
+
+notebook header tab:first-child:checked, notebook header tab:first-child:checked:hover, notebook header tab:first-child:active, notebook header tab:first-child:hover,
+notebook header.bottom tab:first-child:checked, notebook header.bottom tab:first-child:checked:hover, notebook header.bottom tab:first-child:active, notebook header.bottom tab:first-child:hover,
+tabs arrow+tab:nth-child(2):checked, tabs arrow+tab:nth-child(2):checked:hover, tabs arrow+tab:nth-child(2):active, tabs arrow+tab:nth-child(2):hover,
+tabs arrow+tab:nth-child(2):checked, tabs arrow+tab:nth-child(2):checked:hover, tabs arrow+tab:nth-child(2):active, tabs arrow+tab:nth-child(2):hover,
+tabbox tab:first-child:checked, tabbox tab:first-child:hover {
+background-color: transparent;
+background-image:
+
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(135deg, transparent 0px, transparent 6px, @black_color 6px, @black_color 7px, @high_dark_color 7px, @high_dark_color 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 9px, @black_color 9px, @black_color 100%),
+linear-gradient(180deg, transparent 0px, transparent 9px, @black_color 9px, @black_color 100%),
+
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(135deg, transparent 0px, transparent 7px, @high_color 7px, @high_color 100%);
+
+background-size: 9px 9px, 9px 9px, 9px 9px, auto 1px, 1px auto, auto auto, auto auto, auto auto;
+background-position: left top, left top, left top, center top, left center, center center, center center, center center; 
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat;
+}
+
+
+
+notebook header tab.dnd, notebook header tab.dnd:hover, notebook header tab.dnd:checked, notebook header tab.dnd:checked:hover {
+background-color: transparent;
+background-image:
+
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(135deg, transparent 0px, transparent 6px, @black_color 6px, @black_color 7px, @high_dark_color 7px, @high_dark_color 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 9px, @black_color 9px, @black_color 100%),
+linear-gradient(180deg, transparent 0px, transparent 9px, @black_color 9px, @black_color 100%),
+
+linear-gradient(0deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(135deg, transparent 0px, transparent 7px, @high_color 7px, @high_color 100%);
+
+background-size: 9px 9px, 9px 9px, 9px 9px, auto 1px, 1px auto, auto auto, auto auto, auto auto;
+background-position: left top, left top, left top, center top, left center, center center, center center, center center; 
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat, repeat, no-repeat;
+}
+
+
+notebook tab button:dir(ltr), notebook tab button:dir(ltr):active, notebook tab button:dir(ltr):checked,
+tabbox tab button:dir(ltr), tabbox tab button:dir(ltr):active, tabbox tab button:dir(ltr):checked {
+border:none;
+background-color: transparent;
+box-shadow: none;
+padding: 0px;
+-gtk-icon-style: symbolic;
+color: @text_color;
+margin-right: -4px;
+}
+
+notebook tab button:dir(ltr):hover, notebook tab button:dir(ltr):active:hover,
+tabbox tab button:dir(ltr):hover, tabbox tab button:dir(ltr):active:hover {
+border:none;
+background-color: transparent;
+box-shadow: none;
+padding: 0px;
+-gtk-icon-style: symbolic;
+color: @red_color;
+margin-right: -4px;
+}
+
+notebook tab button:dir(rtl), notebook tab button:dir(rtl):active, notebook tab button:dir(rtl):checked {
+margin-left: -4px;
+}
+
+notebook tab button:dir(rtl):hover, notebook tab button:dir(rtl):active:hover {
+margin-left: -4px;
+}
+
+
+ #whiskermenu-window.background {
+     background-color: @panel_color;
+color: @black_color;
+}
+
+#whiskermenu-window frame{
+border: 1px solid @black_color;
+background-image: none;
+box-shadow: inset 1px 0px @panel_light_color, inset -1px 0px @panel_dark_color, inset 0px -1px @panel_dark_color, inset 0px 1px @panel_light_color;
+padding-left: 0px;
+}
+
+#whiskermenu-window .frame .view{
+background-color: transparent;
+color: @black_color;
+}
+
+/*
+.xfce4-panel > decoration{
+     border: 10px solid @red_color;
+
+}*/
+
+#whiskermenu-window .frame .view > *:hover, #whiskermenu-window .frame .view > *:selected {
+     background-color: @high_color;
+border-radius: 10px;
+color: @text_color;
+}
+
+ #whiskermenu-window .frame  {
+            border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+   box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+padding: 1px;
+background-image: none;
+background-color: @edit_color;
+}
+
+
+ filechooser scrolledwindow, frame scrolledwindow, scrolledwindow.frame, notebook.frame, frame notebook, stacksidebar scrolledwindow, paned scrolledwindow  {
+
+   box-shadow:
+	inset 2px 0px @darkest_color,
+	inset 0px 2px @darkest_color,
+	inset 0px -2px @darkest_color,
+	inset -2px 0px @darkest_color,
+	inset 1px 0px @dark_color,
+	inset 0px 1px @dark_color,
+	inset 0px -1px @lighter_color,
+	inset -1px 0px @lighter_color;
+padding: 2px;
+margin: 2px;
+}
+
+scrolledwindow notebook.frame, notebook scrolledwindow notebook, notebook scrolledwindow notebook scrolledwindow, entry window, entry frame, window frame notebook.frame, stack > grid > scrolledwindow, notebook.frame .horizontal .vertical notebook.frame, popover > .frame, .menu > * > scrolledwindow, .horizontal > paned.horizontal > * > scrolledwindow{
+border: none;
+box-shadow: none;
+}
+
+
+/*entry scrolledwindow, entry window.background scrolledwindow,*/
+#gtk-combobox-popup-window scrolledwindow {
+border: 1px solid @black_color;
+box-shadow: none;
+}
+
+# popup in file dialog when writing file name
+entry window.background frame, entry window, entry frame, entry scrolledwindow, entry window.background scrolledwindow, #gtk-combobox-popup-window scrolledwindow {
+padding:0;
+margin:0;
+}
+entry window.background{
+ background-color: @edit_color;
+}
+
+.thunar scrolledwindow.sidebar {
+border: none;
+box-shadow: none;
+}
+
+
+statusbar frame {
+ background-color: @base_color;
+border: none;
+}
+
+
+
+/**********************************************/
+/* list, row */
+/**********************************************/
+
+list {
+    
+    background-color: @edit_color;
+}
+
+.sidebar list, list.sidebar  {
+    padding: 8px;
+    background-color: @base_color;
+}
+
+row {
+padding: 4px 6px;
+    }
+
+.sidebar list row, list.sidebar row {
+background-color: @base_color;
+}
+
+row:selected, .sidebar list row:selected, list.sidebar row:selected,
+list row:active, list row:hover,
+.sidebar list row:active, list.sidebar row:active,
+.sidebar list row:hover, list.sidebar row:hover
+  {
+    background-color: @high_color;
+    color: @text_color;
+padding: 4px 6px;
+border:none;
+}
+
+/*
+treeview *:selected {
+        background-color: @high_color;
+        color: @text_color;
+}*/
+
+/**********************************************/
+/* separator */
+/**********************************************/
+
+separator.vertical {
+        margin: 1px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 2px 0px @lighter_color, inset 1px 0px @dark_color;
+        border: none;
+min-width: 2px;
+}
+
+separator.horizontal {
+        margin: 1px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 0px 2px @lighter_color, inset 0px 1px @dark_color;
+        border: none;
+min-height: 2px;
+}
+
+list separator.horizontal, .view separator.horizontal{
+background-color: transparent;
+        border-bottom: none;
+}
+
+toolbar separator {
+        margin: 2px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 2px 0px @lighter_color, inset 1px 0px @dark_color;
+        border: none;
+min-width: 2px;
+}
+
+menu separator {
+        margin: 1px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 0px 2px @lighter_color, inset 0px 1px @dark_color;
+        border: none;
+min-height: 2px;
+}
+
+paned > separator {
+	min-width: 5px;
+	min-height: 5px;
+	-gtk-icon-source: none;
+	background-color: transparent;
+	border-style: none;
+}
+
+paned.vertical .vertical separator, paned.horizontal .horizontal separator {
+opacity: 0;
+}
+
+paned.vertical > separator {
+	margin: 0px;
+	padding: 0px;
+	min-height: 3px;
+background-image: linear-gradient(180deg, @dark_color 0px, @dark_color 1px, @lighter_color 1px, @lighter_color 2px, @base_color 2px, @base_color 3px);
+background-size: 100px 3px;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+paned.horizontal > separator {
+border: none;
+	margin: 0px;
+	padding: 0px;
+	min-width: 3px;
+background-image: linear-gradient(90deg, @dark_color 0px, @dark_color 1px, @lighter_color 1px, @lighter_color 2px, @base_color 2px, @base_color 3px);
+background-size: 3px 100px;
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+
+/* separator in nautilus side panel */
+paned list separator.horizontal {
+        margin: 1px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 0px 2px @lighter_color, inset 0px 1px @dark_color;
+        border: none;
+min-height: 2px;
+}
+
+/**********************************************/
+/* check, radio */
+/**********************************************/
+
+checkbutton, radiobutton {
+    color: @text_color;
+}
+
+checkbutton check, radiobutton radio {
+    color: transparent;
+}
+
+/*notebook checkbutton, notebook radiobutton {
+    background-color: @lighter_color;
+}*/
+
+checkbutton:disabled, radiobutton:disabled {
+    color: @dark_color;
+}
+
+check,
+.view check,
+.view check:selected {
+    padding: 0px;
+    border: none;
+    margin: 5px;
+    min-width: 16px;
+    min-height: 16px;
+background-color: @darker_color;
+border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+box-shadow: inset 0px 14px @darker_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+
+}
+
+check:focus, check:hover,
+.view check:focus, .view check:hover,
+.view check:focus:selected, .view check:hover:selected {
+    padding: 0px;
+    border: none;
+    margin: 5px;
+    min-width: 16px;
+    min-height: 16px;
+background-color: @darker_color;
+border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+box-shadow: inset 0px 14px @darker_color, inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+
+}
+
+check:checked, check:checked:selected,
+.view check:checked, .view check:checked:selected {
+    min-width: 16px;
+    min-height: 16px;
+background-color: @high_color;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+color: transparent;
+}
+
+check:checked:hover, check:checked:focus,
+.view check:checked:hover, .view check:checked:focus,
+.view check:checked:hover:selected, .view check:checked:focus:selected {
+    min-width: 16px;
+    min-height: 16px;
+background-color: @high_color;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+color: transparent;
+}
+
+check:indeterminate, .view check:indeterminate {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: linear-gradient(135deg,
+@darker_color 0, @darker_color 50%,
+@high_color 50%, @high_color 58%,
+@high_light_color 58%, @high_light_color 60%,
+@high_color 60%, @high_color 86%,
+@high_dark_color 86%, @high_dark_color 88%,
+@high_color 88%, @high_color 100%);
+box-shadow: inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+color: transparent;
+}
+
+check:indeterminate:focus, check:indeterminate:hover,
+.view check:indeterminate:focus, .view check:indeterminate:hover  {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: linear-gradient(135deg,
+@darker_color 0, @darker_color 50%,
+@high_color 50%, @high_color 58%,
+@high_light_color 58%, @high_light_color 60%,
+@high_color 60%, @high_color 86%,
+@high_dark_color 86%, @high_dark_color 88%,
+@high_color 88%, @high_color 100%);
+box-shadow: inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+color: transparent;
+}
+
+check:indeterminate:checked, .view check:indeterminate:checked  {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: none;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+color: transparent;
+}
+
+check:indeterminate:checked:focus, check:indeterminate:checked:hover,
+.view check:indeterminate:checked:focus, .view check:indeterminate:checked:hover {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: none;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+color: transparent;
+}
+
+radio,
+.view radio,
+.view radio:selected {
+    padding: 0px;
+    border: none;
+    margin: 5px;
+    min-width: 16px;
+    min-height: 16px;
+background-color: @darker_color;
+border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+box-shadow: inset 0px 14px @darker_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+border-radius: 8px;
+}
+
+
+radio:focus, radio:hover,
+.view radio:focus, .view radio:hover,
+.view radio:focus:selected, .view radio:hover:selected {
+    padding: 0px;
+    border: none;
+    margin: 5px;
+    min-width: 16px;
+    min-height: 16px;
+background-color: @darker_color;
+border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+box-shadow: inset 0px 14px @darker_color, inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+border-radius: 8px;
+}
+
+
+radio:checked, radio:checked:selected,
+.view radio:checked, .view radio:checked:selected {
+    min-width: 16px;
+    min-height: 16px;
+background-color: @high_color;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+color: transparent;
+}
+
+radio:checked:hover, radio:checked:focus,
+.view radio:checked:hover, .view radio:checked:focus,
+.view radio:checked:hover:selected, .view radio:checked:focus:selected {
+    min-width: 16px;
+    min-height: 16px;
+background-color: @high_color;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+color: transparent;
+}
+
+radio:indeterminate, .view radio:indeterminate{
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: linear-gradient(135deg,
+@darker_color 0, @darker_color 50%,
+@high_color 50%, @high_color 54%,
+@high_light_color 54%, @high_light_color 58%,
+@high_color 58%, @high_color 78%,
+@high_dark_color 78%, @high_dark_color 84%,
+@high_color 84%, @high_color 100%);
+box-shadow: inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+color: transparent;
+}
+
+radio:indeterminate:focus, radio:indeterminate:hover,
+.view radio:indeterminate:focus, .view radio:indeterminate:hover  {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: linear-gradient(135deg,
+@darker_color 0, @darker_color 50%,
+@high_color 50%, @high_color 54%,
+@high_light_color 54%, @high_light_color 58%,
+@high_color 58%, @high_color 78%,
+@high_dark_color 78%, @high_dark_color 84%,
+@high_color 84%, @high_color 100%);
+box-shadow: inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+color: transparent;
+}
+
+radio:indeterminate:checked, .view radio:indeterminate:checked {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: none;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @darkest_color, inset 0px -1px @darkest_color, inset 1px 0px @darkest_color, inset -1px 0px @darkest_color;
+color: transparent;
+}
+
+
+radio:indeterminate:checked:hover, radio:indeterminate:checked:focus,
+.view radio:indeterminate:checked:hover, .view radio:indeterminate:checked:focus {
+min-width: 16px;
+min-height: 16px;
+background-color: @high_color;
+background-image: none;
+box-shadow: inset 0px 14px @high_color, 
+inset 2px 0px @high_light_color, inset 0px -2px @high_dark_color, inset -2px 0px @high_dark_color, inset 0px 2px @high_light_color,
+inset 0px 1px @high_color, inset 0px -1px @high_color, inset 1px 0px @high_color, inset -1px 0px @high_color;
+color: transparent;
+}
+
+check:disabled {
+    min-width: 16px;
+    min-height: 16px;
+}
+
+radio:disabled {
+    min-width: 16px;
+    min-height: 16px;
+}
+
+check:disabled:checked {
+    min-width: 16px;
+    min-height: 16px;
+}
+
+radio:disabled:checked {
+    min-width: 16px;
+    min-height: 16px;
+}
+
+/* check and radio in menu */
+menuitem check, menuitem radio, menuitem check:disabled, menuitem radio:disabled, menuitem check:checked, menuitem check:disabled:checked, menuitem radio:checked, menuitem radio:disabled:checked, menuitem check:hover, menuitem check:focus, menuitem check:checked:hover, menuitem check:checked:focus, menuitem radio:hover, menuitem radio:focus, menuitem radio:checked:hover, menuitem radio:checked:focus, menuitem check:indeterminate, menuitem radio:indeterminate, menuitem check:indeterminate:checked, menuitem radio:indeterminate:checked, menuitem check:indeterminate:hover, menuitem radio:indeterminate:hover, menuitem check:indeterminate:checked:hover, menuitem radio:indeterminate:checked:hover, menuitem check:indeterminate:focus, menuitem radio:indeterminate:focus, menuitem check:indeterminate:checked:focus, menuitem radio:indeterminate:checked:focus, menuitem check:indeterminate:disabled, menuitem radio:indeterminate:disabled,
+
+popover check, popover radio, popover check:disabled, popover radio:disabled, popover check:checked, popover check:disabled:checked, popover radio:checked, popover radio:disabled:checked, popover check:hover, popover check:focus, popover check:checked:hover, popover check:checked:focus, popover radio:hover, popover radio:focus, popover radio:checked:hover, popover radio:checked:focus, popover check:indeterminate, popover radio:indeterminate, popover check:indeterminate:checked, popover radio:indeterminate:checked, popover check:indeterminate:hover, popover radio:indeterminate:hover, popover check:indeterminate:checked:hover, popover radio:indeterminate:checked:hover, popover check:indeterminate:focus, popover radio:indeterminate:focus, popover check:indeterminate:checked:focus, popover radio:indeterminate:checked:focus, popover check:indeterminate:disabled, popover radio:indeterminate:disabled {
+    min-width: 12px;
+    min-height: 12px;
+margin: 2px 4px;
+
+}
+
+
+/*
+list row checkbutton, list row radiobutton {
+    background-color: transparent;
+    color: @text_color;
+}
+
+
+list row checkbutton label:disabled,
+list row radiobutton label:disabled,
+list row check:disabled,
+list row radio:disabled {
+    background-color: transparent;
+    color: @dark_color;
+    min-width: 11px;
+    min-height: 11px;
+}*/
+
+
+/**********************************************/
+/* popover */
+/**********************************************/
+
+popover, popover:hover {
+    border: 1px solid @black_color;
+}
+
+popover modelbutton {
+        padding: 4px;
+min-height: 20px;
+}
+
+popover modelbutton:hover, popover modelbutton:active {
+    background-color: @high_color;
+    color: @text_color;
+}
+
+tooltip.csd decoration{
+border: none;
+padding: 0;
+}
+
+tooltip.background{
+	background-color: @titlebar_dark_color;
+color: @text2_color;
+
+}
+
+popover list {
+    background-color: @base_color;
+}
+
+
+tooltip {
+	padding: 5px;
+	border: 1px solid @titlebar_dark_color;
+	box-shadow: inset 0px 1px @white_color, inset 0px -1px @white_color, inset 1px 0px @white_color, inset -1px 0px @white_color;
+	border-radius: 0px;
+	background-color: @titlebar_dark_color;
+color: @text2_color;
+	
+}
+
+/**********************************************/
+/* switch */
+/**********************************************/
+
+switch {
+background-color: @darker_color;
+box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+color: transparent;
+}
+
+switch:checked {
+   background-color: @high_color;
+color: transparent;
+}
+
+switch slider {
+    background-color: @base_color;
+    margin: 2px;
+    border-left: 1px solid @lighter_color;
+    border-top: 1px solid @lighter_color;
+    border-right: 1px solid @dark_color;
+    border-bottom: 1px solid @dark_color;
+min-width: 20px;
+min-height: 20px;
+}
+
+switch slider:hover {
+    background-color: @lighter_color;
+    margin: 2px;
+    border-left: 1px solid @white_color;
+    border-top: 1px solid @white_color;
+    border-right: 1px solid @base_color;
+    border-bottom: 1px solid @base_color;
+}
+
+switch:disabled {
+background-color: @base_color;
+color: transparent;
+box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @dark_color,
+inset 0px -1px @lighter_color,
+inset 1px 0px @dark_color,
+inset -1px 0px @lighter_color;
+}
+
+switch:disabled slider {
+    background-color: @base_color;
+    margin: 2px;
+border: 1px solid @base_color;
+border-right: 1px solid @dark_color;
+}
+
+switch:checked:disabled slider {
+    background-color: @base_color;
+    margin: 2px;
+border: 1px solid @base_color;
+border-left: 1px solid @dark_color;
+}
+
+.xfce4-panel switch {
+background-color: @darker_color;
+box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @panel_dark_color,
+inset 0px -1px @panel_light_color,
+inset 1px 0px @panel_dark_color,
+inset -1px 0px @panel_light_color;
+color: transparent;
+}
+
+.xfce4-panel switch:checked {
+   background-color: @high_color;
+color: transparent;
+}
+
+.xfce4-panel switch slider {
+    background-color: @panel_color;
+    margin: 2px;
+    border-left: 1px solid @panel_light_color;
+    border-top: 1px solid @panel_light_color;
+    border-right: 1px solid @panel_dark_color;
+    border-bottom: 1px solid @panel_dark_color;
+min-width: 20px;
+min-height: 20px;
+color: transparent;
+}
+
+.xfce4-panel switch slider:hover, .xfce4-panel menuitem:hover switch slider {
+    background-color: @panel_light_color;
+    margin: 2px;
+    border-left: 1px solid @panel_lighter_color;
+    border-top: 1px solid @panel_lighter_color;
+    border-right: 1px solid @panel_color;
+    border-bottom: 1px solid @panel_color;
+color: transparent;
+}
+
+.xfce4-panel switch:disabled {
+background-color: @panel_color;
+color: @panel_dark_color;
+box-shadow: 
+inset 0px 2px @darkest_color,
+inset 0px -2px @darkest_color,
+inset 2px 0px @darkest_color,
+inset -2px 0px @darkest_color,
+inset 0px 1px @panel_dark_color,
+inset 0px -1px @panel_light_color,
+inset 1px 0px @panel_dark_color,
+inset -1px 0px @panel_light_color;
+}
+
+.xfce4-panel switch:disabled slider {
+    background-color: @panel_color;
+    margin: 2px;
+border: 1px solid @panel_color;
+border-right: 1px solid @panel_dark_color;
+}
+
+/**********************************************/
+/* arrow */
+/**********************************************/
+
+combobox arrow {  
+     -gtk-icon-style: symbolic;
+        min-height: 16px;
+        min-width: 16px;
+   -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+}
+
+combobox arrow.bottom {  
+     -gtk-icon-style: symbolic;
+        min-height: 16px;
+        min-width: 16px;
+   -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+}
+
+combobox arrow.top {  
+     -gtk-icon-style: symbolic;
+        min-height: 16px;
+        min-width: 16px;
+   -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+}
+
+combobox arrow:disabled {  
+   /* background-image: url("img/combobox-arrow-down-disabled.png");*/
+color: @dark_color;
+}
+
+menuitem arrow {
+        min-height: 16px;
+        min-width: 16px;
+        /*margin-left: 15px; */
+      -gtk-icon-source: -gtk-icontheme("pan-right-symbolic");
+}
+
+menuitem arrow.top {
+     -gtk-icon-source: -gtk-icontheme("pan-up-symbolic");
+}
+menuitem arrow.bottom {
+     -gtk-icon-source: -gtk-icontheme("pan-down-symbolic");
+}
+
+menuitem arrow:disabled {
+color: @dark_color;
+}
+
+menu menuitem arrow:dir(ltr), .menu menuitem arrow:dir(ltr), .context-menu menuitem arrow:dir(ltr) { -gtk-icon-source: -gtk-icontheme("pan-end-symbolic"); margin-left: 10px; }
+
+menu menuitem arrow:dir(rtl), .menu menuitem arrow:dir(rtl), .context-menu menuitem arrow:dir(rtl) { -gtk-icon-source: -gtk-icontheme("pan-end-symbolic-rtl"); margin-right: 10px; }
+
+expander arrow {
+        min-width: 16px;
+        min-height: 16px;
+        -gtk-icon-source: -gtk-icontheme("pan-right-symbolic");
+       
+        color: @text_color;
+}
+
+expander arrow:checked {
+        -gtk-icon-transform: unset;
+}
+
+
+
+popover arrow.right {
+        min-height: 15px;
+        min-width: 8px;
+     /*   -gtk-icon-source: url("img/menuitem-arrow-right.png");*/
+}
+
+popover arrow.left {
+        min-height: 15px;
+        min-width: 8px;
+     /*   -gtk-icon-source: url("img/menuitem-arrow-left.png");*/
+}
+
+/**********************************************/
+/* calendar */
+/**********************************************/
+
+calendar {
+    background-color: @base_color;
+    color: @text_color;
+
+}
+
+calendar.view{
+    background-color: @edit_color;
+}
+
+calendar .week-number, calendar .day-name{
+padding: 2px;
+}
+
+calendar .day-number{
+padding: 6px;
+}
+
+calendar.header, calendar.button {
+    background-color: @base_color;
+    color: @text_color;
+font-weight: normal;
+}
+
+calendar.button:hover, calendar.button:active, calendar.button:checked{
+background-color: @high_color;
+border-radius: 4px;
+}
+
+calendar.header{
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @lighter_color,
+	inset 0px 2px @lighter_color,
+	inset 0px -2px @dark_color,
+	inset -2px 0px @dark_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+
+}
+
+calendar:selected {
+    background-color: @high_color;
+    color: @text_color;
+}
+
+calendar.highlight {
+color: @text_color;
+    background-color: @base_color;
+}
+
+calendar:indeterminate {
+    color: @base_color;
+}
+
+/**********************************************/
+/* XFCE tweaks */
+/**********************************************/
+
+XfdesktopIconView.view {
+  color: alpha(@high_color,0.6); }
+
+XfdesktopIconView.view .label {
+  color: @text_color;
+  background-color: @high_color;
+  text-shadow: none;
+  border-radius: 10px; }
+
+XfdesktopIconView.view .rubberband {
+     background-color: alpha(@high_color,0.3);
+     border: 1px solid @high_color;
+}
+
+
+
+
+
+.xfce4-panel{
+border-color: #000000;
+background-image: none;
+background-color: @panel_color;
+color: @black_color;
+}
+
+.xfce4-panel.horizontal {
+border-color: #000000;
+background-color: @panel_color;
+background-image:
+linear-gradient(180deg, @black_color 0px, @black_color 1px, @panel_light_color 1px, @panel_light_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @black_color 0px, @black_color 1px, @panel_dark_color 1px, @panel_dark_color 2px, transparent 2px, transparent 100%);
+color: @black_color;
+}
+
+.xfce4-panel.vertical, .xfce4-panel.deskbar {
+border-color: #000000;
+background-color: @panel_color;
+background-image:
+linear-gradient(90deg, @black_color 0px, @black_color 1px, @panel_light_color 1px, @panel_light_color 2px, transparent 2px, transparent 100%),
+linear-gradient(270deg, @black_color 0px, @black_color 1px, @panel_dark_color 1px, @panel_dark_color 2px, transparent 2px, transparent 100%);
+color: @black_color;
+}
+
+
+.xfce4-panel window menu, .xfce4-panel window, #whiskermenu-window menu{
+background-image: none;
+background-color: @panel_color;
+color: @black_color;
+box-shadow: none;
+padding: 2px;
+}
+
+.xfce4-panel window list separator.horizontal, .xfce4-panel window menu separator, .xfce4-panel separator {
+        margin: 1px;
+        padding: 0px;
+	background-color: @panel_color;
+box-shadow: inset 0px 2px @panel_light_color, inset 0px 1px @panel_dark_color;
+        border: none;
+min-height: 2px;
+}
+
+#whiskermenu-window separator {
+        margin: 1px;
+        padding: 0px;
+	background-color: @panel_color;
+box-shadow: inset 0px 2px @panel_light_color, inset 0px 1px @panel_dark_color;
+        border: none;
+min-height: 2px;
+}
+
+.xfce4-panel button, #whiskermenu-window button{
+margin: 0;
+padding: 4px;
+background-color: @panel_color;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset -2px 0px @panel_dark_color, inset 2px 0px @panel_light_color, inset 0px -2px @panel_dark_color, inset 0px 2px @panel_light_color,
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+}
+
+.xfce4-panel button.hover_group, .xfce4-panel button:hover, .xfce4-panel menuitem:hover button,
+#whiskermenu-window button:hover{
+margin: 0;
+padding: 4px;
+background-color: @panel_light_color;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset -2px 0px @panel_color, inset 2px 0px @panel_lighter_color, inset 0px -2px @panel_color, inset 0px 2px @panel_lighter_color,
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+}
+
+#whiskermenu-window button:focus {
+    box-shadow:
+	inset 2px 0px @panel_light_color,
+	inset 0px 2px @panel_light_color,
+	inset 0px -2px @panel_dark_color,
+	inset -2px 0px @panel_dark_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+#whiskermenu-window button:focus:hover {
+    box-shadow:
+	inset -2px 0px @panel_color,
+	inset 2px 0px @panel_lighter_color,
+	inset 0px -2px @panel_color,
+	inset 0px 2px @panel_lighter_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+.xfce4-panel button:active, .xfce4-panel button:checked, .xfce4-panel button.hover_group:active, .xfce4-panel button.hover_group:active:hover,
+#whiskermenu-window button:active, #whiskermenu-window button:checked{
+margin: 0;
+padding: 4px;
+background-color: @panel_darker_color;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset -2px 0px @panel_light_color, inset 2px 0px @panel_dark_color, inset 0px -2px @panel_light_color, inset 0px 2px @panel_dark_color,
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+}
+
+.xfce4-panel button:active:focus, .xfce4-panel button:active:focus:hover {
+    box-shadow:
+	inset 2px 0px @panel_dark_color,
+	inset 0px 2px @panel_dark_color,
+	inset 0px -2px @panel_light_color,
+	inset -2px 0px @panel_light_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+.xfce4-panel button:checked:hover, #whiskermenu-window button:checked:hover{
+margin: 0;
+padding: 4px;
+background-color: @panel_color;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset -2px 0px @panel_light_color, inset 2px 0px @panel_dark_color, inset 0px -2px @panel_light_color, inset 0px 2px @panel_dark_color,
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+}
+
+#whiskermenu-window button:checked:focus{
+box-shadow: inset -2px 0px @panel_light_color, inset 2px 0px @panel_dark_color, inset 0px -2px @panel_light_color, inset 0px 2px @panel_dark_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color
+}
+
+.xfce4-panel button.toggle:not(.flat){
+margin: 0;
+padding: 4px;
+background-color: @panel_color;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset -2px 0px @panel_dark_color, inset 2px 0px @panel_light_color, inset 0px -2px @panel_dark_color, inset 0px 2px @panel_light_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+.xfce4-panel button.toggle:not(.flat):hover{
+margin: 0;
+padding: 4px;
+background-color: @panel_light_color;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset -2px 0px @panel_color, inset 2px 0px @panel_lighter_color, inset 0px -2px @panel_color, inset 0px 2px @panel_lighter_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+.xfce4-panel button.toggle:not(.flat):checked{
+margin: 0;
+padding: 4px;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+background-color: @high_color;
+box-shadow:
+inset -2px 0px @high_dark_color, inset 2px 0px @white_color, inset 0px -2px @high_dark_color, inset 0px 2px @white_color,
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+color: @black_color;
+}
+
+.xfce4-panel button.toggle:not(.flat):checked:hover{
+margin: 0;
+padding: 4px;
+color: @black_color;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+background-color: @high_color;
+box-shadow:
+inset -2px 0px @high_dark_color, inset 2px 0px @white_color, inset 0px -2px @high_dark_color, inset 0px 2px @white_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+
+.xfce4-panel button.open_group{
+box-shadow:
+inset -2px 0px @panel_dark_color, inset 2px 0px @panel_light_color, inset 0px -2px @panel_dark_color, inset 0px 2px @panel_light_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+.xfce4-panel button.open_group.hover_group{
+box-shadow:
+inset -2px 0px @panel_color, inset 2px 0px @panel_lighter_color, inset 0px -2px @panel_color, inset 0px 2px @panel_lighter_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+.xfce4-panel button.open_group:active, .xfce4-panel button.open_group.hover_group:active{
+box-shadow:
+inset -2px 0px @panel_light_color, inset 2px 0px @panel_dark_color, inset 0px -2px @panel_light_color, inset 0px 2px @panel_dark_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+.xfce4-panel button.active_group{
+background-color: @high_color;
+box-shadow:
+inset -2px 0px @high_dark_color, inset 2px 0px @white_color, inset 0px -2px @high_dark_color, inset 0px 2px @white_color,
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+}
+
+.xfce4-panel button.active_group:active, .xfce4-panel button.active_group.hover_group:active{
+box-shadow:
+inset -2px 0px @panel_light_color, inset 2px 0px @panel_dark_color, inset 0px -2px @panel_light_color, inset 0px 2px @panel_dark_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+.xfce4-panel button.active_group.hover_group{
+background-color: @high_color;
+box-shadow:
+inset -2px 0px @high_dark_color, inset 2px 0px @white_color, inset 0px -2px @high_dark_color, inset 0px 2px @white_color,
+inset 1px 0px @high_color, inset -1px 0px @high_color, inset 0px 1px @high_color, inset 0px -1px @high_color;
+}
+
+
+/*
+ window.background .menu .menu_item .horizontal, window.background .menu .menu_item, window.background .menu, window.background {
+margin: 0px;
+padding: 0px;
+}
+
+window.background .menu .menu_item .horizontal label, window.background .menu .menu_item .horizontal image{
+margin-top: 4px;
+}*/
+
+window.background .menu .menu_item grid.horizontal{
+margin:4px;
+margin-right: 0px;}
+
+window.background .menu .menu_item {
+background-color: @titlebar_dark_color;
+border: 1px solid @titlebar_dark_color;
+background-image: linear-gradient(0deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(90deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(180deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(270deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%);
+color: @text2_color;
+margin:0;
+padding:0;
+}
+
+window.background .menu .hover_menu_item{
+background-color: @high_color;
+border: 1px solid @high_color;
+background-image: linear-gradient(0deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(90deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(180deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(270deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%), linear-gradient(0deg, @high_color 0%, @high_color 100%);
+color: @text_color;
+}
+
+window.background .menu .menu_item button{
+padding:2px;
+margin: 2px;
+border: 1px solid @white_color;
+box-shadow: none;
+background-color: transparent;
+-gtk-icon-style: symbolic;
+color: @text2_color;
+}
+
+window.background .menu .menu_item button:active, window.background .menu .menu_item button:hover{
+padding:2px;
+margin: 2px;
+border: 1px solid @white_color;
+box-shadow: inset 1px 0px @titlebar_dark_color, inset -1px 0px @titlebar_dark_color, inset 0px 1px @titlebar_dark_color, inset 0px -1px @titlebar_dark_color;
+background-color: @high_color;
+-gtk-icon-style: symbolic;
+color: @text_color;
+}
+
+#docklike-plugin .group .window_count  {
+font-size:16px;   
+  color: @text2_color; 
+text-shadow: 2px 0px @black_color, -2px 0px @black_color, 0px -2px @black_color, 0px 2px @black_color, 2px 2px @black_color, -2px 2px @black_color, 2px -2px @black_color, -2px -2px @black_color;
+margin-left: 3px;
+}
+
+.xfce4-panel #whiskermenu-button{
+padding: 0px;
+margin: 0px;
+background-color: #2a7faa;
+box-shadow: inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+color: @text2_color;
+}
+
+.xfce4-panel #whiskermenu-button:hover{
+padding:  0px;
+margin: 0px;
+background-color: @high_color;
+box-shadow: inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+color: @text2_color;
+}
+
+
+/*
+.xfce4-panel #xfce4-power-manager-plugin, .xfce4-panel #xfce4-notification-plugin, .xfce4-panel #sn-button, .xfce4-panel #pulseaudio-button {
+border: none;
+box-shadow: inset 3px 0px @panel_lighter_color, inset -3px 0px @panel_light_color, inset 0px -3px @panel_light_color, inset 0px 3px @panel_lighter_color, inset 2px 0px @panel_light_color, inset -2px 0px @panel_dark_color, inset 0px -2px @panel_dark_color, inset 0px 2px @panel_light_color, inset 1px 0px @black_color, inset -1px 0px @black_color, inset 0px -1px @black_color, inset 0px 1px @black_color;
+padding: 0;
+background-image:
+url('img/wood.png');
+}
+*/
+
+.xfce4-panel #xfce4-power-manager-plugin, .xfce4-panel #xfce4-notification-plugin, .xfce4-panel #sn-button, .xfce4-panel #pulseaudio-button {
+border: none;
+box-shadow: none;
+padding: 0;
+background-color: transparent;
+background-image: none;
+-gtk-icon-style: symbolic;
+}
+
+.xfce4-panel > * > * > .vertical > frame {
+padding: 1px;
+border-top: 1px solid @panel_dark_color;
+border-left: 1px solid @panel_dark_color;
+border-right: 1px solid @panel_light_color;
+border-bottom: 1px solid @panel_light_color;
+box-shadow:
+inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+
+}
+
+
+
+
+.xfce4-panel #clock-button, .xfce4-panel #clock-button:focus{
+box-shadow: inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+background-color: #7f9f55;
+color: @black_color;
+}
+
+.xfce4-panel #clock-button:hover, .xfce4-panel #clock-button:active, .xfce4-panel #clock-button:focus:hover, .xfce4-panel #clock-button:active:hover{
+box-shadow: inset 1px 0px @darkest_color, inset -1px 0px @darkest_color, inset 0px 1px @darkest_color, inset 0px -1px @darkest_color;
+background-color: #7fbf55;
+background-image: linear-gradient(90deg, #aaff55 0px, #aaff55 2px, #7fff55 2px, #7fff55 4px, #7fdf55 4px, #7fdf55 8px, transparent 8px, transparent 100%), linear-gradient(270deg, #aaff55 0px, #aaff55 2px, #7fff55 2px, #7fff55 4px, #7fdf55 4px, #7fdf55 8px, transparent 8px, transparent 100%);
+color: @black_color;
+}
+
+
+#xfwm-tabwin, .xfsm-logout-dialog, .lightdm-gtk-greeter #login_window > *, .lightdm-gtk-greeter #shutdown_dialog > *, .lightdm-gtk-greeter #restart_dialog > * {
+border: 1px solid @black_color;
+padding: 0px;
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, @dark_color 1px, @dark_color 20px, @lighter_color 20px, @lighter_color 21px, @dark_color 21px, @dark_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @dark_color 1px, @dark_color 20px, @darkest_color 20px, @darkest_color 21px, @lighter_color 21px, @lighter_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(270deg, @titlebar_dark_color 0px, @titlebar_dark_color 1px, @titlebar_color 1px, @titlebar_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(270deg, @titlebar_dark_color 0px, @titlebar_dark_color 1px, @titlebar_color 1px, @titlebar_color 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, transparent 1px, transparent 30px, @titlebar_dark_color 30px, @titlebar_dark_color 31px, @darkest_color 31px, @darkest_color 32px, @lighter_color 32px, @lighter_color 33px, transparent 33px, transparent 100%),
+
+url('img/marble.png'),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 4px, @base_color 5px, @lighter_color 5px, @lighter_color 6px, @dark_color 6px, @dark_color 7px, transparent 7px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(180deg, transparent 0px, transparent 60px, @black_color 60px, @black_color 61px, transparent 61px, transparent 100%),
+
+linear-gradient(180deg, transparent 0px, transparent 60px, @black_color 60px, @black_color 61px, transparent 61px, transparent 100%),
+
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 2px, @lighter_color 2px, @lighter_color 3px, @dark_color 3px, @dark_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @base_color 1px, @base_color 2px, @dark_color 2px, @dark_color 3px, transparent 3px, transparent 100%);
+
+background-position: right bottom, right bottom, left bottom, left bottom, 0px 1px, right 1px, 0px 32px, right 32px, 0px 0px, 0px -267px, 0px 0px, 0px 0px, 0px 0px, top right, 0px 0px, 0px 0px;
+background-size: 21px 6px, 22px 6px, 21px 6px, 22px 6px, 2px 40px, 2px 40px, 60px 28px, 60px 28px, auto auto, auto auto, auto auto, auto auto, 4px 62px, 4px 62px,  auto auto, auto auto;
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat-x, repeat, repeat,  no-repeat, no-repeat, repeat, repeat;
+}
+
+.lightdm-gtk-greeter #login_window > *, .lightdm-gtk-greeter #shutdown_dialog > *, .lightdm-gtk-greeter #restart_dialog > *{
+padding-top: 30px;
+}
+
+.lightdm-gtk-greeter #buttonbox_frame{
+background-color: transparent;
+}
+
+.lightdm-gtk-greeter #login_window #content_frame{
+background-color: transparent;
+background-image: none;
+padding-top: 0px;
+padding-left: 10px;
+padding-right: 10px;
+min-width: 374px;
+}
+
+.lightdm-gtk-greeter #panel_window {
+border-color: #000000;
+background-image:
+linear-gradient(180deg, @black_color 0px, @black_color 1px, @panel_light_color 1px, @panel_light_color 2px, transparent 2px, transparent 100%),
+linear-gradient(0deg, @black_color 0px, @black_color 1px, @panel_dark_color 1px, @panel_dark_color 2px, transparent 2px, transparent 100%);
+background-color: @base_color;
+color: @black_color;
+}
+
+.lightdm-gtk-greeter #login_window menu{
+border: 1px solid @black_color}
+
+.lightdm-gtk-greeter #panel_window menubar menu, .lightdm-gtk-greeter #panel_window menu{
+background-image: none;
+color: @black_color;
+background-color: @panel_color;
+box-shadow: none;
+padding: 2px;
+border: 1px solid @black_color;
+}
+
+.lightdm-gtk-greeter #panel_window menubar menu separator {
+        margin: 1px;
+        padding: 0px;
+	background-color: @panel_color;
+box-shadow: inset 0px 2px @panel_light_color, inset 0px 1px @panel_dark_color;
+        border: none;
+min-height: 2px;
+}
+
+.lightdm-gtk-greeter #user_image, .lightdm-gtk-greeter #user_image_border{
+border-radius: 0px;
+}
+
+.lightdm-gtk-greeter infobar.info > revealer > box, .lightdm-gtk-greeter infobar.question > revealer > box, .lightdm-gtk-greeter infobar.warning > revealer > box, .lightdm-gtk-greeter infobar.error > revealer > box {
+background-color: @edit_color;
+border: 1px solid @black_color;
+margin: 10px;
+}
+
+.xfsm-logout-dialog separator { opacity: 0; padding: 0; margin: 0; }
+
+.xfsm-logout-label{
+padding: 0;
+margin-top: -6px;
+font-size: 11px;
+color: @title_color;
+min-height: 12px;
+}
+
+
+.xfsm-logout-buttons{
+padding-top: 0px;
+background-image: none;
+background-position: center top;
+background-repeat: no-repeat;
+background-size: 244px 244px;
+min-width: 320px;
+}
+
+.xfsm-logout-buttons button, .xfsm-logout-buttons button:active, .xfsm-logout-buttons button:hover{
+min-width: 24px;
+min-height: 24px;
+padding: 0;
+}
+
+
+colorswatch{
+padding: 1px;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;
+box-shadow: 	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+}
+
+scale.color.vertical trough, scale.color.horizontal trough{
+min-width: 6px;
+
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;
+box-shadow: 	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+border-radius: 11px;
+}
+
+scale.color{
+border-radius: 11px;
+}
+
+
+scale.color.vertical trough{
+padding: 11px 1px;
+background-color: #ff0000;
+background-image: none;
+}
+
+scale.color.horizontal trough{
+padding: 1px 11px;
+background-color: #a8a8a8;
+background-image: none;
+}
+
+wnck-pager {
+    background-color: @base_color; 
+}
+wnck-pager:selected {
+    background-color: @high_color; }
+wnck-pager:hover {
+    background-color: @high_color; }
+
+
+#notes-window, #notes-window frame .vertical, #notes-window frame .vertical .horizontal, #notes-notebook scrolledwindow, #notes-notebook{
+background-color: rgba(0,0,0,0.0);
+border: none;
+box-shadow: none;
+margin: 0;
+padding: 0;
+}
+
+
+#notes-notebook scrollbar.vertical, #notes-notebook scrollbar.horizontal, #notes-notebook scrollbar trough{
+border: none;
+box-shadow: none;
+padding: 0;
+margin: 0;
+min-width: 12px;
+background-color: transparent;
+}
+
+#notes-notebook scrollbar slider{
+border: none;
+box-shadow: none;
+background-image: none;
+}
+
+#notes-notebook scrollbar button{
+border: none;
+box-shadow: none;
+background-image: none;
+background-color: transparent;
+}
+
+
+#XfceNotifyWindow {
+    border: 1px solid @black_color;
+border-radius: 0px;
+}
+
+
+/* Xfwm4's alt-tab dialog, aka "tabwin" */
+#xfwm-tabwin {
+  background-color: @base_color;
+  color: @text_color;
+  text-shadow: none;
+  border-radius: 0px;
+  /* Set the application icon- and preview-size to 64px */
+  -XfwmTabwinWidget-icon-size: 48px;
+  -XfwmTabwinWidget-preview-size: 128px;
+padding-top: 46px;
+padding-left: 4px;
+padding-right: 4px;
+padding-bottom: 0px;
+ }
+
+  #xfwm-tabwin button {
+    background-image: none;
+    color: @text_color;
+    font-weight: bold;
+    text-shadow: none;
+    border: none;
+    border-radius: 0px;
+    box-shadow: none; }
+
+#xfwm-tabwin button:active, #xfwm-tabwin button:checked, #xfwm-tabwin button:active:hover, #xfwm-tabwin button:checked:hover {
+      background-color: @high_color;
+border-radius: 10px;
+border: 1px solid @high_color; }
+
+    #xfwm-tabwin button:hover {
+      background-color: @high_color;
+border-radius: 10px;
+border: 1px solid @high_color; }
+
+  #xfwm-tabwin .tabwin-app-grid button {
+    min-width: 96px;
+    min-height: 96px; }
+
+
+/**********************************************/
+/* tweaks */
+/**********************************************/
+
+
+
+VteTerminal, vte-terminal {
+        padding-left: 4px; padding-right: 4px;
+	padding-top: 6px; padding-bottom: 6px;
+}
+
+
+@keyframes spin {
+  to {
+    -gtk-icon-transform: rotate(1turn); } }
+
+spinner {
+/*min-width: 32px;
+min-height: 32px;
+ -gtk-icon-source: url('img/loading.png'); */
+  background: none;
+  opacity: 0;
+-gtk-icon-style: regular;
+  -gtk-icon-source: -gtk-icontheme("dp97-loading");
+
+ }
+
+menubar spinner{
+min-width: 16px;
+min-height: 16px;
+}
+
+  spinner:checked {
+    opacity: 1;
+color: @text_color;
+    animation: spin 1s linear infinite; }
+
+    spinner:checked:disabled {
+    opacity: 0.5; }
+
+
+/* avoid borders on the desktop when managed by nautilus */
+nautilus-desktop-window * {
+  border: none;
+}
+
+/* flotting-bar in nautilus */
+.floating-bar {
+     background-color: @dark_color;
+     color: @text2_color;
+}
+
+/* icons in sidebar in nautilus */
+.sidebar-icon {
+    padding-right: 2px;
+}
+
+/* selections in firefox use fix color names ! */
+/* fix background selected item unfocus in hugin: to test for consistency */
+#MozillaGtkWidget *:selected:focus {
+    background-color: @text_selected_bg_color;
+    color: @text_selected_fg_color;
+}
+
+/* thunderbird: item selected in list */
+/* ne semble plus être utile au 14px fev 2019 */
+/*
+.view:selected {
+    background-color: @high_color;
+    color: @text_color;
+}
+*/
+
+/* background and selection in icon view in caja (mrnhmath) */
+.caja-notebook .view {
+    background-color: @edit_color;
+}
+
+.caja-notebook .view:selected,
+.caja-notebook .view:selected:focus
+{
+    background-color: @dark_color;
+}
+.caja-notebook .rubberband {
+    background-color: transparent;
+}
+
+/* background of nautilus icon window */
+/*.nautilus-window, .nautilus-window notebook {
+  background-color: @lighter_color;
+}*/
+
+/* zebra strips do not work with recent versions */
+/*view row:nth-child(even) {
+        background-color: green;
+} 
+treeview row:nth-child(even)
+{
+        background-color: green;
+} 
+*/
+
+/*
+GtkTreeView row:even {
+        background-color: @edit_color;
+}                                                                  
+
+GtkTreeView row:odd {
+        background-color: @lighter_color;
+}
+*/
+ 
+/*
+GTK_DEBUG=interactive myexcutable
+*/
+
+/**********************************************/
+/* The End */
+/**********************************************/
+

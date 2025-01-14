@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=DoorMaker
+Comment=A light theme with 90s aesthetic for your personal desktop computer.
+Encoding=UTF-8
+
+GenericName=DoorMaker
+
+[X-GNOME-Metatheme]
+Name=DoorMaker
+GtkTheme=DoorMaker
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=:minimize,maximize,close

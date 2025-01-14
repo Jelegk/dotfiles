@@ -1,0 +1,296 @@
+window.csd.unified deck .vertical > stack, window deck deck overlay stack > box.vertical, deck box.vertical > scrolledwindow, deck box.vertical paned > box.vertical{
+padding-bottom:0px;
+padding-left:0px;
+padding-right:0px;
+}
+
+headerbar button.titlebutton.minimize, headerbar button.titlebutton.maximize, headerbar button.titlebutton.close,
+headerbar button.titlebutton.minimize:backdrop, headerbar button.titlebutton.maximize:backdrop, headerbar button.titlebutton.close:backdrop
+ {
+background-image: none;
+min-width: 0px;
+min-height: 0px;
+margin-right: -100px;
+}
+
+headerbar button.titlebutton.minimize:hover, headerbar button.titlebutton.maximize:hover, headerbar button.titlebutton.close:hover,
+headerbar button.titlebutton.minimize:backdrop:hover, headerbar button.titlebutton.maximize:backdrop:hover, headerbar button.titlebutton.close:backdrop:hover
+ {
+background-image: none;
+color: @titlebar_button_text_color;
+}
+
+decoration {
+    border-radius: 0px;
+    border: none; 
+    margin: 0px;
+}
+
+
+headerbar button, headerbar button:backdrop{
+
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+
+    background-color: @base_color;
+    color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @lighter_color,
+	inset 0px 2px @lighter_color,
+	inset 0px -2px @dark_color,
+	inset -2px 0px @dark_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+
+headerbar button:disabled{
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+
+background-color: @base_color;
+    color: @dark_color;
+border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+
+headerbar button:disabled label{
+    color: @dark_color;
+}
+
+headerbar button:focus{
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+	padding: 4px;
+	margin:1px;
+    color: @text_color;
+background-color: @base_color;
+border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset -2px 0px @dark_color,
+	inset 0px -2px @dark_color,
+	inset 0px 2px @lighter_color,
+	inset 2px 0px @lighter_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+headerbar button:focus:hover{
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+	padding: 4px;
+	margin:1px;
+    color: @text_color;
+background-color: @lighter_color;
+border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @white_color,
+	inset 0px 2px @white_color,
+	inset 0px -2px @base_color,
+	inset -2px 0px @base_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+}
+
+headerbar button:active, headerbar button:checked, headerbar button:checked:backdrop{
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+background-color: @darker_color;
+color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+
+headerbar button:hover {
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+    background-color: @lighter_color;
+    color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @white_color,
+	inset 0px 2px @white_color,
+	inset 0px -2px @base_color,
+	inset -2px 0px @base_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+
+
+headerbar button:active:focus, headerbar button:checked:focus {
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+background-color: @darker_color;
+border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+	padding: 4px;
+	margin:1px;
+}
+
+headerbar button:active:hover, headerbar button:checked:hover, headerbar button:checked:active:hover {
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+    background-color: @base_color;
+color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @high_color,
+	inset 0px 1px @high_color,
+	inset 0px -1px @high_color,
+	inset -1px 0px @high_color;
+	padding: 4px;
+	margin:1px;
+}
+
+headerbar button:checked:focus:hover, headerbar button:active:hover:focus, headerbar button:checked:active:hover:focus {
+text-shadow: none;
+-gtk-icon-shadow: none;
+font-weight: normal;
+border-radius: 0px;
+    background-color: @base_color;
+color: @text_color;
+    border-top: 1px solid @dark_color;
+    border-left: 1px solid @dark_color;
+    border-bottom: 1px solid @lighter_color;
+    border-right: 1px solid @lighter_color;	
+    box-shadow:
+	inset 2px 0px @dark_color,
+	inset 0px 2px @dark_color,
+	inset 0px -2px @lighter_color,
+	inset -2px 0px @lighter_color,
+	inset 1px 0px @darkest_color,
+	inset 0px 1px @darkest_color,
+	inset 0px -1px @darkest_color,
+	inset -1px 0px @darkest_color;
+	padding: 4px;
+	margin:1px;
+}
+
+headerbar entry, headerbar entry:backdrop, headerbar entry:disabled{
+margin: 7px 2px;
+min-height: 10px;
+padding: 2px;
+        border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+}
+
+headerbar:backdrop entry, headerbar:backdrop entry:backdrop, headerbar:backdrop entry:disabled{
+margin: 7px 2px;
+min-height: 10px;
+padding: 2px;
+        border-top: 1px solid @dark_color;
+border-left: 1px solid @dark_color;
+border-right: 1px solid @lighter_color;
+border-bottom: 1px solid @lighter_color;
+}
+
+headerbar.titlebar separator, paned.titlebar > headerbar separator{
+        margin: 2px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 2px 0px @lighter_color, inset 1px 0px @dark_color;
+        border: none;
+min-width: 2px;
+margin-top: 7px;
+margin-bottom: 9px;
+}
+
+headerbar.titlebar:backdrop separator, paned.titlebar > headerbar:backdrop separator{
+        margin: 2px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 2px 0px @lighter_color, inset 1px 0px @dark_color;
+        border: none;
+min-width: 2px;
+margin-top: 7px;
+margin-bottom: 9px;
+}
+
+.titlebar .title, .titlebar .title:backdrop,
+.titlebar .subtitle, .titlebar .subtitle:backdrop {
+color: @text_color;
+}

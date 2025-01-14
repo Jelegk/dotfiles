@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Action
+Name=Uncompress (7zip)
+Icon=extract-archive.png
+Profiles=uncompress
+
+[X-Action-Profile uncompress]
+MimeTypes=application/*zip*;application/*tar*;application/*xz*
+Exec=7zz x -ssp %f

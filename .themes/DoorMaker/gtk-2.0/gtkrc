@@ -1,0 +1,281 @@
+#======================================#
+# DoorMaker theme: gtk2 part           #
+# jpsb: July 2015 - nov 2020           #
+# modified by BunnyMnemonic            #
+#======================================#
+
+#======================================#
+# Color definitions
+#======================================#
+
+gtk-color-scheme = "white_color:#ffffff
+light_color:#ffffff
+base_color:#c0c0c0
+dark_color:#808080
+black_color:#000000
+high_color: #2adfff
+titlebar_color: #2a7faa
+titlebar_light_color: #2adfff
+edit_color: #ffffff
+"
+
+#======================================#
+# Derived colors
+#======================================#
+
+gtk-color-scheme = "inactive_color:#787878
+text_selected_bg_color:#2adfff
+text_selected_fg_color:#000000
+menuitem_selected_bg_color:#2adfff
+menuitem_selected_fg_color:#000000
+listitem_selected_bg_color:#2adfff
+listitem_selected_fg_color:#000000
+"
+
+#======================================#
+# Styles
+#======================================#
+
+style "default" {
+
+    base[NORMAL]        = @edit_color
+    text[NORMAL]        = @black_color
+    bg[NORMAL]          = @base_color
+    fg[NORMAL]          = @black_color
+
+    base[PRELIGHT]      = @light_color
+    text[PRELIGHT]      = @black_color
+    bg[PRELIGHT]        = @light_color
+    fg[PRELIGHT]        = @black_color
+
+    base[SELECTED]      = @listitem_selected_bg_color
+    text[SELECTED]      = @listitem_selected_fg_color
+    bg[SELECTED]        = @dark_color
+    fg[SELECTED]        = @light_color
+
+    base[ACTIVE]        = @listitem_selected_bg_color
+    text[ACTIVE]        = @listitem_selected_fg_color
+    bg[ACTIVE]          = @dark_color
+    fg[ACTIVE]          = @black_color
+
+    base[INSENSITIVE]   = @inactive_color
+    text[INSENSITIVE]   = @black_color
+    bg[INSENSITIVE]     = @base_color
+    fg[INSENSITIVE]     = @dark_color
+
+    GtkWidget::focus-line-width = 0
+    GtkWidget::link-color = @black_color
+    GtkWidget::visited-link-color = @dark_color
+    GtkScrollbar::min-slider-length = 30
+
+    GtkScrollbar::has_backward_stepper = 0
+    GtkScrollbar::has_forward_stepper = 0
+    GtkScrollbar::has_secondary_forward_stepper = 0
+    GtkScrollbar::has_secondary_backward_stepper = 0
+
+}
+
+style "scalebar-scrollbar" {
+
+    bg[NORMAL]          = @titlebar_color
+    fg[NORMAL]          = @black_color
+
+    bg[PRELIGHT]        = @titlebar_light_color
+
+    bg[ACTIVE]          = @dark_color
+
+    
+}
+
+style "progressbar" {
+
+    bg[NORMAL]          = @dark_color
+    fg[NORMAL]          = @black_color # XXX
+
+    bg[PRELIGHT]        = @high_color # XXX
+    fg[PRELIGHT]        = @light_color
+
+}
+
+style "menuitem" {
+
+    text[NORMAL]        = @black_color
+    bg[NORMAL]          = @inactive_color
+    fg[NORMAL]          = @black_color
+
+    text[PRELIGHT]      = @menuitem_selected_fg_color
+    bg[PRELIGHT]        = @menuitem_selected_bg_color
+    fg[PRELIGHT]        = @menuitem_selected_fg_color
+
+    fg[SELECTED]        = @menuitem_selected_fg_color # fg menu sélectionné libre office
+}
+
+style "check-radio" {
+
+    bg[PRELIGHT]        = @base_color
+base[NORMAL] = @dark_color
+base[PRELIGHT] = @menuitem_selected_bg_color
+base[SELECTED] = @menuitem_selected_bg_color
+bg[ACTIVE]   = @menuitem_selected_bg_color
+    base[INSENSITIVE]   = @light_color
+    text[INSENSITIVE]   = @dark_color
+    fg[INSENSITIVE]     = @base_color
+}
+
+style "menubar" {
+
+    fg[PRELIGHT]        = @menuitem_selected_fg_color  # menu sélectionné geogebra
+
+    fg[SELECTED]        = @menuitem_selected_fg_color # menu sélectionné thunderbird
+}
+
+style "paned" {
+
+    bg[PRELIGHT]        = @base_color   # séparateurs mobiles hover
+
+}
+
+style "gimp-loadingbar" {
+
+    bg[PRELIGHT]        = @high_color   # loadingbar de gimp !
+    bg[NORMAL]          = @dark_color
+    fg[NORMAL]          = @black_color
+    fg[PRELIGHT]        = @light_color
+
+}
+
+
+
+style "notebook" {
+
+    bg[ACTIVE]          = @dark_color   # pour variantes de couleur
+
+}
+
+style "entry" {
+
+    base[PRELIGHT]      = @text_selected_bg_color
+    text[PRELIGHT]      = @text_selected_fg_color
+
+    base[SELECTED]      = @text_selected_bg_color
+    text[SELECTED]      = @text_selected_fg_color
+    base[NORMAL] = @edit_color
+    base[ACTIVE]        = @text_selected_bg_color
+    text[ACTIVE]        = @text_selected_fg_color
+}
+
+style "combobox" {
+
+    text[PRELIGHT]      = @black_color
+
+}
+
+#======================================#
+# Styles for testing
+#======================================#
+
+style "red" {
+
+    base[NORMAL]        = "red"
+    text[NORMAL]        = "red"
+    fg[NORMAL]          = "red"
+    bg[NORMAL]          = "red"
+
+    base[PRELIGHT]      = "red"
+    text[PRELIGHT]      = "red"
+    bg[PRELIGHT]        = "red"
+    fg[PRELIGHT]        = "red"
+
+    base[SELECTED]      = "red"
+    text[SELECTED]      = "red"
+    bg[SELECTED]        = "red"
+    fg[SELECTED]        = "red"
+
+    base[ACTIVE]        = "red"
+    text[ACTIVE]        = "red"
+    bg[ACTIVE]          = "red"
+    fg[ACTIVE]          = "red"
+
+    base[INSENSITIVE]   = "red"
+    text[INSENSITIVE]   = "red"
+    bg[INSENSITIVE]     = "red"
+    fg[INSENSITIVE]     = "red"
+
+}
+
+style "test" {
+
+    base[NORMAL]        = "aqua"
+    text[NORMAL]        = "green"
+    bg[NORMAL]          = "magenta"
+    fg[NORMAL]          = "blue"
+
+    base[PRELIGHT]      = "green"
+    text[PRELIGHT]      = "red"
+    bg[PRELIGHT]        = "lime"
+    fg[PRELIGHT]        = "maroon"
+
+    base[SELECTED]      = "navy"
+    text[SELECTED]      = "red"
+    bg[SELECTED]        = "olive"
+    fg[SELECTED]        = "purple"
+
+    base[ACTIVE]        = "red"
+    text[ACTIVE]        = "green"
+    bg[ACTIVE]          = "teal"
+    fg[ACTIVE]          = "yellow"
+
+    base[INSENSITIVE]   = "purple"
+    text[INSENSITIVE]   = "green"
+    bg[INSENSITIVE]     = "yellow"
+    fg[INSENSITIVE]     = "white"
+
+}
+
+#======================================#
+# Widgets
+#======================================#
+
+class "*" style "default"
+widget_class "*Scale*" style "scalebar-scrollbar"
+widget_class "*Scrollbar*" style "scalebar-scrollbar"
+widget_class "*ProgressBar*" style "progressbar"
+widget_class "*MenuItem*" style "menuitem"
+widget_class "*MenuBar*" style "menubar"
+widget_class "*Paned*" style "paned"
+class "GtkCheck*" style "check-radio"
+class "GtkRadio*" style "check-radio"
+widget_class "*Gimp*Paned*Bar*" style "gimp-loadingbar"
+widget_class "*Notebook*" style "notebook"
+widget_class "*Entry*" style "entry"
+widget_class "*ComboBox*" style "combobox"
+
+#widget_class "*Link*" style "red"
+#widget_class "*Button*" style "red"
+#widget_class "*Separator*" style "red"
+#widget_class "*ToolButton*" style "red"
+#widget_class "*Option*" style "red"
+#widget_class "*ScaleButton*" style "red"
+#widget_class "*List*" style "red"
+#widget_class "*Notebook*" style "test"
+#widget_class "*Frame*" style "red"
+#widget_class "*Label*" style "red"
+#widget_class "*Window" style "red"
+
+# jpsb le 12 sept 2015: bug curieux: la barre d'avancement de xsane ne respecte la couleur demandée qu'après un redémarrage du thème, sinon la couleur est lime !
+
+# qt4 et flèches d'ascenseurs incompatible avec engine "pixmap"
+# barre de prog qt4
+
+#======================================#
+# tweaks
+#======================================#
+# avoid wrong background color in rox when switching theme
+style "rox"
+{
+    base[NORMAL]        = @light_color
+    bg[NORMAL]          = @light_color
+}
+
+widget_class "*ViewCollection*" style "rox"
+

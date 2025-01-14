@@ -1,0 +1,345 @@
+#======================================#
+# OneStepBack theme: gtk2 part         #
+# jpsb: July 2015 - janv 2024          #
+#======================================#
+
+#======================================#
+# Color definitions
+#======================================#
+
+gtk-color-scheme = "white_color:#ffffff
+lighter_color:#eaeaea
+light_color:#555555
+dark_color:#1f1f1f
+darker_color:#181818
+black_color:#0e0e0e
+select_color:#3b9c65
+link_color:#0000ee
+link_seen_color:#551a8b
+dunno:#ff0000
+"
+
+#======================================#
+# Styles
+#======================================#
+
+style "default" {
+
+    base[NORMAL]        = @dark_color
+    text[NORMAL]        = @lighter_color
+    bg[NORMAL]          = @darker_color
+    fg[NORMAL]          = @lighter_color
+
+    base[PRELIGHT]      = @darker_color
+    text[PRELIGHT]      = @lighter_color
+    bg[PRELIGHT]        = @light_color
+    fg[PRELIGHT]        = @white_color
+
+    base[SELECTED]      = @select_color
+    text[SELECTED]      = @white_color
+    bg[SELECTED]        = @light_color
+    fg[SELECTED]        = @dunno
+
+    base[ACTIVE]        = @light_color
+    text[ACTIVE]        = @white_color
+    bg[ACTIVE]          = @lighter_color
+    fg[ACTIVE]          = @light_color
+
+    base[INSENSITIVE]   = @dunno #white
+    text[INSENSITIVE]   = @dunno #light
+    bg[INSENSITIVE]     = @black_color
+    fg[INSENSITIVE]     = @darker_color
+
+    GtkWidget::focus-line-width = 0
+    GtkWidget::link-color = @link_color
+    GtkWidget::visited-link-color = @link_seen_color
+    GtkScrollbar::min-slider-length = 30
+
+    GtkScrollbar::has_backward_stepper = 0
+    GtkScrollbar::has_forward_stepper = 1
+    GtkScrollbar::has_secondary_forward_stepper = 0
+    GtkScrollbar::has_secondary_backward_stepper = 1
+
+}
+
+style "scalebar-scrollbar" {
+
+    bg[NORMAL]          = @light_color
+    fg[NORMAL]          = @white_color
+
+    bg[PRELIGHT]        = @lighter_color
+
+    bg[ACTIVE]          = @dark_color
+
+    engine "pixmap" {
+
+        image {
+            function        = SLIDER
+            state           = NORMAL
+            file            = "../img/scrollbar_horizontal.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = HORIZONTAL
+        }
+        image {
+            function        = SLIDER
+            state           = INSENSITIVE
+            file            = "../img/scrollbar_horizontal.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = HORIZONTAL
+        }
+        image {
+            function        = SLIDER
+            state           = PRELIGHT
+            file            = "../img/scrollbar_horizontal.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = HORIZONTAL
+        }
+        image {
+            function        = SLIDER
+            state           = ACTIVE
+            file            = "../img/scrollbar_horizontal.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = HORIZONTAL
+        }
+        image {
+            function        = SLIDER
+            state           = NORMAL
+            file            = "../img/scrollbar_vertical.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = VERTICAL
+        }
+        image {
+            function        = SLIDER
+            state           = INSENSITIVE
+            file            = "../img/scrollbar_vertical.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = VERTICAL
+        }
+        image {
+            function        = SLIDER
+            state           = PRELIGHT
+            file            = "../img/scrollbar_vertical.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = VERTICAL
+        }
+        image {
+            function        = SLIDER
+            state           = ACTIVE
+            file            = "../img/scrollbar_vertical.png"
+            border          = { 2, 2, 2, 2 }
+            stretch         = TRUE
+            overlay_file    = "../img/scrollbar_thumb.png"
+            overlay_stretch = FALSE
+            orientation     = VERTICAL
+        }
+    }
+}
+
+style "progressbar" {
+
+    bg[NORMAL]          = @dark_color
+    fg[NORMAL]          = @darker_color # XXX
+
+    bg[PRELIGHT]        = @select_color # XXX
+    fg[PRELIGHT]        = @white_color
+
+}
+
+style "menuitem" {
+
+    text[NORMAL]        = @dunno
+    bg[NORMAL]          = @darker_color
+    fg[NORMAL]          = @lighter_color
+
+    text[PRELIGHT]      = @white_color
+    bg[PRELIGHT]        = @light_color
+    fg[PRELIGHT]        = @white_color
+
+    fg[SELECTED]        = @light_color  # fg menu sélectionné libre office
+}
+
+style "check-radio" {
+
+    bg[PRELIGHT]        = @light_color
+
+    base[INSENSITIVE]   = @dark_color
+    text[INSENSITIVE]   = @darker_color
+    fg[INSENSITIVE]     = @black_color
+}
+
+style "menubar" {
+
+    fg[PRELIGHT]        = @black_color  # menu sélectionné geogebra
+
+    fg[SELECTED]        = @darker_color # menu sélectionné thunderbird
+}
+
+style "paned" {
+
+    bg[PRELIGHT]        = @light_color  # séparateurs mobiles hover
+
+}
+
+style "gimp-loadingbar" {
+
+    bg[PRELIGHT]        = @select_color # loadingbar de gimp !
+
+}
+
+style "notebook" {
+
+    bg[ACTIVE]          = @dark_color   # pour variantes de couleur
+
+}
+
+style "entry" {
+
+    base[PRELIGHT]      = @dunno #dark
+    text[PRELIGHT]      = @dunno #white
+    base[SELECTED]      = @dark_color
+    text[SELECTED]      = @light_color
+
+    base[ACTIVE]        = @dunno #dark
+    text[ACTIVE]        = @dunno #white
+}
+
+style "combobox" {
+
+    text[PRELIGHT]      = @dunno #darker
+
+}
+
+#======================================#
+# Styles for testing
+#======================================#
+
+style "red" {
+
+    base[NORMAL]        = "red"
+    text[NORMAL]        = "red"
+    fg[NORMAL]          = "red"
+    bg[NORMAL]          = "red"
+
+    base[PRELIGHT]      = "red"
+    text[PRELIGHT]      = "red"
+    bg[PRELIGHT]        = "red"
+    fg[PRELIGHT]        = "red"
+
+    base[SELECTED]      = "red"
+    text[SELECTED]      = "red"
+    bg[SELECTED]        = "red"
+    fg[SELECTED]        = "red"
+
+    base[ACTIVE]        = "red"
+    text[ACTIVE]        = "red"
+    bg[ACTIVE]          = "red"
+    fg[ACTIVE]          = "red"
+
+    base[INSENSITIVE]   = "red"
+    text[INSENSITIVE]   = "red"
+    bg[INSENSITIVE]     = "red"
+    fg[INSENSITIVE]     = "red"
+
+}
+
+style "test" {
+
+    base[NORMAL]        = "aqua"
+    text[NORMAL]        = "green"
+    bg[NORMAL]          = "magenta"
+    fg[NORMAL]          = "blue"
+
+    base[PRELIGHT]      = "green"
+    text[PRELIGHT]      = "red"
+    bg[PRELIGHT]        = "lime"
+    fg[PRELIGHT]        = "maroon"
+
+    base[SELECTED]      = "navy"
+    text[SELECTED]      = "red"
+    bg[SELECTED]        = "olive"
+    fg[SELECTED]        = "purple"
+
+    base[ACTIVE]        = "red"
+    text[ACTIVE]        = "green"
+    bg[ACTIVE]          = "teal"
+    fg[ACTIVE]          = "yellow"
+
+    base[INSENSITIVE]   = "purple"
+    text[INSENSITIVE]   = "green"
+    bg[INSENSITIVE]     = "yellow"
+    fg[INSENSITIVE]     = "white"
+
+}
+
+#======================================#
+# Widgets
+#======================================#
+
+class "*" style "default"
+widget_class "*Scale*" style "scalebar-scrollbar"
+widget_class "*Scrollbar*" style "scalebar-scrollbar"
+widget_class "*ProgressBar*" style "progressbar"
+widget_class "*MenuItem*" style "menuitem"
+widget_class "*MenuBar*" style "menubar"
+widget_class "*Paned*" style "paned"
+class "GtkCheck*" style "check-radio"
+class "GtkRadio*" style "check-radio"
+widget_class "*Gimp*Paned*Bar*" style "gimp-loadingbar"
+widget_class "*Notebook*" style "notebook"
+widget_class "*Entry*" style "entry"
+widget_class "*ComboBox*" style "combobox"
+
+#widget_class "*Link*" style "red"
+#widget_class "*Button*" style "red"
+#widget_class "*Separator*" style "red"
+#widget_class "*ToolButton*" style "red"
+#widget_class "*Option*" style "red"
+#widget_class "*ScaleButton*" style "red"
+#widget_class "*List*" style "red"
+#widget_class "*Notebook*" style "test"
+#widget_class "*Frame*" style "red"
+#widget_class "*Label*" style "red"
+#widget_class "*Window" style "red"
+
+# jpsb le 12 sept 2015: bug curieux: la barre d'avancement de xsane ne respecte la couleur demandée qu'après un redémarrage du thème, sinon la couleur est lime !
+
+# qt4 et flèches d'ascenseurs incompatible avec engine "pixmap"
+# barre de prog qt4
+
+#======================================#
+# tweaks
+#======================================#
+# avoid wrong background color in rox when switching theme
+style "rox"
+{
+    base[NORMAL]        = @lighter_color
+    bg[NORMAL]          = @lighter_color
+
+    base[SELECTED]      = @dark_color
+    text[SELECTED]      = @white_color
+    bg[SELECTED]        = @dark_color
+    fg[SELECTED]        = @white_color
+}
+
+widget_class "*ViewCollection*" style "rox"

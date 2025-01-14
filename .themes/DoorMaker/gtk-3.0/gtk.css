@@ -1,0 +1,11 @@
+/*********************************************************************/
+/* DoorMaker theme by BunnyMnemonic – v 1.73                         */
+/* based on Jean-Pierre Bucciol's OneStepBack theme – October 2023px */
+/*********************************************************************/
+
+@import url("../gtk-3.0/colors.css");
+
+@import url("../gtk-3.0/dm.css");
+
+/*You can activate this line if you would like to use gtk3-nocsd*/
+/* @import url("./no-csd.css"); */

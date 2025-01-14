@@ -1,0 +1,402 @@
+/*******************************************************************/
+/* DoorMaker theme by BunnyMnemonic – v 1.73                       */
+/* based on Jean-Pierre Bucciol's OneStepBack theme – October 2023 */
+/*******************************************************************/
+
+@import url("../gtk-3.0/colors.css");
+@import url("../gtk-3.0/dm.css");
+
+window.csd > contents, window.csd > decoration, dialog.csd > decoration, window.csd.unified, messagedialog.csd > decoration,
+window.csd:backdrop > contents, window.csd:backdrop > decoration, dialog.csd:backdrop > decoration, window.csd.unified:backdrop, messagedialog.csd:backdrop > decoration {
+border: none;
+padding: 0px;
+background-image: none;
+}
+
+window > widget, window > contents {
+margin: -4px;
+}
+
+scrolledwindow.main-page, scrolledwindow.subpage{
+margin: 4px;
+}
+
+window.background.csd > dialog-host, sheet.background .undershoot-top, window.background.csd > dialog {margin: -4px;}
+
+/*sheet.background > widget > toastoverlay{margin: -4px;}*/
+
+window.background.csd, messagedialog.csd, aboutdialog.csd, dialog.csd, sheet.background navigation-view {
+border-radius: 0px;
+border: 1px solid @black_color;
+
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, transparent 2px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, @dark_color 1px, @dark_color 20px, @lighter_color 20px, @lighter_color 21px, @dark_color 21px, @dark_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @dark_color 1px, @dark_color 20px, @darkest_color 20px, @darkest_color 21px, @lighter_color 21px, @lighter_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 4px, @base_color 5px, @lighter_color 5px, @lighter_color 6px, @dark_color 6px, @dark_color 7px, transparent 7px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(180deg, transparent 0px, transparent 80px, @black_color 80px, @black_color 81px, transparent 81px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 2px, @lighter_color 2px, @lighter_color 3px, @dark_color 3px, @dark_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @base_color 1px, @base_color 2px, @dark_color 2px, @dark_color 3px, transparent 3px, transparent 100%);
+
+background-position: 2px 2px, 0px 1px, right top, right bottom, right bottom, left bottom, left bottom, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+background-size: 1px 2px, 2px 3px, 4px 4px, 21px 6px, 22px 6px, 21px 6px, 22px 6px, auto auto, auto auto, auto auto, 4px 82px, 60px 80px, auto auto, auto auto; /* 60px > 80px */
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat, repeat, no-repeat, no-repeat, repeat, repeat;
+
+padding: 4px;
+padding-bottom: 7px;
+}
+
+
+
+window.background.csd:backdrop, messagedialog.csd:backdrop, aboutdialog.csd:backdrop, dialog.csd:backdrop, sheet.background:backdrop navigation-view-page {
+background-image:
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 2px, transparent 2px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(270deg, @darkest_color 0px, @darkest_color 1px, @dark_color 1px, @dark_color 20px, @lighter_color 20px, @lighter_color 21px, @dark_color 21px, @dark_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(0deg, @darkest_color 0px, @darkest_color 1px, @transparent 1px, @transparent 5px,  @lighter_color 5px, @lighter_color 6px, transparent 6px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @dark_color 1px, @dark_color 20px, @darkest_color 20px, @darkest_color 21px, @lighter_color 21px, @lighter_color 22px, transparent 22px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(0deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 4px, @base_color 5px, @lighter_color 5px, @lighter_color 6px, @dark_color 6px, @dark_color 7px, transparent 7px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(180deg, transparent 0px, transparent 80px, @black_color 80px, @black_color 81px, transparent 81px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, @base_color 1px, @base_color 2px, @lighter_color 2px, @lighter_color 3px, @dark_color 3px, @dark_color 4px, transparent 4px, transparent 100%),
+
+linear-gradient(90deg, @lighter_color 0px, @lighter_color 1px, @base_color 1px, @base_color 2px, @dark_color 2px, @dark_color 3px, transparent 3px, transparent 100%);
+
+background-position: 2px 2px, 0px 1px, right top, right bottom, right bottom, left bottom, left bottom, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px, 0px 0px;
+background-size: 1px 2px, 2px 3px, 4px 4px, 21px 6px, 22px 6px, 21px 6px, 22px 6px, auto auto, auto auto, auto auto, 4px 82px, 60px 80px, auto auto, auto auto; /* 60px > 80px */
+background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, repeat-x, repeat, repeat, no-repeat, no-repeat, repeat, repeat;
+
+}
+
+
+
+/*
+window.maximized, window.background.csd.maximized, messagedialog.csd.maximized, aboutdialog.csd.maximized, dialog.csd.maximized{
+background-image: none;
+padding: 0px;
+} */
+
+.view:hover, .view:hover:focus, .view text:hover,  textview text:hover,  textview text:hover:focus, flowbox flowboxchild:hover {
+background-color: @edit_color;
+}
+
+paned.view:hover{
+background-color: @base_color;
+}
+
+toast{
+background-color: @base_color;
+}
+
+toast *, toast *:hover{
+margin: 2px;
+}
+
+.subpage, box stack{
+padding: 4px;
+}
+
+iconview.view *:hover, iconview.view *:selected:hover, iconview.view text:hover:focus, iconview text:hover, row:hover, treeview.view > *:hover,  treeview.view > *:selected:hover{
+background-color: @high_color;
+}
+
+
+headerbar:not(.titlebar){
+color: @title_color;
+font-weight: bold;
+min-height: 33px;
+padding:0;
+}
+
+
+
+headerbar:not(.titlebar){
+background-color: @titlebar_color;
+
+min-height: 33px;
+background-image:
+
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_light_color 0px, @titlebar_light_color 1px, @titlebar_color 1px, @titlebar_color 2px, transparent 2px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_dark_color 2px, @titlebar_dark_color 3px, transparent 3px, transparent 100%),
+
+url('../gtk-3.0/img/marble.png');
+
+background-position: right bottom, 0px 1px, bottom left,  0px 0px, 0px 0px, 0px 0px;
+background-size: 4px 1px, 2px auto,  3px 2px,  auto auto, auto auto, auto auto;
+background-repeat: no-repeat, no-repeat, no-repeat,  repeat-x, repeat-x, repeat;
+padding:0;
+}
+
+
+
+headerbar:not(.titlebar):backdrop{
+background-color: @titlebar_backdrop_color;
+
+background-image:
+
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(90deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, @titlebar_backdrop_color 1px, @titlebar_backdrop_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(90deg, transparent 0px, transparent 2px, @darkest_color 2px, @darkest_color 3px, transparent 3px, transparent 100%),
+
+linear-gradient(180deg, @white_color 0px, @white_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_backdrop_dark_color 2px, @titlebar_backdrop_dark_color 3px,  transparent 3px, transparent 100%),
+
+url('../gtk-3.0/img/marble-inactive.png');
+
+}
+
+headerbar:not(.titlebar) separator{
+        margin: 2px;
+        padding: 0px;
+	background-color: @titlebar_color;
+box-shadow: inset 2px 0px @titlebar_light_color, inset 1px 0px @titlebar_dark_color;
+        border: none;
+min-width: 2px;
+margin-top: 7px;
+margin-bottom: 9px;
+}
+
+headerbar:not(.titlebar):backdrop separator{
+        margin: 2px;
+        padding: 0px;
+	background-color: @titlebar_backdrop_color;
+box-shadow: inset 2px 0px @titlebar_backdrop_light_color, inset 1px 0px @titlebar_backdrop_dark_color;
+        border: none;
+min-width: 2px;
+margin-top: 7px;
+margin-bottom: 9px;
+}
+
+headerbar:not(.titlebar) popover separator{
+
+        margin: 1px;
+        padding: 0px;
+	background-color: @base_color;
+box-shadow: inset 0px 2px @lighter_color, inset 0px 1px @dark_color;
+        border: none;
+min-height: 2px;
+}
+
+headerbar:not(.titlebar) popover button{
+text-shadow: none;
+-gtk-icon-shadow: none;
+}
+
+
+windowcontrols {
+background-color: @base_color;
+padding-top: 0px;
+padding-right: 4px;
+padding-left: 0px;
+padding-bottom: 0px;
+min-height: 33px;
+background-image:
+
+linear-gradient(180deg, @titlebar_light_color 0px, @titlebar_light_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_dark_color 2px, @titlebar_dark_color 3px, transparent 3px, transparent 100%),
+linear-gradient(180deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @titlebar_color 0px, @titlebar_color 1px, @titlebar_dark_color 1px, @titlebar_dark_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%);
+background-position: left top, left bottom, left top,  left bottom, right bottom, left bottom, 0px 0px, right bottom;
+background-size:  2px 2px, 3px 1px, 3px 1px, 2px 3px, auto auto, auto auto, auto auto, 4px 1px;
+background-repeat: no-repeat, no-repeat, no-repeat,   no-repeat, repeat, repeat, repeat, no-repeat;
+}
+
+windowcontrols:backdrop {
+
+background-image:
+
+linear-gradient(180deg, @titlebar_backdrop_light_color 0px, @titlebar_backdrop_light_color 1px, transparent 1px, transparent 100%),
+linear-gradient(270deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @darkest_color 0px, @darkest_color 1px, transparent 1px, transparent 100%),
+
+linear-gradient(0deg, @lighter_color 0px, @lighter_color 1px, @darkest_color 1px, @darkest_color 2px, @titlebar_backdrop_dark_color 2px, @titlebar_backdrop_dark_color 3px, transparent 3px, transparent 100%),
+linear-gradient(180deg, @lighter_color 0px, @lighter_color 1px, transparent 1px, transparent 100%),
+linear-gradient(90deg, @titlebar_backdrop_color 0px, @titlebar_backdrop_color 1px, @titlebar_backdrop_dark_color 1px, @titlebar_backdrop_dark_color 2px, @darkest_color 2px, @darkest_color 3px, @lighter_color 3px, @lighter_color 4px, transparent 4px, transparent 100%),
+linear-gradient(270deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%),
+linear-gradient(180deg, @dark_color 0px, @dark_color 1px, transparent 1px, transparent 100%);
+}
+
+windowcontrols button.minimize, windowcontrols button.maximize, windowcontrols button.close,
+windowcontrols button.minimize:hover, windowcontrols button.maximize:hover, windowcontrols button.close:hover {
+border: none;
+box-shadow: none;
+min-height: 28px;
+min-width: 28px;
+padding: 0px;
+margin: 3px 0px;
+margin-right: 2px;
+color: transparent;
+border-radius: 0px;
+background-color: transparent;
+}
+
+
+windowcontrols button.minimize{
+background-image: url('../gtk-3.0/img/hide-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.minimize:hover{
+background-image: url('../gtk-3.0/img/hide-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.minimize:backdrop{
+background-image: url('../gtk-3.0/img/hide-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.minimize:active, windowcontrols button.minimize:active:hover{
+background-image: url('../gtk-3.0/img/hide-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.maximize{
+background-image: url('../gtk-3.0/img/maximize-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.maximize:hover{
+background-image: url('../gtk-3.0/img/maximize-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.maximize:backdrop{
+background-image: url('../gtk-3.0/img/maximize-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.maximize:active, windowcontrols button.maximize:active:hover{
+background-image: url('../gtk-3.0/img/maximize-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized windowcontrols button.maximize{
+background-image: url('../gtk-3.0/img/maximize-toggled-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized windowcontrols button.maximize:hover{
+background-image: url('../gtk-3.0/img/maximize-toggled-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized windowcontrols button.maximize:backdrop{
+background-image: url('../gtk-3.0/img/maximize-toggled-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+window.maximized windowcontrols button.maximize:active, window.maximized windowcontrols button.maximize:active:hover{
+background-image: url('../gtk-3.0/img/maximize-toggled-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.close{
+background-image: url('../gtk-3.0/img/close-active.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.close:hover{
+background-image: url('../gtk-3.0/img/close-prelight.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.close:backdrop{
+background-image: url('../gtk-3.0/img/close-inactive.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button.close:active, windowcontrols button.close:active:hover{
+background-image: url('../gtk-3.0/img/close-pressed.png');
+background-repeat: no-repeat;
+background-position: center center;
+}
+
+windowcontrols button:last-child, windowcontrols button:last-child:hover{
+margin-right: 1px;
+}
+
+/*
+window.maximized windowcontrols {
+margin-top: 3px;
+}*/
+
+window.maximized windowcontrols button:last-child, window.maximized windowcontrols button:last-child:hover{
+margin-right: 2px;
+}
+
+windowcontrols button:first-child, windowcontrols button:first-child:hover{
+margin-left: 6px;
+}
+
+/*@import url("./no-csd.css");*/
+
+

@@ -1,0 +1,9 @@
+@import url("../gtk-3.0/no-csd.css");
+
+window > widget, window > contents {
+margin: 0px;
+}
+
+windowcontrols button.minimize, windowcontrols button.maximize, windowcontrols button.close{
+background-image:none;
+}
