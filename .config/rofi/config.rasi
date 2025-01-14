@@ -1,0 +1,70 @@
+configuration {
+  modi: "drun";
+  font: "DejaVu Sans 12";
+  location: 1;
+  yoffset: 36;
+  xoffset: 8;
+  drun-display-format: "{name}"; 
+//  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]"
+  dpi: 0;
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+
+
+window { 
+  width:              20%;
+  transparency:       "screenshot";
+  border-radius:      3px;
+  padding:            3px;
+  border:             0;
+  background-color:   #181818;
+}
+
+inputbar {
+  enabled: false;
+  background-color:   #19191c;
+  border-radius:      4px;
+  border:             2px;
+  border-color:       #2a2a2a;
+  children:           [ entry ];
+}
+
+entry {
+  placeholder:        69420;
+  text-color:         #dedede;
+  padding:            0 0 0 4px;
+}
+
+listview { 
+  scrollbar:          false;
+  lines:              16;
+  fixed-height:       false;
+  background-color:   #075223;
+  border:             0;
+  spacing:            0;
+}
+
+element { padding: 0px; }
+
+element-text {
+  background-color:   #1f1f1f;
+  text-color:         #909090;
+  highlight:          bold #fff;
+  padding:            0 0 0 4px;
+  border:             1px;
+  border-color:       #181818;
+}
+
+element-text selected {
+  background-color:   #3b9c65;
+  text-color:         #dedede;
+  border-color:       #075223;
+}

@@ -1,0 +1,8 @@
+printf "\033[31mOpen or focus on a window\033[0m\n"
+
+i3-msg -t subscribe -m '[ "window" ]' | while read str; do 
+  event=$(cut -c 12- <<< "$str")
+  event=${event%%\"*}
+
+  [[ $event == "focus" || $event == "new" ]] && printf "%s\n\n" "$(grep --color=always '"change"\|"output"\|"window"\|"class"\|"title"' <<< $str)"
+done

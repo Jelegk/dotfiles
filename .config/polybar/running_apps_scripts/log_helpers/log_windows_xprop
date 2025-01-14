@@ -1,0 +1,9 @@
+# xprop -root _NET_CLIENT_LIST | cut -c 39- | sed 's/,/ /g'
+winlist_str=$(xprop -root _NET_CLIENT_LIST | cut -c 39-)
+winlist_arr=(${winlist_str//,/ })
+
+echo -e "\033[7m$winlist_str\033[0m"
+for id in "${winlist_arr[@]}"
+do
+  echo -e "\033[5m\033[31m $id\t\033[0m\033[1m$(xprop -id $id WM_CLASS | cut -d "\"" -f 4)\033[0m"
+done

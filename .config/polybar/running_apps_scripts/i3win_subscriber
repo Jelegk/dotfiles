@@ -1,0 +1,136 @@
+# ///// Defines /////
+onclick="bash ~/.config/polybar/running_apps_scripts/i3win_onclick"
+normal_bg=#ff1f1f1f
+focused_bg=#ff555555
+urgent_bg=#70f29633
+scratch_bg=#ff181818
+app_spacing=7
+
+# ///// Functions /////
+new_win () {
+  case $win_name in
+    # both "class" from poll_curr_win (after a i3 reset) and "title" (upon opening a new win) from the i3 event subscriber have to be accounted for...
+    #  see i3_subscriber_HELPER for the appropriate $win_name to use below (run "bash i3_subscriber_HELPER")
+    "UXTerm" | "uxterm" | "XTerm" | "xterm" |  "URxvt" | "urxvt")
+      icon_char="T" ;;
+
+    "Pavucontrol" | "Volume Control")
+      icon_char="4" ;;
+
+    "nmtui")
+      icon_char="=" ;;
+
+    "feh"*)
+      icon_char="Q" ;;
+
+    "MPV" | *"mpv")
+      icon_char="R" ;;
+
+    "Pcmanfm" | "pcmanfm")
+      icon_char="V" ;;
+
+    "Mozilla Firefox" | "firefox-esr")
+      icon_char="W" ;;
+
+    *"VSCodium")
+      icon_char="U" ;;
+
+    *)
+      icon_char="S" ;;
+  esac
+
+  labels[$win_id]="%{A1:$onclick $win_id focus:}%{A6:$onclick $win_id minimize:}%{A2:$onclick $win_id close:}%{A3:$onclick $win_id menu:}%{B$normal_bg}%{O$app_spacing}$icon_char%{O$app_spacing}%{B-}%{A}%{A}%{A}%{A}"
+
+  if [[ $output == "__i3" ]] then
+    labels[$win_id]="${labels[$win_id]/"#"????????/$scratch_bg}"
+    minimized_win+=$win_id
+  fi
+}
+
+print2bar () {
+  # deletes all whitespaces, including the ones in polybar's action tags ( %{A} ), which would break them
+  #printf "%s\n" "$(tr -d ' ' <<< "${labels[*]}")"
+  printf "%s" "${labels[@]}"
+  printf "\n"
+}
+
+poll_curr_win () {
+  win_list_json=$(i3-msg -t get_tree | sed 's/{"id"/\n&/g' | sed -n -e '/polybar/d' -e '/class/p')
+  while read win; do
+    output=${win#*output\":\"}
+    win_id=${output#*window\":}
+    win_name=${win_id#*class\":\"}
+
+    output=${output%%\"*}
+    win_id=${win_id%%,*}
+    win_name=${win_name%%\"*}
+
+    #[[ -v labels[$win_id] ]] || new_win
+    [[ $win_id -gt 0 ]] && new_win
+  done <<< "$win_list_json"
+}
+
+
+# ///// Initialization /////
+declare -A labels=()
+last_focused=-1
+minimized_win=""
+
+poll_curr_win
+(( ${#labels[@]} )) && print2bar
+
+# ///// Main behaviour, event-based /////
+i3-msg -t subscribe -m '[ "window" ]' | while read str; do 
+  event=$(cut -c 12- <<< "$str")
+  output=${event#*output\":\"}
+  win_id=${output#*window\":}
+  win_name=${win_id#*title\":\"}
+
+  event=${event%%\"*}
+  output=${output%%\"*}
+  win_id=${win_id%%,*}
+  win_name=${win_name%%\"*}
+
+  case $event in
+    "new")
+      new_win
+    ;;
+
+    "close")
+      declare -A labels_tmp
+      for key in "${!labels[@]}"; do [[ $key != $win_id ]] && labels_tmp[$key]=${labels[$key]}; done
+      unset labels
+      for k in "${!labels_tmp[@]}"; do labels[$k]=${labels_tmp[$k]}; done
+      unset labels_tmp
+
+      [[ $minimized_win == *$win_id* ]] && minimized_win=${minimized_win/+( )$win_id}
+    ;;
+
+    "focus")
+      if [[ $last_focused != -1 ]]; then
+        if [[ $minimized_win == *$last_focused* ]]; then
+          labels[$last_focused]="${labels[$last_focused]/"#"????????/$scratch_bg}"
+        else
+          labels[$last_focused]="${labels[$last_focused]/"#"????????/$normal_bg}"
+        fi
+      fi
+      labels[$win_id]="${labels[$win_id]/"#"????????/$focused_bg}"
+      last_focused=$win_id
+    ;;
+
+    "urgent")
+      labels[$win_id]="${labels[$win_id]/"#"????????/$urgent_bg}"
+    ;;
+
+    "move")
+      if [[ $output == "__i3" ]]; then
+        labels[$last_focused]="${labels[$win_id]/"#"????????/$scratch_bg}"
+        minimized_win+=$win_id
+      elif [[ $minimized_win == *$win_id* ]]; then
+        minimized_win=${minimized_win/+( )$win_id}
+      fi
+    ;;
+  esac
+
+  print2bar
+done

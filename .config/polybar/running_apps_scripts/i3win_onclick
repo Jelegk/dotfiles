@@ -1,0 +1,31 @@
+# TODO:   s'assurer que ca ouvre dans le bon workspace (les icones restent sur la bar meme si on est pu dans le meme workspace) (voir ligne 15)
+#         on_scroll:  trouver via pavucontrol or something l'app en question et baisser son volume dans le mixer
+#         minimize force les windows en tiling: faire de quoi pour exclure les windows comme pavucontrol/pop-ups, qui sont supposees etre floating
+win_list_json=$(i3-msg -t get_tree | sed 's/{"id"/\n&/g' | sed -n -e '/polybar/d' -e '/title/p')
+while read win; do
+  output=${win#*output\":\"}
+  win_id=${output#*window\":}
+
+  output=${output%%\"*}
+  win_id=${win_id%%,*}
+
+  if [[ $win_id == $1 ]]; then
+    case $2 in
+      "focus")
+        i3-msg "[id=$1] focus workspace; focus" ;;
+
+      "minimize")
+        if [[ $output == "__i3" ]]; then
+          i3-msg "[id=$1] scratchpad show; floating disable"
+        else
+          i3-msg "[id=$1] move scratchpad"
+        fi ;;
+
+      "close")
+        i3-msg "[id=$1] kill" ;;
+
+      #"menu")
+      #  jgmenu --simple --config-file="" --csv-file="" ;;
+    esac
+  fi
+done <<< "$win_list_json"

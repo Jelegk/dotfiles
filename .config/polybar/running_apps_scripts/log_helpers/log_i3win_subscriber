@@ -1,0 +1,36 @@
+printf "name shows the class node of i3 tree, not the title node actually used by i3win_subscriber\n\n"
+
+i3-msg -t subscribe -m '[ "window" ]' | while read str; do 
+  event=$(cut -c 12- <<< "$str")
+  output=${event#*output\":\"}
+  win_id=${output#*window\":}
+  win_name=${win_id#*class\":\"}
+
+  event=${event%%\"*}
+  output=${output%%\"*}
+  win_id=${win_id%%,*}
+  win_name=${win_name%%\"*}
+
+  if [[ $output == "__i3" ]] then
+    out_str="\033[31m\033[5mscratchpad"
+  else
+    out_str="\033[34m$output"
+  fi
+
+  case $event in
+    "focus")
+      event_sgr="\033[36m" ;;
+    "move")
+      event_sgr="\033[33m" ;;
+    "new")
+      event_sgr="\033[32m" ;;
+    "close")
+      event_sgr="\033[31m" ;;
+    "urgent")
+      event_sgr="\033[31m" ;;
+    *)
+      event_sgr="\033[30m" ;;
+  esac
+
+  echo -e "event: $event_sgr$event\033[0m\tid: \033[35m$win_id\033[0m\toutput: $out_str\033[0m\tname: \033[1m$win_name\033[0m"
+done

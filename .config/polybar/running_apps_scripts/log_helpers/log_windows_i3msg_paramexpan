@@ -1,0 +1,18 @@
+#                 get full json    | separate with ids   | remove polybar window & only keep real window i3 containers        helper:  | grep --color=always '"output"\|"window"\|"class"'
+win_list_json=$(i3-msg -t get_tree | sed 's/{"id"/\n&/g' | sed -n -e '/polybar/d' -e '/class/p')
+#echo -e "$win_list_json\n"
+while read win; do
+  output=${win#*output\":\"}
+  win_id=${output#*window\":}
+  win_name=${win_id#*class\":\"}
+
+  output=${output%%\"*}
+  win_id=${win_id%%,*}
+  win_name=${win_name%%\"*}
+
+  if [[ $output == "__i3" ]] then
+    echo -e "id: \033[35m$win_id\033[0m\toutput: \033[31m\033[5mscratchpad\033[0m\tname: \033[1m$win_name\033[0m"
+  else
+    echo -e "id: \033[35m$win_id\033[0m\toutput: \033[34m$output\033[0m\tname: \033[1m$win_name\033[0m"
+  fi  
+done <<< "$win_list_json"
