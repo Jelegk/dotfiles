@@ -36,4 +36,4 @@ Zutty.bg: #232627
 
 URxvt.scrollBar: False
 URxvt.foreground: #FCFCFC
-URxvt.background: #232627
+URxvt.background: #0e0e0e
