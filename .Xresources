@@ -1,4 +1,4 @@
-! $ xrdb -merge ~/.Xresources   to refresh the configs
+! $ xrdb -merge ~/.Xresources   (to refresh the configs)
 *color0:  #1B1C1D
 *color1:  #ED1515
 *color2:  #11D116
