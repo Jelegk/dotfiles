@@ -12,31 +12,31 @@ new_win () {
     # both "class" from poll_curr_win (after a i3 reset) and "title" (upon opening a new win) from the i3 event subscriber have to be accounted for...
     #  see i3_subscriber_HELPER for the appropriate $win_name to use below (run "bash i3_subscriber_HELPER")
     "UXTerm" | "uxterm" | "XTerm" | "xterm" |  "URxvt" | "urxvt")
-      icon_char="T" ;;
+      icon_char="X" ;;
 
     "Pavucontrol" | "Volume Control")
       icon_char="4" ;;
 
     "nmtui")
-      icon_char="=" ;;
+      icon_char="@" ;;
 
     "feh"*)
-      icon_char="Q" ;;
+      icon_char="T" ;;
 
     "MPV" | *"mpv")
-      icon_char="R" ;;
+      icon_char="U" ;;
 
     "Pcmanfm" | "pcmanfm")
       icon_char="V" ;;
 
     "Mozilla Firefox" | "firefox-esr")
-      icon_char="W" ;;
+      icon_char="Z" ;;
 
     *"VSCodium")
-      icon_char="U" ;;
+      icon_char="Y" ;;
 
     *)
-      icon_char="S" ;;
+      icon_char="[" ;;
   esac
 
   labels[$win_id]="%{A1:$onclick $win_id focus:}%{A6:$onclick $win_id minimize:}%{A2:$onclick $win_id close:}%{A3:$onclick $win_id menu:}%{B$normal_bg}%{O$app_spacing}$icon_char%{O$app_spacing}%{B-}%{A}%{A}%{A}%{A}"
