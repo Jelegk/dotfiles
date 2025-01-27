@@ -1,0 +1,11 @@
+win_list=($(xprop -root _NET_CLIENT_LIST | cut -c 39- | tr -d ','))
+echo -e "\033[7m${win_list[*]}\033[0m"
+
+for id in "${win_list[@]}"; do
+  win_id=$(( $id ))
+  win_name=$(xprop -id $id WM_CLASS | cut -d '"' -f 4)
+  # a switch-case is faster than a conditional, apparently ( https://stackoverflow.com/a/20460402 )
+  case $(xprop -id $id WM_STATE) in *"Withdrawn"* ) output="__i3" ;; *) output="" ;; esac
+
+  echo -e "\033[35m$win_id \033[33m$win_name \033[05;31m$output\033[0m"
+done

@@ -1,5 +1,6 @@
 printf "\033[31mOpen a program to find its names to enter in the switch-case in new_win() of the i3win_subscriber script\033[0m\n"
 printf "\033[33mFocus on a program to find its current (but potentially incorrect at launch) name\033[0m\n"
+printf "                         \033[32mtitle\t\t\t\t\033[36mclass\033[0m\n"
 
 i3-msg -t subscribe -m '[ "window" ]' | while read str; do 
   event=$(cut -c 12- <<< "$str")

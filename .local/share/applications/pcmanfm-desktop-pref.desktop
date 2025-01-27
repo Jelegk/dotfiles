@@ -9,4 +9,3 @@ StartupNotify=true
 Terminal=false
 NotShowIn=GNOME;XFCE;KDE;MATE;
 NoDisplay=true
-

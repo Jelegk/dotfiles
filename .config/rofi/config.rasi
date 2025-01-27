@@ -6,6 +6,8 @@ configuration {
   xoffset: 8;
   drun-display-format: "{name}"; 
 //  drun-display-format: "{name} [<span weight='light' size='small'><i>({generic})</i></span>]"
+  disable-history: true;  
+  hover-select: true;
   dpi: 0;
   timeout {
       action: "kb-cancel";
@@ -16,8 +18,6 @@ configuration {
       sorting-method:    "name";
   }
 }
-
-
 
 window { 
   width:              20%;

@@ -235,6 +235,15 @@ user_pref("privacy.clearOnShutdown_v2.cache", true); // DEFAULT
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true); // DEFAULT
 user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
 
+// See two pages side by side when opening a PDF
+user_pref("pdfjs.spreadModeOnLoad", 1);
+// Disables Ctrl+Q shortcut
+user_pref("browser.quitShortcut.disabled", true);
+// Fixes for unwanted downloads
+user_pref("browser.download.start_downloads_in_tmp_dir", true);
+user_pref("browser.download.open_pdf_attachments_inline", true);
+user_pref("browser.download.forbid_open_with", true);
+
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
 ****************************************************************************/

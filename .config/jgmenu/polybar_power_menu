@@ -1,5 +1,5 @@
 # (iconoclaste font on the left of comma)
 $,  systemctl reboot
-%,  sh ~/.config/i3/launch_lock
-"""#""", systemctl suspend && sh ~/.config/i3/launch_lock
+%,  sh ~/.config/i3/lock.sh
+"""#""", systemctl suspend
 ",  systemctl poweroff -i

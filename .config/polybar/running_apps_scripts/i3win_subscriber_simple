@@ -3,12 +3,14 @@ onclick="bash ~/.config/polybar/running_apps_scripts/i3win_onclick"
 normal_bg=#ff1f1f1f
 focused_bg=#ff555555
 urgent_bg=#70f29633
-scratch_bg=#ff181818
 app_spacing=7
 
 # ///// Functions /////
 new_win () {
   case $win_name in
+    *"polybar"*)
+      return ;;
+
     # both "class" from poll_curr_win (after a i3 reset) and "title" (upon opening a new win) from the i3 event subscriber have to be accounted for...
     #  see i3_subscriber_HELPER for the appropriate $win_name to use below (run "bash i3_subscriber_HELPER")
     "UXTerm" | "uxterm" | "XTerm" | "xterm" |  "URxvt" | "urxvt")
@@ -46,11 +48,6 @@ new_win () {
   esac
 
   labels[$win_id]="%{A1:$onclick $win_id focus:}%{A6:$onclick $win_id minimize:}%{A2:$onclick $win_id close:}%{A3:$onclick $win_id menu:}%{B$normal_bg}%{O$app_spacing}$icon_char%{O$app_spacing}%{B-}%{A}%{A}%{A}%{A}"
-
-  if [[ $output == "__i3" ]] then
-    labels[$win_id]="${labels[$win_id]/"#"????????/$scratch_bg}"
-    minimized_win+=$win_id
-  fi
 }
 
 print2bar () {
@@ -61,26 +58,21 @@ print2bar () {
 }
 
 poll_curr_win () {
-  win_list_json=$(i3-msg -t get_tree | sed 's/{"id"/\n&/g' | sed -n -e '/polybar/d' -e '/class/p')
-  while read win; do
-    output=${win#*output\":\"}
-    win_id=${output#*window\":}
-    win_name=${win_id#*class\":\"}
+  win_list=($(xprop -root _NET_CLIENT_LIST | cut -c 39- | tr -d ','))
+  for id in "${win_list[@]}"; do
+    win_id=$(( $id ))
+    win_name=$(xprop -id $id WM_CLASS | cut -d '"' -f 4)
 
-    output=${output%%\"*}
-    win_id=${win_id%%,*}
-    win_name=${win_name%%\"*}
-
-    #[[ -v labels[$win_id] ]] || new_win
     [[ $win_id -gt 0 ]] && new_win
-  done <<< "$win_list_json"
+  done
+  win_list=()
 }
+
 
 
 # ///// Initialization /////
 declare -A labels=()
 last_focused=-1
-minimized_win=""
 
 poll_curr_win
 (( ${#labels[@]} )) && print2bar
@@ -88,12 +80,10 @@ poll_curr_win
 # ///// Main behaviour, event-based /////
 i3-msg -t subscribe -m '[ "window" ]' | while read str; do 
   event=$(cut -c 12- <<< "$str")
-  output=${event#*output\":\"}
-  win_id=${output#*window\":}
+  win_id=${event#*window\":}
   win_name=${win_id#*title\":\"}
 
   event=${event%%\"*}
-  output=${output%%\"*}
   win_id=${win_id%%,*}
   win_name=${win_name%%\"*}
 
@@ -113,13 +103,7 @@ i3-msg -t subscribe -m '[ "window" ]' | while read str; do
     ;;
 
     "focus")
-      if [[ $last_focused != -1 ]]; then
-        if [[ $minimized_win == *$last_focused* ]]; then
-          labels[$last_focused]="${labels[$last_focused]/"#"????????/$scratch_bg}"
-        else
-          labels[$last_focused]="${labels[$last_focused]/"#"????????/$normal_bg}"
-        fi
-      fi
+      [[ $last_focused != -1 ]] && labels[$last_focused]="${labels[$last_focused]/"#"????????/$normal_bg}"
       labels[$win_id]="${labels[$win_id]/"#"????????/$focused_bg}"
       last_focused=$win_id
     ;;
@@ -129,12 +113,7 @@ i3-msg -t subscribe -m '[ "window" ]' | while read str; do
     ;;
 
     "move")
-      if [[ $output == "__i3" ]]; then
-        labels[$last_focused]="${labels[$win_id]/"#"????????/$scratch_bg}"
-        minimized_win+=$win_id
-      elif [[ $minimized_win == *$win_id* ]]; then
-        minimized_win=${minimized_win/+( )$win_id}
-      fi
+      poll_curr_win
     ;;
   esac
 

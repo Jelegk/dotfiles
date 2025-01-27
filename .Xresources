@@ -1,4 +1,4 @@
-! $ xrdb -merge ~/.Xresources   (to refresh the configs)
+! $ xrdb -load ~/.Xresources   (to refresh the configs)
 *color0:  #1B1C1D
 *color1:  #ED1515
 *color2:  #11D116
@@ -28,12 +28,25 @@
 !Color6Faint  #186C60
 !Color7Faint  #63686D
 
+xterm*background: your_background_color
+xterm*foreground: your_foreground_color
+
+*VT100.colorBDMode:    true
+*VT100.colorBD:        #195080
+*VT100.colorULMode:    true
+*VT100.colorUL:        #C74B40
+*VT100.veryBoldColors: 6
+
+URxvt.scrollBar: False
+URxvt.foreground: #FCFCFC
+URxvt.background: #0E0E0E
+
+URxvt.colorIT: #35A65E
+URxvt.colorBD: #195080
+URxvt.colorUL: #C74B40
+
 Zutty.altScroll: true
 Zutty.font: DejaVuSansMono
 Zutty.fontsize: 12
 Zutty.fg: #FCFCFC
 Zutty.bg: #232627
-
-URxvt.scrollBar: False
-URxvt.foreground: #FCFCFC
-URxvt.background: #0e0e0e

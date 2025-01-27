@@ -3,7 +3,8 @@ checklock() {
     i3lockactive=$(pgrep --exact --count i3lock)
     if [ "i3lockactive" -gt "0" ]; then
         # Suspend screen & computer
-        xset dpms force suspend && systemctl suspend && checklock
+        checklock &
+        systemctl suspend
     fi
 }
 # Turn on windows crossfade
@@ -21,6 +22,6 @@ i3lock -n -i ~/.config/wallpapers/copland_os_blue.png -F -e \
 #        --keyhl-color=5c5d66ff --bshl-color=571b21ff --separator-color=00000000 \
 #        --insidever-color=096b33ff --insidewrong-color=6b0b10ff \
 #        --ringver-color=ffffffff --ringwrong-color=ffffffff --ind-pos="x+70:h-60" \
-#        --radius=20 --verif-text="" --wrong-text="" --noinput-text="" --pass-media-keys
+#        --radius=20 --verif-text="" --wrong-text="" --noinput-text="" --pass-media-keys &&
 # Turn off crossfade on homescreen
 sleep 1 && pkill xcompmgr

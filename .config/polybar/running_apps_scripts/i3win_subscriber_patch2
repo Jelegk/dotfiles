@@ -9,6 +9,9 @@ app_spacing=7
 # ///// Functions /////
 new_win () {
   case $win_name in
+    *"polybar"*)
+      return ;;
+
     # both "class" from poll_curr_win (after a i3 reset) and "title" (upon opening a new win) from the i3 event subscriber have to be accounted for...
     #  see i3_subscriber_HELPER for the appropriate $win_name to use below (run "bash i3_subscriber_HELPER")
     "UXTerm" | "uxterm" | "XTerm" | "xterm" |  "URxvt" | "urxvt")
@@ -61,20 +64,18 @@ print2bar () {
 }
 
 poll_curr_win () {
-  win_list_json=$(i3-msg -t get_tree | sed 's/{"id"/\n&/g' | sed -n -e '/polybar/d' -e '/class/p')
-  while read win; do
-    output=${win#*output\":\"}
-    win_id=${output#*window\":}
-    win_name=${win_id#*class\":\"}
+  win_list=($(xprop -root _NET_CLIENT_LIST | cut -c 39- | tr -d ','))
+  for id in "${win_list[@]}"; do
+    win_id=$(( $id ))
+    win_name=$(xprop -id $id WM_CLASS | cut -d '"' -f 4)
+    # a switch-case is faster than a conditional, apparently ( https://stackoverflow.com/a/20460402 )
+    case $(xprop -id $id WM_STATE) in *"Withdrawn"* ) output="__i3" ;; *) output="" ;; esac
 
-    output=${output%%\"*}
-    win_id=${win_id%%,*}
-    win_name=${win_name%%\"*}
-
-    #[[ -v labels[$win_id] ]] || new_win
     [[ $win_id -gt 0 ]] && new_win
-  done <<< "$win_list_json"
+  done
+  win_list=()
 }
+
 
 
 # ///// Initialization /////
@@ -129,12 +130,7 @@ i3-msg -t subscribe -m '[ "window" ]' | while read str; do
     ;;
 
     "move")
-      if [[ $output == "__i3" ]]; then
-        labels[$last_focused]="${labels[$win_id]/"#"????????/$scratch_bg}"
-        minimized_win+=$win_id
-      elif [[ $minimized_win == *$win_id* ]]; then
-        minimized_win=${minimized_win/+( )$win_id}
-      fi
+      poll_curr_win
     ;;
   esac
 

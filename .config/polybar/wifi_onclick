@@ -1,0 +1,11 @@
+case $1 in
+  "menu")
+    nohup nm-connection-editor & ;;
+
+  "toggle")
+    [[ "$(nmcli radio wifi)" == "enabled" ]] && nmcli radio wifi off || nmcli radio wifi on ;;
+
+  "scan")
+    urxvt --hold -title "scanned_wifis" -geometry 110x15-8+36 -e nmcli device wifi list & ;;
+    #urxvt --hold -title "scanned_wifis" -geometry 50x20-8+36 -e echo "$(nmcli device wifi list | tr -d '*' | sed '1d' | column -t -N BSSID,SSID,MODE,CHAN,RATE,_,SIGNAL,BARS,SECURITY -H BSSID,MODE,CHAN,RATE,_,SIGNAL -O SSID,SECURITY,BARS)" & ;;
+esac

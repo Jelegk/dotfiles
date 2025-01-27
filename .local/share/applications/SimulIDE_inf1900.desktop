@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Icon=simulide_FIND_ONE_THERES_NONE
+Name=SimulIDE (polymtl ver.)
+Comment=Enhanced SimulIDE by Polytechnique Montreal
+Categories=Utility;
+Exec=/opt/SimulIDE_0.3.12-SR8-INF1900.3/bin/simulide
+StartupNotify=true
+Terminal=false
