@@ -115,7 +115,7 @@ image_mode_bindings = {
 
 -- extension configuration
 
-image_file_extensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp" }
+image_file_extensions = { ".jpg", ".jpeg", ".png", ".bmp", ".gif", ".webp", ".ico" }
 audio_file_extensions = { ".mp3", ".ogg", ".opus", ".flac", ".m4a", ".mka", ".ac3", ".dts", ".dtshd", ".dtshr", ".dtsma", ".eac3", ".mp2", ".mpa", ".thd", ".w64", ".wav", ".aac" }
 
 ----- end config
