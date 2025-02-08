@@ -2,19 +2,20 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
-# To find a special key name, try the folling command:
+# To find a special key name, try the following command:
 # xmodmap -pke
 
 set $mod Mod4
 
-# fixes Connection Failed: br-connection-profile-unavailable when attempting to connect to a bluetooth device
-exec --no-startup-id pactl load-module module-bluetooth-discover
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
 #exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080
 #exec_always --no-startup-id  xrandr --output Virtual1 --mode 1280x720
 exec_always --no-startup-id feh --bg-scale ~/.config/wallpapers/copland_os_black.png
 exec_always --no-startup-id sh ~/.config/polybar/launch_polybar
+# fixes (choose one) for "Connection Failed: br-connection-profile-unavailable" when attempting to connect to a bluetooth device
+exec --no-startup-id systemctl --user restart pulseaudio.service
+#exec --no-startup-id pactl load-module module-bluetooth-discover
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -45,6 +46,9 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym $mod+Print exec --no-startup-id flameshot full -p ~/Pictures
+bindsym $mod+Shift+S exec --no-startup-id flameshot gui 
 
 # Right click popup menu
 #bindsym Click-Right exec --no-startup-id jgmenu --simple
@@ -250,6 +254,7 @@ for_window [title="scanned_wifis"] floating enable
 for_window [title="Customize Look and Feel"] floating enable
 for_window [title="Network Connections"] floating enable
 for_window [title="Bluetooth Devices"] floating enable resize set 600 400
+for_window [title="Configuration"] floating enable
 #for_window [class="Blueman-applet"] kill
 
 # Configure 5px of space between windows and to the screen edges.

@@ -5,5 +5,5 @@ Icon=extract-archive.png
 Profiles=uncompress
 
 [X-Action-Profile uncompress]
-MimeTypes=application/*zip*;application/*tar*;application/*xz*
+MimeTypes=application/*
 Exec=7zz x -ssp %f

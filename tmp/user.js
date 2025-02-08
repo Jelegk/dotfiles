@@ -239,10 +239,10 @@ user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
 user_pref("pdfjs.spreadModeOnLoad", 1);
 // Disables Ctrl+Q shortcut
 user_pref("browser.quitShortcut.disabled", true);
-// Fixes for unwanted downloads
-user_pref("browser.download.start_downloads_in_tmp_dir", true);
-user_pref("browser.download.open_pdf_attachments_inline", true);
+
 user_pref("browser.download.forbid_open_with", true);
+// For screen tearing
+user_pref("layers.acceleration.force-enabled", true);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
@@ -250,12 +250,14 @@ user_pref("browser.download.forbid_open_with", true);
 // visit https://github.com/yokoffing/Betterfox/blob/main/Smoothfox.js
 // Enter your scrolling overrides below this line:
 
-/** OPTION: SMOOTH SCROLLING **/
-// recommended for 90hz+ displays
+/** OPTION: INSTANT SCROLLING (SIMPLE ADJUSTMENT) **/
+// recommended for 60hz+ displays
 user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
 user_pref("general.smoothScroll", true); // DEFAULT
-user_pref("general.smoothScroll.msdPhysics.enabled", true);
-user_pref("mousewheel.default.delta_multiplier_y", 300); // 250-400; adjust this number to your liking
+user_pref("mousewheel.default.delta_multiplier_y", 275); // 250-400; adjust this number to your liking
+// Firefox Nightly only:
+// [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1846935
+user_pref("general.smoothScroll.msdPhysics.enabled", false); // [FF122+ Nightly]
 
 /****************************************************************************
  * END: BETTERFOX                                                           *
