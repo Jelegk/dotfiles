@@ -8,6 +8,7 @@
 set $mod Mod4
 
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock
+# xrandr output found with:   xrandr -q | grep " connected" | cut -d ' ' -f1
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
 #exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080
 #exec_always --no-startup-id  xrandr --output Virtual1 --mode 1280x720
