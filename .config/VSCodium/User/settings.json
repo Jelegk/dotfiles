@@ -1,0 +1,7 @@
+{
+    "explorer.confirmDelete": false,
+    "workbench.startupEditor": "none",
+    "explorer.confirmDragAndDrop": false,
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: WebKit, AlignAfterOpenBracket: Align, AlignArrayOfStructures: Right, AlignEscapedNewlines: Left, AlignOperands: AlignAfterOperator, AlignTrailingComments: Leave, AllowShortBlocksOnASingleLine: Always, AllowShortCaseLabelsOnASingleLine: true, AllowShortIfStatementsOnASingleLine: true, BreakBeforeBraces: Attach, IndentCaseLabels: true, ReflowComments: false, SortIncludes: Never, SortUsingDeclarations: Never, TabWidth: 4 }",
+    "C_Cpp.default.cppStandard": "c++20",
+}

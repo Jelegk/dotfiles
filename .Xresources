@@ -28,8 +28,8 @@
 !Color6Faint  #186C60
 !Color7Faint  #63686D
 
-xterm*background: your_background_color
-xterm*foreground: your_foreground_color
+xterm*background: #0A0A0A
+xterm*foreground: #F0F0F0
 
 *VT100.colorBDMode:    true
 *VT100.colorBD:        #195080

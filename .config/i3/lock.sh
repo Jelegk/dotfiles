@@ -10,9 +10,9 @@ checklock() {
 # Turn on windows crossfade
 xcompmgr -fF &
 # check each minutes for inactivity, if so return to suspend mode
-checklock &
+#checklock &
 # Lock screen 9note: keep bar-step value high enough to negate the pixelated "pyramid" from appearing)
-i3lock -n -i ~/.config/wallpapers/copland_os_blue.png -F -e \
+i3lock -n -i ~/.config/wallpaper_lock.png -F -e \
         --bar-indicator --greeter-text="Type to unlock" --greeter-pos="x+20:h-30" \
         --greeter-color=212121ff --greeter-font=D050000L --greeter-align=1 --greeter-size=24 \
         --bar-color=00000000 --ringver-color=096b33ff --ringwrong-color=6b0b10ff --bar-step=20 \
