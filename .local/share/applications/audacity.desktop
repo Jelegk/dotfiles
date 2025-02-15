@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Icon=simulide_FIND_ONE_THERES_NONE
+Name=Audacity
+Comment=Simple DAW
+Categories=Utility;
+Exec=/opt/audacity-linux-3.7.1-x64-22.04.AppImage
+StartupNotify=true
+Terminal=false

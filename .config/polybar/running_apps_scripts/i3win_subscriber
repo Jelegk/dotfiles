@@ -26,7 +26,7 @@ new_win () {
     "Customize Look and Feel" | "Lxappearance")
       icon_char="'" ;;
 
-    "feh"*)
+    "feh"* | "Save screenshot" | "Flameshot")
       icon_char="T" ;;
 
     "MPV" | *"mpv")
@@ -34,8 +34,11 @@ new_win () {
 
     "Pcmanfm" | "pcmanfm")
       icon_char="V" ;;
+    
+    "Removable medium is inserted")
+      icon_char="*" ;;
 
-    "Mozilla Firefox" | "firefox-esr")
+    *"Firefox" | "firefox-esr" | "Library")
       icon_char="Z" ;;
 
     *"VSCodium")
