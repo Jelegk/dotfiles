@@ -1,3 +1,4 @@
+#!/bin/sh
 checklock() {
     sleep 60
     i3lockactive=$(pgrep --exact --count i3lock)

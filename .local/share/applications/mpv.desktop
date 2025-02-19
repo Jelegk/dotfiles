@@ -3,7 +3,7 @@ Type=Application
 Name=MPV Media Player
 GenericName=Multimedia player
 Comment=Play movies and songs
-Icon=mpv
+Icon=~/.icons/custom_icons/mpv.svg
 TryExec=mpv
 Exec=mpv --player-operation-mode=pseudo-gui -- %U
 Terminal=false

@@ -45,6 +45,14 @@ URxvt.colorIT: #35A65E
 URxvt.colorBD: #195080
 URxvt.colorUL: #C74B40
 
+URxvt.font:     xft:ProFontWindows:style=Regular:size=12:antialias=true, \
+                xft:Deus Ex Console:style=Regular:size=12:antialias=true, \
+                xft:DejaVu Sans Mono:style=Book:antialias=true:size=10
+
+URxvt.boldFont: xft:ProFontWindows:style=Bold:size=12:antialias=true, \
+                xft:Deus Ex Console:style=Bold:size=12:antialias=true, \
+                xft:DejaVu Sans Mono:bold:style=Book:size=10:antialias=true
+
 Zutty.altScroll: true
 Zutty.font: DejaVuSansMono
 Zutty.fontsize: 12

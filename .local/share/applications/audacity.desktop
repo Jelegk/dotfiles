@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Icon=simulide_FIND_ONE_THERES_NONE
+Icon=~/.icons/custom_icons/audacity_flat.svg
 Name=Audacity
 Comment=Simple DAW
-Categories=Utility;
+Categories=Audio;Video;AudioVideo;AudioVideoEditing;Recorder;Player;
 Exec=/opt/audacity-linux-3.7.1-x64-22.04.AppImage
 StartupNotify=true
 Terminal=false

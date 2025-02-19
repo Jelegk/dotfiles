@@ -4,7 +4,8 @@ image/png=mpv.desktop;
 video/x-matroska=mpv.desktop;
 video/mp4=mpv.desktop;
 audio/flac=mpv.desktop;
-application/octet-stream=codium.desktop;
+image/gif=mpv.desktop;
+text/plain=nano_edit.desktop;codium.desktop;
 
 [Default Applications]
 application/pdf=firefox-esr.desktop
@@ -12,3 +13,5 @@ image/png=mpv.desktop
 video/x-matroska=mpv.desktop
 video/mp4=mpv.desktop
 audio/flac=mpv.desktop
+image/gif=mpv.desktop
+text/plain=nano_edit.desktop

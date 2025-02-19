@@ -235,14 +235,14 @@ user_pref("privacy.clearOnShutdown_v2.cache", true); // DEFAULT
 user_pref("privacy.clearOnShutdown_v2.cookiesAndStorage", true); // DEFAULT
 user_pref("privacy.clearOnShutdown_v2.historyFormDataAndDownloads", false);
 
-// See two pages side by side when opening a PDF
-user_pref("pdfjs.spreadModeOnLoad", 1);
+// See two pages side by side when opening a PDF = 1
+user_pref("pdfjs.spreadModeOnLoad", 0);
 // Disables Ctrl+Q shortcut
 user_pref("browser.quitShortcut.disabled", true);
 
 user_pref("browser.download.forbid_open_with", true);
 // For screen tearing
-user_pref("layers.acceleration.force-enabled", true);
+user_pref("layers.acceleration.force-enabled", false);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *
@@ -254,8 +254,8 @@ user_pref("layers.acceleration.force-enabled", true);
 // recommended for 60hz+ displays
 user_pref("apz.overscroll.enabled", true); // DEFAULT NON-LINUX
 user_pref("general.smoothScroll", true); // DEFAULT
-user_pref("mousewheel.default.delta_multiplier_y", 275); // 250-400; adjust this number to your liking
-// Firefox Nightly only:
+user_pref("mousewheel.default.delta_multiplier_y", 100); // 250-400; adjust this number to your liking
+user_pref("general.smoothScroll.stopDecelerationWeighting", 3.30);
 // [1] https://bugzilla.mozilla.org/show_bug.cgi?id=1846935
 user_pref("general.smoothScroll.msdPhysics.enabled", false); // [FF122+ Nightly]
 

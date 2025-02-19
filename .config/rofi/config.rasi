@@ -1,6 +1,6 @@
 configuration {
   modi: "drun";
-  font: "DejaVu Sans 12";
+  font: "DejaVu Sans 13";
   location: 1;
   yoffset: 36;
   xoffset: 8;
@@ -38,7 +38,7 @@ inputbar {
 }
 
 entry {
-  placeholder:        69420;
+  placeholder:        "FLCL";
   text-color:         #dedede;
   padding:            0 0 0 4px;
 }
@@ -52,7 +52,15 @@ listview {
   spacing:            0;
 }
 
-element { padding: 0px; }
+element normal normal, element alternate normal, element selected normal {
+  background-color: #181818;
+}
+
+element { 
+  children: [ element-icon, element-text ];
+  padding: 0px;
+  spacing: 2px;
+}
 
 element-text {
   background-color:   #1f1f1f;
@@ -61,10 +69,19 @@ element-text {
   padding:            0 0 0 4px;
   border:             1px;
   border-color:       #181818;
+  vertical-align:     0.5;
 }
 
 element-text selected {
   background-color:   #3b9c65;
   text-color:         #dedede;
   border-color:       #075223;
+}
+
+element-icon {
+  size: 1.25em;
+  background-color:   #181818;
+  border-color:       #1f1f1f;
+  vertical-align: 0.5;
+  horizontal-align: 0.5;
 }

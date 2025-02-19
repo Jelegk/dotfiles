@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Categories=System;
+Name=Settings
+Icon=~/.icons/custom_icons/GNOME_Settings_icon.svg
+Exec=urxvt -title "settuings" -e bash .config/settuings

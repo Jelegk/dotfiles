@@ -1,3 +1,4 @@
+#!/bin/sh
 # TODO:   s'assurer que ca ouvre dans le bon workspace (les icones restent sur la bar meme si on est pu dans le meme workspace) (voir ligne 15)
 #         on_scroll:  trouver via pavucontrol or something l'app en question et baisser son volume dans le mixer
 #         minimize force les windows en tiling: faire de quoi pour exclure les windows comme pavucontrol/pop-ups, qui sont supposees etre floating

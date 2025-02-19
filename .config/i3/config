@@ -32,8 +32,8 @@ font pango:DejaVu Sans Mono 8
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-#exec --no-startup-id xss-lock --transfer-sleep-lock -- sh ~/.config/i3/lock.sh &
-bindsym $mod+l exec --no-startup-id sh ~/.config/i3/lock.sh
+#exec --no-startup-id xss-lock --transfer-sleep-lock -- sh ~/.config/i3/lock &
+bindsym $mod+l exec --no-startup-id sh ~/.config/i3/lock
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -57,15 +57,18 @@ bindsym $mod+Shift+S exec --no-startup-id flameshot gui
 bindsym $mod+Return exec --no-startup-id i3-sensible-terminal
 
 # start rofi (keycode 133 = Super_L = "windows key" = Mod4)
-bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+d exec --no-startup-id rofi -show drun -show-icons
 # Sadly this breaks using $mod as the floating_modifier. Great for use with a mouse tho
 #bindsym Super_L --release  exec --no-startup-id rofi -show drun
 
 # start firefox
-bindsym $mod+i exec --no-startup-id firefox
+bindsym $mod+i exec --no-startup-id gtk-launch firefox* || firefox
 
 # start pcmanfm
-bindsym $mod+backslash exec --no-startup-id pcmanfm
+bindsym $mod+backslash exec --no-startup-id gtk-launch pcmanfm || pcmanfm
+
+# "task manager"
+bindsym Ctrl+Shift+Escape exec --no-startup-id urxvt --title "taskman" -e top &
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
