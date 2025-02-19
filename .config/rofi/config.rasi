@@ -80,6 +80,7 @@ element-text selected {
 
 element-icon {
   size: 1.25em;
+  padding: 1px;
   background-color:   #181818;
   border-color:       #1f1f1f;
   vertical-align: 0.5;
