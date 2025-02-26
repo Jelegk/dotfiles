@@ -1,9 +1,20 @@
 #!/bin/bash
 # //////////////////[ EDIT THESE ]//////////////////
-LARGESTENTRYCHARCOUNT=21
 
 # (no spaces, it just takes the first word otherwise and I can't be bothered to fix it)
-MENUENTRIES=("AUDIO" "BLUETOOTH" "NETWORK" "SCREENSHOT_UTILITY" "THEME_&_CURSOR" "EDIT:_ENVIRONMENT_VAR" "EDIT:_I3WM" "EDIT:_I3LOCK-COLOR" "EDIT:_MIMEAPPS" "EDIT:_POLYBAR" "EDIT:_TERMINAL" "EDIT:_TOUCHPAD" "EDIT:_THIS")
+MENUENTRIES=("AUDIO" \
+"BLUETOOTH" \
+"NETWORK" \
+"SCREENSHOT_UTILITY" \
+"THEME_&_CURSOR" \
+"EDIT:_ENVIRONMENT_VAR" \
+"EDIT:_I3WM" \
+"EDIT:_I3LOCK-COLOR" \
+"EDIT:_MIMEAPPS" \
+"EDIT:_POLYBAR" \
+"EDIT:_TERMINAL" \
+"EDIT:_TOUCHPAD" \
+"EDIT:_THIS")
 
 COMMANDS=("setsid gtk-launch pavucontrol || pavucontrol &&" \
 "setsid gtk-launch blueman-manager || blueman-manager &&" \
@@ -18,7 +29,9 @@ COMMANDS=("setsid gtk-launch pavucontrol || pavucontrol &&" \
 "codium ~/.Xresources ||                         code ~/.Xresources ||                         nano ~/.Xresources &&" \
 "codium /etc/X11/xorg.conf.d/30-touchpad.conf || code /etc/X11/xorg.conf.d/30-touchpad.conf || nano /etc/X11/xorg.conf.d/30-touchpad.conf &&" \
 "codium ~/.config/settuings ||                   code ~/.config/settuings ||                   nano ~/.config/settuings &&")
+
 # ///////////////////////////////////////////////////
+
 
 # Great ressource:
 # https://github.com/dylanaraps/writing-a-tui-in-bash
@@ -56,6 +69,11 @@ trap 'onResize' WINCH
 
 # Save (and clear) the user's terminal screen, hide the cursor and disable line wrapping
 printf '\e[?1049h\e[?25l\e[?7l'
+
+LARGESTENTRYCHARCOUNT=0
+for i in ${!MENUENTRIES[@]}; do
+  [[ ${#MENUENTRIES[i]} -gt $LARGESTENTRYCHARCOUNT ]] && LARGESTENTRYCHARCOUNT=${#MENUENTRIES[i]}
+done
 
 onResize
 

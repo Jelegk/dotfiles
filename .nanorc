@@ -1,0 +1,44 @@
+set afterends
+set autoindent
+# set linenumbers
+set numbercolor italic,lightblack,normal
+set mouse
+set tabsize 4
+set tabstospaces
+
+# Auto bracket wraps
+bind M-( "(){left}" main
+bind M-{ "{{}}{left}" main
+bind M-[ "[]{left}" main
+
+
+# Shortcuts cheatsheat:
+
+    # Alt+U  Undo
+    # Alt+E  Redo
+    # Ctrl+[left/right] jump to next/prev word
+    # Ctrl+[up/down]  jump to next/prev paragraph
+
+    # Ctrl+S Save
+    # Ctrl+X Save&Quit
+    # Ctrl+C Cancel
+    # Ctrl+C Show Lines, Words, char count
+
+    # Ctrl+K  Cut(&Copy) Line or Selection if any
+    # Ctrl+U  Paste
+    # Shift+[left/right]  Select text
+    # Doubleclick-maintain+DragSelect  Select text
+
+    # Alt+C  Toggle position (line, col, char)
+    # Alt+D  Toggle Lines, Words, char count
+    # Alt+N  Toggle Line numbering
+    # Alt+P  Toggle whitespace display
+    # Alt+X  Toggle Shortcut display
+
+
+# Good to know: (universal shortcuts)
+
+    # Ctrl+Insert  Copy (same as Ctrl+C)
+    # Shift+Insert  Paste (same as Ctrl+V)
+
+    # in nano: Shift+[drag-select with cursor]  Select for Copy

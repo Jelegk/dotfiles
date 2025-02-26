@@ -68,7 +68,7 @@ new_win () {
     "OBS"* | "obs")
       icon_char="a" ;;
 
-    "REAPER"*)
+    *"REAPER"*)
       icon_char="c" ;;
 
     *)

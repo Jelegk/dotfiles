@@ -2,6 +2,45 @@
     "explorer.confirmDelete": false,
     "workbench.startupEditor": "none",
     "explorer.confirmDragAndDrop": false,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: WebKit, AlignAfterOpenBracket: Align, AlignArrayOfStructures: Right, AlignEscapedNewlines: Left, AlignOperands: AlignAfterOperator, AlignTrailingComments: Leave, AllowShortBlocksOnASingleLine: Always, AllowShortCaseLabelsOnASingleLine: true, AllowShortIfStatementsOnASingleLine: true, BreakBeforeBraces: Attach, IndentCaseLabels: true, ReflowComments: false, SortIncludes: Never, SortUsingDeclarations: Never, TabWidth: 4 }",
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: WebKit, AlignAfterOpenBracket: Align, AlignArrayOfStructures: Right, AlignEscapedNewlines: Left, AlignOperands: AlignAfterOperator, AlignTrailingComments: Leave, AllowShortBlocksOnASingleLine: Always, AllowShortCaseLabelsOnASingleLine: true, AllowShortEnumsOnASingleLine: true, AllowShortIfStatementsOnASingleLine: true, BreakBeforeBraces: Attach, IndentCaseLabels: true, ReflowComments: false, SortIncludes: Never, SortUsingDeclarations: Never, TabWidth: 4 }",
     "C_Cpp.default.cppStandard": "c++20",
+    "todo-tree.highlights.defaultHighlight": {
+
+        "type": "text",
+    },
+    "todo-tree.highlights.customHighlight": {
+        "BUG": {
+            "background": "#f002",
+            "foreground": "red"
+        },
+        "HACK": {
+            "background": "#FFA50020",
+            "foreground": "orange"
+        },
+        "FIXME": {
+            "background": "#ff02",
+            "foreground": "yellow"
+        },
+        "TODO": {
+            "background": "#0802",
+            "foreground": "green"
+        },
+        "XXX": {
+            "background": "#00f2",
+            "foreground": "blue"
+        },
+        "[ ]": {
+            "background": "#4B008220",
+            "foreground": "indigo"
+        },
+        "[x]": {
+            "background": "#EE82EE20",
+            "foreground": "violet"
+        }
+    },
+    "todo-tree.general.statusBar": "current file",
+    "todo-tree.tree.hideTreeWhenEmpty": true,
+    "todo-tree.tree.showCurrentScanMode": false,
+    "todo-tree.tree.buttons.refresh": false,
+    "todo-tree.tree.buttons.expand": false,
 }
