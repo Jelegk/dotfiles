@@ -71,6 +71,9 @@ new_win () {
     *"REAPER"*)
       icon_char="c" ;;
 
+    "scrcpy")
+      icon_char="g" ;;
+
     *)
       icon_char="[" ;;
   esac
