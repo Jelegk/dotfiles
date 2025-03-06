@@ -9,7 +9,7 @@ app_spacing=7
 # ///// Functions /////
 new_win () {
   case $win_name in
-    *"polybar"*)
+    *"polybar"* | "taskman_ignore")
       return ;;
 
     # both "class" from poll_curr_win (after a i3 reset) and "title" (upon opening a new win) from the i3 event subscriber have to be accounted for...
@@ -73,6 +73,9 @@ new_win () {
 
     "scrcpy")
       icon_char="g" ;;
+
+    *"SNES SPC700 Player" | "spcplay.exe")
+      icon_char="M" ;;
 
     *)
       icon_char="[" ;;

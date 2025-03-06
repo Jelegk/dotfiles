@@ -1,24 +1,28 @@
 #!/bin/sh
+
 checklock() {
-    sleep 60
+    sleep 20
     i3lockactive=$(pgrep --exact --count i3lock)
-    if [ "i3lockactive" -gt "0" ]; then
-        # Suspend screen & computer
-        checklock &
-        systemctl suspend
+    if [ "$i3lockactive" -gt "0" ]; then
+        xset dpms force off
+        checklock
     fi
 }
-# Turn on windows crossfade
+# check for inactivity, if so, turn off screen backlight. (No suspend, it really doesn't like my laptop)
+checklock &
+
+# Turn on compositor with crossfade
 xcompmgr -fF &
-# check each minutes for inactivity, if so return to suspend mode
-#checklock &
-# Lock screen 9note: keep bar-step value high enough to negate the pixelated "pyramid" from appearing)
-i3lock -n -i ~/.config/wallpaper_lock.png -F -e \
+# Turn off laptop backlight
+sleep 1 && xset dpms force off &
+# Lock screen (note: keep bar-step value high enough to negate the pixelated "pyramid" from appearing)
+i3lock --nofork --ignore-empty-password --fill -i ~/.config/wallpaper_lock.png \
         --bar-indicator --greeter-text="Type to unlock" --greeter-pos="x+20:h-30" \
         --greeter-color=212121ff --greeter-font=D050000L --greeter-align=1 --greeter-size=24 \
-        --bar-color=00000000 --ringver-color=096b33ff --ringwrong-color=6b0b10ff --bar-step=20 \
-        --bar-pos="x+0:h" --bar-total-width=w --bar-base-width=8 --bar-max-height=12 --bar-count=20 \
-        --bar-direction=1 --verif-text="" --wrong-text="" --noinput-text="" --no-modkey-text --pass-media-keys &&
+        --bar-direction=1 --bar-pos="x+0:h" --bar-total-width=w --bar-base-width=8 \
+        --bar-max-height=12 --bar-color=00000000 --keyhl-color=175734ff --bshl-color=421c1fff \
+        --ringver-color=7eeeb0ff --ringwrong-color=5f0020ff --bar-count=16 --bar-step=16 \
+        --verif-text="" --wrong-text="" --noinput-text="" --no-modkey-text --pass-media-keys &&
 #        --inside-color=00000000 --ring-color=bababaff --line-uses-inside \
 #        --keyhl-color=5c5d66ff --bshl-color=571b21ff --separator-color=00000000 \
 #        --insidever-color=096b33ff --insidewrong-color=6b0b10ff \

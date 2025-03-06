@@ -47,7 +47,7 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym $mod+Print exec --no-startup-id flameshot full -p ~/Pictures
+bindsym $mod+Print exec --no-startup-id flameshot full -p ~/Pictures/scrots
 bindsym $mod+Shift+S exec --no-startup-id flameshot gui
 
 # Right click popup menu
@@ -68,7 +68,7 @@ bindsym $mod+i exec --no-startup-id gtk-launch firefox* || firefox
 bindsym $mod+backslash exec --no-startup-id gtk-launch pcmanfm || pcmanfm
 
 # "task manager"
-bindsym Ctrl+Shift+Escape exec --no-startup-id urxvt --title "taskman" -e top &
+bindsym Ctrl+Shift+Escape exec --no-startup-id urxvt --geometry 100x7+510-740 --title "taskman_ignore" -e bash .config/i3/taskman &
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -258,7 +258,9 @@ for_window [title="Customize Look and Feel"] floating enable
 for_window [title="Network Connections"] floating enable
 for_window [title="Bluetooth Devices"] floating enable resize set 600 400
 for_window [title="Configuration"] floating enable
-#for_window [class="Blueman-applet"] kill
+for_window [title="taskman_ignore"] floating enable
+for_window [title="taskman"] floating enable
+for_window [class="dosbox"]  move position 10 10
 
 # Configure 5px of space between windows and to the screen edges.
 gaps inner 5px

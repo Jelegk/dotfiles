@@ -1,0 +1,14 @@
+#!/bin/bash
+#LSBLK_LINE_COUNT=$(( $(lsblk | wc -l) - 1 ))
+#TERM_LINE_COUNT=$(tput lines)
+#printf '\e[$LSBLK_LINE_COUNT;$TERM_LINE_COUNTr'
+DEFAULT_HEIGHT_I3_CONFIG=7
+CHAR_HEIGHT=$(lsblk | wc -l)
+FONT_HEIGHT=$(( $(grep -m 1 "URxvt.font" .Xresources | cut -d = -f 3 | cut -d : -f 1) + 5 ))
+PX_HEIGHT=$(( ($CHAR_HEIGHT + 1) * $FONT_HEIGHT ))
+PX_DELTA=$(( ($CHAR_HEIGHT - $DEFAULT_HEIGHT_I3_CONFIG) * $FONT_HEIGHT ))
+i3-msg -q move up $PX_DELTA
+i3-msg -q resize set 900 $PX_HEIGHT 
+printf '\e[?25l'
+lsblk -o NAME,MAJ:MIN,SIZE,MOUNTPOINTS,PARTTYPENAME,MODEL
+urxvt --geometry 100x30+510+340 --title "taskman" -e top

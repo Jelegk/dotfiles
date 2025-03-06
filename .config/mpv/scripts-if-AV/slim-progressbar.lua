@@ -4,7 +4,7 @@
 local SEEK_TIMER = 0.2 -- must be > 0
 local PAUSE_TIMER = 0 -- 0 and less to disable, aka stay on screen until playback starts again
 local COLOR_PROGRESS = "48184F" -- BBGGRR
-local COLOR_BACKGROUND = "181818"
+local COLOR_BACKGROUND = "C0C0C0"
 local OPACITY = "0" -- [0, 255] -- not so sure about these numbers anymore, but whatever: 0 = opaque
 local BAR_HEIGHT = 3
 -- gifnoc

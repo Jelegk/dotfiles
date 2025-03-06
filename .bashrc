@@ -104,6 +104,17 @@ fi
 
 alias code='codium'
 alias trewq='tree -haLF 1'
+findinfiles() {
+  grep -rnw "$1" -e "$2"
+}
+__findinfiles() {
+  case ${COMP_CWORD} in
+    1) COMPREPLY=("<dir>") ;;
+    2) COMPREPLY=("<pattern>") ;;
+    *) COMPREPLY=() ;;
+  esac
+}
+complete -F __findinfiles findinfiles
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

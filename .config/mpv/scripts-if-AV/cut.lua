@@ -37,7 +37,7 @@ local function to_hms(seconds)
 	secs = secs % 60
 	local hours = math.floor(mins / 60)
 	mins = mins % 60
-	return string.format("%02d-%02d-%02d-%03d", hours, mins, secs, ms)
+	return string.format("%02d'%02d\"%02d,%03d", hours, mins, secs, ms)
 end
 
 local function next_table_key(t, current)
@@ -69,7 +69,7 @@ ACTIONS.COPY = function(d)
 		"-dn",
 		"-avoid_negative_ts", "make_zero",
 		--utils.join_path(d.indir, "COPY_" .. d.channel .. "_" .. d.infile_noext .. "_FROM_" .. d.start_time_hms .. "_TO_" .. d.end_time_hms .. d.ext)
-		utils.join_path(d.indir, d.infile_noext .. "_TRIM_from_" .. d.start_time_hms .. "_to_" .. d.end_time_hms .. d.ext)
+		os.getenv('HOME') .. "/Videos/" .. d.infile_noext .. "_TRIM_(" .. d.start_time_hms .. "_to_" .. d.end_time_hms .. ")" .. d.ext
 	}  --"%F at %wfsec"
 	mp.command_native_async({
 		name = "subprocess",
