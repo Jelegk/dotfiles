@@ -62,7 +62,7 @@ new_win () {
     "Audacity")
       icon_char="b" ;;
 
-    *"Discord" | "discord")
+    *"Discord"* | "discord")
       icon_char="f" ;;
 
     "OBS"* | "obs")
