@@ -1,0 +1,5 @@
+#!/bin/bash
+path="${1%.*}"
+folder="${path##*/}"
+[ -f "$1" ] && mkdir -p "$folder"
+7zz x -ssp -o"$folder/" "$1"

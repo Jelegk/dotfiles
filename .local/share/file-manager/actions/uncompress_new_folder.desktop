@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Action
+Name=Uncompress in new folder (7zip)
+Icon=extract-archive.png
+Profiles=uncompress
+
+[X-Action-Profile uncompress]
+MimeTypes=application/*
+Exec=bash usrj_uncompress_in_new_folder %f

@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Action
-Name=Uncompress (7zip)
+Name=Uncompress here (7zip)
 Icon=extract-archive.png
 Profiles=uncompress
 
 [X-Action-Profile uncompress]
 MimeTypes=application/*
-Exec=7zz x -ssp %f
+Exec=bash usrj_uncompress_here %f
