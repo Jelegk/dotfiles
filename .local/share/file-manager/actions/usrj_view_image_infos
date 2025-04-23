@@ -1,0 +1,2 @@
+#!/bin/bash
+urxvt -geometry 64x4+670-700 -title pict_info -hold -e feh -l "$1"
