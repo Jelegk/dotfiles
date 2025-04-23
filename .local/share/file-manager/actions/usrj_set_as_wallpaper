@@ -1,4 +1,10 @@
 #!/bin/bash
-mv ~/.config/wallpaper_desktop.png ~/.config/wallpaper_desktop_prev.png
-cp "$1" ~/.config/wallpaper_desktop.png
-feh --bg-scale ~/.config/wallpaper_desktop.png
+curr_wallppr=$(echo ~/.config/wallpaper_desktop.*)
+ext_pre=${curr_wallppr##*.}
+ext_new=${1##*.}
+cp "$1" ~/.config/desktop_wallpaper.tmp
+rm ~/.config/wallpaper_desktop_prev.*
+mv $curr_wallppr ~/.config/wallpaper_desktop_prev.$ext_pre
+cp ~/.config/desktop_wallpaper.tmp ~/.config/wallpaper_desktop.$ext_new
+feh --bg-scale ~/.config/wallpaper_desktop.$ext_new
+rm ~/.config/desktop_wallpaper.tmp
