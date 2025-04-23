@@ -1,4 +1,4 @@
 #!/bin/bash
 mv ~/.config/wallpaper_desktop.png ~/.config/wallpaper_desktop_prev.png
-mv "$1" ~/.config/wallpaper_desktop.png
+cp "$1" ~/.config/wallpaper_desktop.png
 feh --bg-scale ~/.config/wallpaper_desktop.png
