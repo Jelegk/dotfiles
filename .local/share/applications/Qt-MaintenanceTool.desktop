@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/opt/Qt/MaintenanceTool
+Path=/opt/Qt
+Name=Qt Maintenance Tool
+GenericName=Install or uninstall Qt components.
+Icon=QtIcon
+Terminal=false
+Categories=Development;Qt;
+NoDisplay=true

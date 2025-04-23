@@ -1,9 +1,10 @@
 #!/bin/bash
 # ///// Defines /////
-onclick="bash ~/.config/polybar/i3win_onclick"
+onclick="bash ~/.config/polybar/taskbar_onclick"
 normal_bg=#ff1f1f1f
 focused_bg=#ff555555
-urgent_bg=#70f29633
+# THE ALPHA VALUES OF urgent_bg ARE PREPENDED BELOW
+urgent_bg=f29633
 app_spacing=7
 
 # ///// Functions /////
@@ -17,7 +18,7 @@ new_win () {
     "UXTerm" | "uxterm" | "XTerm" | "xterm" |  "URxvt" | "urxvt")
       icon_char="X" ;;
 
-    "Pavucontrol" | "Volume Control")
+    "Pavucontrol" | "Volume Control" | "JamesDSP for Linux" | "jamesdsp")
       icon_char="4" ;;
 
     "nmtui" | "Network Connections" | "Nm-connection-editor" | "scanned_wifis")
@@ -29,7 +30,7 @@ new_win () {
     "settuings" | "Customize Look and Feel" | "Lxappearance")
       icon_char="'" ;;
 
-    "feh"* | "Save screenshot" | "Flameshot")
+    "feh"* | "Save screenshot" | "Flameshot" | 2???-??-??_??\'??*) # ( custom file name from flameshot PrtSc )
       icon_char="T" ;;
 
     "MPV" | *"mpv")
@@ -56,7 +57,7 @@ new_win () {
     "nanoedit")
       icon_char="W" ;;
 
-    "SimulIDE"* | "simulide")
+    "SimulIDE"* | "simulide" | "SNES GSS"* | "snesgss.exe" | "Furnace"* | "furnace")
       icon_char="]" ;;
 
     "Audacity")
@@ -68,14 +69,20 @@ new_win () {
     "OBS"* | "obs")
       icon_char="a" ;;
 
-    *"REAPER"*)
+    *"REAPER"* | *"Track"* | "Edit MIDI")
       icon_char="c" ;;
 
     "scrcpy")
       icon_char="g" ;;
 
+    *"Krita" | "krita")
+      icon_char="d" ;;
+
     *"SNES SPC700 Player" | "spcplay.exe")
       icon_char="M" ;;
+
+    *"Snes9x"* | "Open SNES ROM Image")
+      icon_char="_" ;;
 
     *)
       icon_char="[" ;;
@@ -112,7 +119,7 @@ poll_curr_win
 (( ${#labels[@]} )) && print2bar
 
 # ///// Main behaviour, event-based /////
-i3-msg -t subscribe -m '[ "window" ]' | while read str; do 
+i3-msg -t subscribe -m '[ "window" ]' | while read str; do
   event=$(cut -c 12- <<< "$str")
   win_id=${event#*window\":}
   win_name=${win_id#*title\":\"}
@@ -143,7 +150,14 @@ i3-msg -t subscribe -m '[ "window" ]' | while read str; do
     ;;
 
     "urgent")
-      labels[$win_id]="${labels[$win_id]/"#"????????/$urgent_bg}"
+      for i in {1..2}; do
+        for alpha in {80..30}; do
+            labels[$win_id]="${labels[$win_id]/"#"????????/#$alpha$urgent_bg}"
+            print2bar
+            sleep 0.008
+        done
+      done
+      labels[$win_id]="${labels[$win_id]/"#"????????/$normal_bg}"
     ;;
 
     "move")

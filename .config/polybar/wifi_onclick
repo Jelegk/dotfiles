@@ -4,7 +4,7 @@ case $1 in
     nohup nm-connection-editor & ;;
 
   "toggle")
-    [[ "$(nmcli radio wifi)" == "enabled" ]] && nmcli radio wifi off || nmcli radio wifi on ;;
+    [ "$(nmcli radio wifi)" -eq "enabled" ] && nmcli radio wifi off || nmcli radio wifi on ;;
 
   "scan")
     urxvt --hold -title "scanned_wifis" -geometry 110x15-8+36 -e nmcli device wifi list & ;;

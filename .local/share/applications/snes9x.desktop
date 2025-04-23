@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Snes9x
+GenericName=SNES Emulator
+Comment=The simplest yet best emulator for Super NES
+Exec=/opt/snes9x/Snes9x-1.63-x86_64.AppImage
+Terminal=false
+Icon=.icons/custom_icons/SNES9X_logo.png
+Categories=Games
+StartupNotify=false

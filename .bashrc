@@ -57,8 +57,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;92m\]\u\[\033[21;96m\]@\[\033[01;92m\]\h\[\033[37m\]:\[\033[94m\]\w \[\033[05;37m\]>\[\033[0m\] "
-    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
@@ -76,11 +75,11 @@ esac
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
+    #alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
+    #alias grep='grep --color=auto'
     #alias fgrep='fgrep --color=auto'
     #alias egrep='egrep --color=auto'
 fi
@@ -90,7 +89,7 @@ fi
 
 # some more ls aliases
 #alias ll='ls -l'
-alias la='ls -AF'
+#alias la='ls -AF'
 #alias l='ls -CF'
 
 # Alias definitions.
@@ -102,20 +101,6 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-alias code='codium'
-alias trewq='tree -haLF 1'
-findinfiles() {
-  grep -rnw "$1" -e "$2"
-}
-__findinfiles() {
-  case ${COMP_CWORD} in
-    1) COMPREPLY=("<dir>") ;;
-    2) COMPREPLY=("<pattern>") ;;
-    *) COMPREPLY=() ;;
-  esac
-}
-complete -F __findinfiles findinfiles
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -126,3 +111,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+. "$HOME/.cargo/env"

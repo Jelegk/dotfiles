@@ -12,7 +12,7 @@ bind M-{ "{{}}{left}" main
 bind M-[ "[]{left}" main
 
 
-# Shortcuts cheatsheat:
+# Shortcuts cheatsheet:
 
     # Alt+U  Undo
     # Alt+E  Redo

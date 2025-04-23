@@ -243,6 +243,8 @@ user_pref("browser.quitShortcut.disabled", true);
 user_pref("browser.download.forbid_open_with", true);
 // For screen tearing
 user_pref("layers.acceleration.force-enabled", false);
+// For mpris metadata and prev/next universal X86___ inputs. (Haven't checked if this line works yet.)
+user_pref("dom.media.mediasession.enabled", true);
 
 /****************************************************************************
  * SECTION: SMOOTHFOX                                                       *

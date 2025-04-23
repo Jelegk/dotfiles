@@ -1,12 +1,56 @@
 {
+    "diffEditor.ignoreTrimWhitespace": true,
+    //"diffEditor.renderSideBySide": false,
+    "editor.rulers": [
+        {
+            "column": 80,
+            "color": "#234"
+        },
+        {
+            "column": 40,
+            "color": "#124"
+        }
+    ],
+    "editor.minimap.enabled": true,
     "explorer.confirmDelete": false,
-    "workbench.startupEditor": "none",
     "explorer.confirmDragAndDrop": false,
-    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: WebKit, AlignAfterOpenBracket: Align, AlignArrayOfStructures: Right, AlignEscapedNewlines: Left, AlignOperands: AlignAfterOperator, AlignTrailingComments: Leave, AllowShortBlocksOnASingleLine: Always, AllowShortCaseLabelsOnASingleLine: true, AllowShortEnumsOnASingleLine: true, AllowShortIfStatementsOnASingleLine: true, BreakBeforeBraces: Attach, IndentCaseLabels: true, ReflowComments: false, SortIncludes: Never, SortUsingDeclarations: Never, TabWidth: 4 }",
+    "explorer.confirmPasteNative": false,
+    "update.showReleaseNotes": false,
+    "workbench.startupEditor": "none",
+    "workbench.colorCustomizations": {
+        "statusBarItem.remoteHoverBackground": "#1fa81f",
+        "statusBarItem.remoteBackground": "#0db84e",
+        "quickInputList.focusBackground": "#3133b6",
+        "menubar.selectionBackground": "#3133b6",
+        "terminal.tab.activeBorder": "#0db84e",
+        "menu.selectionBackground": "#3133b6",
+        "activityBar.activeBorder": "#3133b6",
+        "panelTitle.activeBorder": "#3133b6",
+        "button.hoverBackground": "#4d33ac",
+        "tab.activeBorderTop": "#3133b6",
+        "button.background": "#3133b6",
+        "focusBorder": "#3133b6",
+    },
     "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.clang_format_style": "file:/home/usrj/.config/clang-format",
+    "makefile.configureOnOpen": true,
+    "git.autoRepositoryDetection": "subFolders",
+    "git.openRepositoryInParentFolders": "never",
+    "git.openAfterClone": "whenNoFolderOpen",
+    //"git.terminalAuthentication": false,
+    "todo-tree.general.tags": [
+        "BUG",
+        "HACK",
+        "FIXME",
+        "TODO",
+        "XXX",
+        "[ ]",
+        "[x]",
+        "NOTE",
+        "FIX"
+    ],
     "todo-tree.highlights.defaultHighlight": {
-
-        "type": "text",
+        "type": "text"
     },
     "todo-tree.highlights.customHighlight": {
         "BUG": {
@@ -26,21 +70,36 @@
             "foreground": "green"
         },
         "XXX": {
-            "background": "#00f2",
-            "foreground": "blue"
+            "background": "#008b8b20",
+            "foreground": "#008b8b"
         },
         "[ ]": {
-            "background": "#4B008220",
-            "foreground": "indigo"
+            "background": "#8082",
+            "foreground": "#808"
         },
         "[x]": {
             "background": "#EE82EE20",
             "foreground": "violet"
+        },
+        "NOTE": {
+            "background": "#AAA2",
+            "foreground": "#AAA"
+        },
+        "FIX": {
+            "background": "#FFF59A20",
+            "foreground": "#FFF59A"
         }
     },
     "todo-tree.general.statusBar": "current file",
-    "todo-tree.tree.hideTreeWhenEmpty": true,
     "todo-tree.tree.showCurrentScanMode": false,
+    "todo-tree.tree.hideTreeWhenEmpty": true,
     "todo-tree.tree.buttons.refresh": false,
     "todo-tree.tree.buttons.expand": false,
+    "hexeditor.showDecodedText": true,
+    "hexeditor.columnWidth": 32,
+    "nasm.outputFormat": "elf64",
+    "nasm.extraFlags": [
+        "-Ilib/snesapu/SNES/SNESAPU",
+        "-Ilib/snesapu"
+    ],
 }

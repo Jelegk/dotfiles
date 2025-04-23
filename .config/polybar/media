@@ -1,0 +1,28 @@
+#!/bin/sh
+
+grey=#888
+
+shuffLoop() {
+  if [ 1 ] # "$(playerctl -l | head -n1)" = "mpv"   # TODO: I can't just eliminate firefox yt: it's OFF lorsque pas dans une playslit, mais ON sinon!
+    then mediaIcons=" %{A1:playerctl previous:}%{T2}L%{T-} %{A}$1%{A1:playerctl next:} %{T2}P%{T-} %{A}"
+    else mediaIcons=" %{A1:playerctl previous:}%{F$grey}%{T2}L%{T-}%{F-} %{A}$1%{A1:playerctl next:} %{F$grey}%{T2}P%{T-}%{F-} %{A}"
+  fi
+
+  if [ "$(playerctl loop)" = "Track" ]
+    then mediaIcons="$mediaIcons%{A1:playerctl loop Playlist:} %{T2}Q%{T-} %{A}"
+    else mediaIcons="$mediaIcons%{A1:playerctl loop Track:} %{F$grey}%{T2}Q%{T-}%{F-} %{A}"
+  fi
+
+  if [ "$(playerctl shuffle)" = "On" ]
+    then echo "$mediaIcons%{A1:playerctl shuffle Off:} %{T2}R%{T-} %{A}"
+    else echo "$mediaIcons%{A1:playerctl shuffle On:} %{F$grey}%{T2}R%{T-}%{F-} %{A}"
+  fi
+}
+
+mediaIcons=""
+case $(playerctl status 2>/dev/null) in
+  "Playing")       shuffLoop "%{A1:playerctl pause:} %{T2}N%{T-} %{A}" 2>/dev/null ;;
+  "Paused")        shuffLoop "%{A1:playerctl play:} %{T2}M%{T-} %{A}" 2>/dev/null ;;
+  "Stopped" | "")  echo "%{F$grey}%{T2}O%{T-}%{F-}" 2>/dev/null ;; # Stopped
+  *)               echo "%{F$grey}%{T2}&%{T-}%{F-}" 2>/dev/null ;; # ( how. )
+esac

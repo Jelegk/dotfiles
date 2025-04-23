@@ -1,12 +1,19 @@
 [Default Applications]
+application/audacity-project=audacity.desktop;
 application/json=codium.desktop;nano_edit.desktop
+application/octet-stream=furnace.desktop;
 application/pdf=firefox-esr.desktop
+application/spc-dump=spcplayer.desktop
+application/vnd.nintendo.snes.rom=snes9x.desktop;
+application/vnd.sqlite3=audacity.desktop
 application/x-desktop=nano_edit.desktop;codium.desktop
+application/x-pkcs7-certificates=spcplayer.desktop
 application/x-reaper-project-backup=cockos-reaper.desktop
 application/x-reaper-project=cockos-reaper.desktop
 application/x-reaper-theme=cockos-reaper.desktop
 application/x-shellscript=nano_edit.desktop;codium.desktop
 audio/flac=mpv.desktop
+audio/x-gsm=snesgss.desktop;
 image/gif=mpv.desktop;feh.desktop
 image/jpeg=mpv.desktop;feh.desktop
 image/png=mpv.desktop;feh.desktop

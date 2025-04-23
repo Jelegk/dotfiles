@@ -1,0 +1,13 @@
+#!/bin/sh
+case $(nmcli -t -f GENERAL.STATE device show wlp0s20f3 | cut -d ':' -f 2 2>/dev/null) in
+  "20 (unavailable)")                   echo "%{F#888}<%{F-}" ;;
+  "30 (disconnected)")                  echo "=" ;;
+  "50 (connecting (configuring))")      echo "Q" ;;
+  "100 (connected)")
+    link_quality=$(cat /proc/net/wireless | grep wlp0s20f3 | cut -d ' ' -f5 | head -c2 2>/dev/null) # Between [25, 70].
+    if   [ $link_quality -gt 55 ]; then echo "@" # This line seems to sometimes spawn an error "-gt unexpected"
+    elif [ $link_quality -lt 40 ]; then echo ">"
+    else                                echo "?"; fi
+    ;;
+  *)                                    echo "%{F#888}&%{F-}" ;; # ( how. )
+esac

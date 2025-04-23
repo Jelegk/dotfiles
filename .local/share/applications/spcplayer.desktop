@@ -1,10 +1,10 @@
 [Desktop Entry]
 Type=Application
-Name=SPC700
+Name=SPCPlay
 GenericName=SNES SPC700 Player
 Comment=A very simple SPC player for Windows based on SNESAPU.
-Exec=wine /opt/spcplay-2.20.6.8700/spcplay.exe
+Exec=wine /home/usrj/.local/bin/spcplay-mpris "%f"
 Terminal=false
-Icon=.icons/custom_icons/spc700.png
-Categories=Audio
+Icon=.icons/custom_icons/spcplay.png
+Categories=Audio;AudioVideo;Player
 StartupNotify=false

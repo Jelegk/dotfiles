@@ -5,7 +5,7 @@ then
   echo "%{F#888}C%{F-}"
 else
   if [ $(echo info | bluetoothctl | grep 'Device' | wc -c) -eq 0 ]
-  then 
+  then
     echo "D"
   fi
   echo "E"

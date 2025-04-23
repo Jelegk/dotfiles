@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/krita-project">
+    <comment>Krita project file</comment>
+    <glob pattern="*.kra"/>
+  </mime-type>
+  <mime-type type="application/audacity-project">
+    <comment>Audacity project file</comment>
+    <glob pattern="*.aup3"/>
+  </mime-type>
+  <mime-type type="text/reaper-project">
+    <comment>Reaper project file</comment>
+    <glob pattern="*.RPP"/>
+  </mime-type>
+  <mime-type type="text/reaper-backup">
+    <comment>Reaper project backup file</comment>
+    <glob pattern="*.rpp-bak"/>
+  </mime-type>
+  <mime-type type="application/furnace-tracker-project">
+    <comment>Furnace Tracker project</comment>
+    <glob pattern="*.fur"/>
+  </mime-type>
+    <mime-type type="application/snes-rom">
+    <comment>Super NES ROM</comment>
+    <glob pattern="*.sfc"/>
+  </mime-type>
+  <mime-type type="audio/spc-dump">
+    <comment>SNES SPC file</comment>
+    <glob pattern="*.spc"/>
+  </mime-type>
+  <mime-type type="audio/brr-sample">
+    <comment>SNES BRR sample</comment>
+    <glob pattern="*.brr"/>
+  </mime-type>
+  <mime-type type="application/snesgss-project">
+    <comment>SNESGSS project file</comment>
+    <glob pattern="*.gsm"/>
+  </mime-type>
+  <mime-type type="application/snesgss-instrument">
+    <comment>SNESGSS instrument</comment>
+    <glob pattern="*.gsi"/>
+  </mime-type>
+</mime-info>

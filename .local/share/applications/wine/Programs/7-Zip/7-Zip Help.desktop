@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=7-Zip Help
+Exec=env WINEPREFIX="/home/usrj/.wine" wine-stable C:\\\\ProgramData\\\\Microsoft\\\\Windows\\\\Start\\ Menu\\\\Programs\\\\7-Zip\\\\7-Zip\\ Help.lnk
+Type=Application
+StartupNotify=true
+Icon=1DA0_7-zip.0
+StartupWMClass=7-zip.chm
+NoDisplay=true

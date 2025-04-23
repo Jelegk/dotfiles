@@ -8,7 +8,8 @@
 set $mod Mod4
 
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock
-exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080
+exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rotate normal
+#exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rotate right
 #exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080
 #exec_always --no-startup-id  xrandr --output Virtual1 --mode 1280x720
 exec_always --no-startup-id feh --bg-scale ~/.config/wallpaper_desktop.png
@@ -16,6 +17,7 @@ exec_always --no-startup-id sh ~/.config/polybar/launch_polybar
 # fixes (choose one) for "Connection Failed: br-connection-profile-unavailable" when attempting to connect to a bluetooth device
 exec --no-startup-id systemctl --user restart pulseaudio.service
 #exec --no-startup-id pactl load-module module-bluetooth-discover
+exec --no-startup-id playerctld daemon
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -39,15 +41,27 @@ bindsym $mod+l exec --no-startup-id sh ~/.config/i3/lock
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 #exec --no-startup-id nm-applet
 
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessUp exec   --no-startup-id brightnessctl set +10%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec  --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
+bindsym XF86AudioLowerVolume exec  --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
+bindsym XF86AudioMute exec         --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec      --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-bindsym $mod+Print exec --no-startup-id flameshot full -p ~/Pictures/scrots
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl --all-players stop
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+
+bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl volume 0.02+
+bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl volume 0.02-
+bindsym Shift+XF86AudioPlay exec --no-startup-id playerctl shuffle Toggle
+bindsym Shift+XF86AudioStop exec --no-startup-id [[ $(playerctl loop) == "None" ]] && playerctl loop Track || playerctl loop None
+bindsym Shift+XF86AudioPrev exec --no-startup-id playerctld unshift
+bindsym Shift+XF86AudioNext exec --no-startup-id playerctld shift
+
+bindsym $mod+Print exec   --no-startup-id flameshot full -p ~/Pictures/scrots
 bindsym $mod+Shift+S exec --no-startup-id flameshot gui
 
 # Right click popup menu
@@ -84,6 +98,7 @@ tiling_drag modifier titlebar
 # kill focused window
 bindsym $mod+Delete kill
 bindsym $mod+F4 kill
+bindsym $mod+q kill
 # The middle button + mod key over any part of the window kills the window
 bindsym --whole-window $mod+button2 kill
 
@@ -124,9 +139,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+q layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+q layout stacking
+#bindsym $mod+w layout tabbed
+#bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+space floating toggle
@@ -260,7 +275,8 @@ for_window [title="Bluetooth Devices"] floating enable resize set 600 400
 for_window [title="Configuration"] floating enable
 for_window [title="taskman_ignore"] floating enable
 for_window [title="taskman"] floating enable
-for_window [class="dosbox"]  move position 10 10
+for_window [class="dosbox"] move position 10 10
+for_window [title="JamesDSP for Linux"] floating enable
 
 # Configure 5px of space between windows and to the screen edges.
 gaps inner 5px

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Furnace Tracker
+GenericName=Furnace Tracker
+Comment=A multipurpose trackerfeaturing many recognizable soundchips
+Exec=wine /opt/furnace/furnace
+Terminal=false
+Icon=.icons/custom_icons/furnace.png
+Categories=Audio
+StartupNotify=false

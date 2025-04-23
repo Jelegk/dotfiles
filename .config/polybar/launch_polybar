@@ -3,4 +3,4 @@
 pkill '^polybar$'
 
 polybar -c ~/.config/polybar/config_laptop.ini top 2>&1 | tee -a /tmp/polybar_top_bar.log & disown
-polybar -c ~/.config/polybar/config_laptop.ini bottom 2>&1 | tee -a /tmp/polybar_bottom_bar.log & disown
+#polybar -c ~/.config/polybar/config_laptop.ini bottom 2>&1 | tee -a /tmp/polybar_bottom_bar.log & disown
