@@ -13,7 +13,7 @@ local opts = {
     indicator_stay_timeout = 0.6,    -- If it doesn't stay, how long should it last? (seconds)
 
     -- keybind
-    keybind_allow = false,            -- Allow keybind to toggle pause
+    keybind_allow = false,           -- Allow keybind to toggle pause
     keybind_set = "mbtn_left",       -- The set keybind to toggle pause
     keybind_mode = "onpause",        -- Mode to activate keybind. onpause, always
 
@@ -32,7 +32,7 @@ local opts = {
     triangle_height = 60,            -- height of triangle
 
     -- best with pause icon
-    flash_play_icon = false,          -- Flash play icon on unpause?
+    flash_play_icon = false,         -- Flash play icon on unpause?
     flash_icon_timeout = 0.3,        -- How long should the flash last?
     flash_icon_bigger_by = 0         -- Increase flash icon size from default by (0-100)
 }

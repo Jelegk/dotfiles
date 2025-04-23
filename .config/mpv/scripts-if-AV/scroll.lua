@@ -1,0 +1,3 @@
+mp.register_event("start-file", function() os.execute("[ $(xinput --list | grep -c 'Touchpad') -ge 1 ] && sed -i 's/WHEEL_UP        add volume +2/WHEEL_UP        add volume -2/g; s/WHEEL_DOWN      add volume -2/WHEEL_DOWN      add volume +2/g' ~/.config/mpv/input.conf || sed -i 's/WHEEL_UP        add volume -2/WHEEL_UP        add volume +2/g; s/WHEEL_DOWN      add volume +2/WHEEL_DOWN      add volume -2/g' ~/.config/mpv/input.conf") end)
+
+mp.msg.fatal("LOADED")
