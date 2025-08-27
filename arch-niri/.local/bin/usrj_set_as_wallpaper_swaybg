@@ -1,0 +1,7 @@
+#!/bin/bash
+cp "$1" ~/.config/desktop_wallpaper.tmp
+rm ~/.config/wallpaper_desktop_prev
+mv ~/.config/wallpaper_desktop ~/.config/wallpaper_desktop_prev
+mv ~/.config/wallpaper_desktop.tmp ~/.config/wallpaper_desktop
+niri msg action do-screen-transition -d 500
+niri msg action spawn "swaybg" "--image" "/home/usrj/.config/wallpaper_desktop"
