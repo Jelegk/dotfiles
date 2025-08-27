@@ -1,0 +1,173 @@
+{
+  "mode": "hide",
+  "layer": "top",
+  "position": "left",
+  "width": 30,
+  "margin-top": 50,
+  "margin-left": 5,
+  "margin-bottom": 50,
+  "spacing": 8,
+  "start_hidden": true,
+  "modifier-reset": "release",
+  //"ipc": true, // Useless if not on sway wm.
+  "modules-left": [ "systemd-failed-units", "clock", "wireplumber", "group/mpris", "niri/workspaces" ],
+  "modules-right": [ "keyboard-state", "network", /*"bluetooth",*/ "backlight", "battery", "group/pwr" ],
+
+  "backlight": {
+    "device": "intel_backlight",
+    "format": "{icon}",
+    "format-icons": [ "🌕", "🌔", "🌓", "🌒", "🌑" ],
+    "on-scroll-up": "brightnessctl set +1%",
+    "on-scroll-down": "brightnessctl set -1%"
+  },
+  "battery": {
+    "full-at": 95,
+    "interval": 30,
+    "states": { "warning": 20, "critical": 10 },
+    "format": "{capacity}%\n{icon}\n{time}",
+    "format-icons": [ "G", "H", "I", "J" ],
+    "format-time": "\"{m}"
+  },
+  "bluetooth": {
+    "format-disabled": "C",
+    "format-off": "C",
+    "format-on": "E",
+    "format-connected": "D",
+    "on-double-click": "",
+    "on-click-right": ""
+  },
+  "clock": {
+    "format": "{:%H\n%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "actions": {
+      "on-scroll-up": "shift_down",
+      "on-scroll-down": "shift_up",
+      "on-click": "shift_reset"
+    },
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "format": {
+        "months":   "<span color='#690015'><b>{}</b></span>",
+        "weekdays": "<span color='#0E0E0E'><b>{}</b></span>",
+        "days":     "<span color='#202020'><b>{}</b></span>",
+        "today":    "<span color='crimson'><b>{}</b></span>"
+      }
+    }
+  },
+  "group/mpris": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-left-to-right": true,
+      "transition-duration": 250
+    },
+    "modules": [ 
+      "custom/mpris-plause",
+      "custom/mpris-prev",
+      "custom/mpris-next",
+      "custom/mpris-loop",
+      "custom/mpris-shuf"
+    ]
+  },
+    "custom/mpris-plause": {
+      "tooltip": false,
+      "format": "{icon}",
+      "interval": 1,
+      "exec": "mpres=$(playerctl status || echo None) && echo \"{\\\"text\\\": \\\"\\\", \\\"alt\\\": \\\"$mpres\\\", \\\"tooltip\\\": \\\"\\\", \\\"class\\\": \\\"$mpres\\\"}\"",
+      "exec-on-event": false,
+      "return-type": "json",
+      "format-icons": {
+        "Playing": "N",
+        "Paused": "M",
+        "None": "O"
+      },
+      "on-click": "playerctl play-pause"
+    },
+    "custom/mpris-prev": {
+      "tooltip": false,
+      "format": "L",
+      "on-click": "playerctl previous"
+    },
+    "custom/mpris-next": {
+      "tooltip": false,
+      "format": "P",
+      "on-click": "playerctl next"
+    },
+    "custom/mpris-loop": {
+      "tooltip": false,
+      "format": "Q",
+      //"on-click": "playerctl loop Toggle"
+    },
+    "custom/mpris-shuf": {
+      "tooltip": false,
+      "format": "R",
+      //"on-click": "playerctl shuffle Toggle"
+    },
+  "group/pwr": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-left-to-right": false,
+      "transition-duration": 250
+    },
+    "modules": [ 
+      "custom/pwr-off",
+      "custom/pwr-sleep",
+      "custom/pwr-hibernate",
+      "custom/pwr-restart"
+    ]
+  },
+    "custom/pwr-off": {
+      "tooltip": false,
+      "format": "\"",
+      //"on-click": "shutdown now"
+    },
+    "custom/pwr-sleep": {
+      "tooltip": false,
+      "format": "#",
+      //"on-click": "systemctl sleep"
+    },
+    "custom/pwr-hibernate": {
+      "tooltip": false,
+      "format": "(",
+      //"on-click": "systemctl hibernate"
+    },
+    "custom/pwr-restart": {
+      "tooltip": false,
+      "format": "$",
+      //"on-click": "reboot"
+    },
+  "keyboard-state": {
+    "capslock": true,
+    "format": "{icon}",
+    "format-icons": { "locked": "A", "unlocked": "a" }
+  },
+  "network": {
+    "tooltip": false,
+    "interval": 10,
+    "format-disconnected": "<",
+    "format-ethernet": "*",
+    "format-wifi": "{icon}",
+    "format-icons": [ ">", "?", "@" ],
+    "on-click": "nmcli radio wifi on",
+    "on-click-right": "nm-connection-editor",
+    "on-click-middle": "nmcli radio wifi off"
+  },
+  "niri/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "default": "□",
+      "active": "▣"
+    }
+  },
+  "systemd-failed-units": {
+    "format": "&"
+  },
+  "wireplumber": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-muted": "0",
+    "format-icons": [ "1", "2", "3" ],
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "pwvucontrol"
+  }
+}

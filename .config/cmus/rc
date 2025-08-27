@@ -1,6 +1,0 @@
-set mouse=true
-set repeat=true
-set show_remaining_time=true
-set start_view=browser
-colorscheme spotify
-cd ~/Music

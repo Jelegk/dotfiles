@@ -1,0 +1,206 @@
+// Wiki:   https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
+// "/-" comments out the following node.
+
+
+spawn-at-startup "niri" "msg" "action" "do-screen-transition"
+spawn-at-startup "swaybg" "--image" "/home/usrj/.config/wallpaper_desktop"
+spawn-at-startup "waybar"
+spawn-at-startup "waycorner"
+// spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
+spawn-at-startup "~/.config/niri/import-GTK.sh"
+spawn-at-startup "xwayland-satellite"
+
+hotkey-overlay { skip-at-startup; }
+prefer-no-csd
+screenshot-path "~/Pictures/scrots/%Y-%m-%d %H'%M\"%S.png"
+
+input {
+    keyboard {
+        repeat-delay 250
+        repeat-rate 40
+        xkb {
+            options "grp:menu_rctrl" // see xkeyboard-config(7)
+        }
+    }
+
+    touchpad {
+        click-method "clickfinger"
+        // scroll-factor 1.2
+        natural-scroll
+        // drag
+        tap
+        dwt
+    }
+
+    /-mouse {
+        natural-scroll
+    }
+}
+
+output "Virtual-1" { // eDP-1
+    background-color "#000"
+    mode "1920x1080@60.000"
+    //mode "1280x720"
+    position x=0 y=0
+    scale 1
+}
+
+layout {
+    gaps 5
+
+    default-column-width { proportion 0.8; }
+
+    focus-ring { off; }
+    border {
+        width 1
+        active-color "#3B9C65"
+        inactive-color "#665C54"
+
+        active-gradient from="#297D33" to="#2A5096" angle=135
+    }
+
+    insert-hint { off; }
+}
+
+animations { slowdown 0.8; }
+
+window-rule {
+    match app-id="foot"
+
+    default-column-width { proportion 0.4; }
+}
+
+window-rule {
+    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+    match app-id="nm-connection-editor"
+    match app-id="pwvucontrol"
+    match title="taskman"
+
+    open-floating true
+}
+
+window-rule {
+    match app-id="krita"
+    match app-id="REAPER"
+
+    open-maximized true
+}
+
+window-rule {
+    match is-active=false
+
+    opacity 0.9
+}
+
+// repeat=false, cooldown-ms=500
+binds {
+    // Mod+Shift+V       repeat=false { spawn "sh" "-c" "cliphist list | tofi | cliphist decode | wl-copy"; }
+    // Mod+V             repeat=false { spawn "wl-paste"; }
+    Mod+L             repeat=false { spawn "sh" "-c" "'niri msg power-off-monitors && swaylock'"; } // power-off is a toggle it's DPMS
+    Ctrl+Shift+Escape repeat=false { spawn "sh" "-c" "foot -W 75x25 -T 'taskman' top"; }
+    Mod+Return        repeat=false { spawn "foot"; }
+    Mod+BackSlash     repeat=false { spawn "pcmanfm"; }
+    Mod+Shift_R       repeat=false { spawn "pcmanfm"; }
+    // Mod+d             repeat=false { spawn "tofi"; }
+    Mod+I             repeat=false { spawn "firefox"; }
+
+    XF86MonBrightnessUp   { spawn "brightnessctl" "set" "+10%"; }
+    XF86MonBrightnessDown { spawn "brightnessctl" "set" "-10%"; }
+
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
+    XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
+
+    XF86AudioPlay { spawn "playerctl" "play-pause"; }
+    XF86AudioStop { spawn "playerctl" "--all-players" "stop"; }
+    XF86AudioPrev { spawn "playerctl" "previous"; }
+    XF86AudioNext { spawn "playerctl" "next"; }
+
+    Shift+XF86AudioRaiseVolume { spawn "playerctl" "volume" "0.02+"; }
+    Shift+XF86AudioLowerVolume { spawn "playerctl" "volume" "0.02-"; }
+    // Shift+XF86AudioPlay        { spawn "playerctl" "shuffle" "Toggle"; }
+    // Shift+XF86AudioStop        { spawn "bash" "-c" "[[ $(playerctl loop) != '' && $(playerctl loop) == 'None' ]] && playerctl loop Track || playerctl loop None"; }
+    Shift+XF86AudioPrev        { spawn "playerctld" "unshift"; }
+    Shift+XF86AudioNext        { spawn "playerctld" "shift"; }
+
+    Mod+MouseMiddle      repeat=false { close-window; } 
+    Mod+Delete           repeat=false { close-window; }
+    Mod+Q                repeat=false { close-window; }
+
+    Ctrl+Shift+E { center-column; }
+
+    Mod+Up               { focus-window-or-workspace-up; }
+    Mod+Down             { focus-window-or-workspace-down; }
+    Mod+Left             { focus-column-left; }
+    Mod+Right            { focus-column-right; }
+
+    Mod+Home             { focus-column-first; }
+    Mod+End              { focus-column-last; }
+    Mod+Page_Up          { focus-workspace-up; }
+    Mod+Page_Down        { focus-workspace-down; }
+
+    Mod+Shift+Up         { move-window-up-or-to-workspace-up; }
+    Mod+Shift+Down       { move-window-down-or-to-workspace-down; }
+    Mod+Shift+Left       { move-column-left; }
+    Mod+Shift+Right      { move-column-right; }
+
+    Mod+Shift+Home       { move-column-to-first; }
+    Mod+Shift+End        { move-column-to-last; }
+    Mod+Shift+Page_Up    { move-column-to-workspace-up; }
+    Mod+Shift+Page_Down  { move-column-to-workspace-down; }
+
+    Mod+Ctrl+Page_Up     { move-workspace-up; }
+    Mod+Ctrl+Page_Down   { move-workspace-down; }
+
+    Mod+WheelScrollUp              cooldown-ms=150 { focus-workspace-up; }
+    Mod+WheelScrollDown            cooldown-ms=150 { focus-workspace-down; }
+    Mod+Shift+WheelScrollUp        { focus-column-left; }
+    Mod+Shift+WheelScrollDown      { focus-column-right; }
+
+    Mod+TouchpadScrollUp           cooldown-ms=50 { focus-workspace-up; }
+    Mod+TouchpadScrollDown         cooldown-ms=50 { focus-workspace-down; }
+    Mod+TouchpadScrollLeft         cooldown-ms=50 { focus-column-left; }
+    Mod+TouchpadScrollRight        cooldown-ms=50 { focus-column-right; }
+
+    Mod+Ctrl+WheelScrollUp         cooldown-ms=150 { move-column-to-workspace-up; }
+    Mod+Ctrl+WheelScrollDown       cooldown-ms=150 { move-column-to-workspace-down; }
+    Mod+Ctrl+Shift+WheelScrollUp   { move-column-left; }
+    Mod+Ctrl+Shift+WheelScrollDown { move-column-right; }
+
+    Mod+Tab { focus-workspace-previous; }
+
+    Mod+BracketLeft  { consume-or-expel-window-left; }
+    Mod+BracketRight { consume-or-expel-window-right; }
+    // Mod+Comma        { consume-window-into-column; }
+    // Mod+Period       { expel-window-from-column; }
+
+    Mod+F       { maximize-column; }
+    Mod+Shift+F { fullscreen-window; }
+
+    Mod+Minus { set-column-width "-10%"; }
+    Mod+Equal { set-column-width "+10%"; }
+    Mod+Shift+Minus { set-window-height "-10%"; }
+    Mod+Shift+Equal { set-window-height "+10%"; }
+
+    Mod+Space       { toggle-window-floating; }
+    Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
+
+    Mod+Print   { screenshot-screen; }
+    Mod+Ctrl+S  { screenshot-window; }
+    Mod+Shift+S { screenshot; }
+
+    Mod+Shift+R     allow-inhibiting=false { spawn "sh" "-c" "killall waybar && waybar"; }
+    Mod+Shift+E     allow-inhibiting=false { quit; }
+    Ctrl+Alt+Delete allow-inhibiting=false { quit; }
+
+    // Applications such as remote-desktop clients and software KVM switches may
+    // request that niri stops processing the keyboard shortcuts defined here
+    // so they may, for example, forward the key presses as-is to a remote machine.
+    // It's a good idea to bind an escape hatch to toggle the inhibitor,
+    // so a buggy application can't hold your session hostage.
+    //
+    // The allow-inhibiting=false property can be applied to other binds as well,
+    // which ensures niri always processes them, even when an inhibitor is active.
+    Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
+}

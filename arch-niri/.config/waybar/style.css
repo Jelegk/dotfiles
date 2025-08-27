@@ -1,0 +1,102 @@
+#waybar {
+  background: transparent;
+  color: @theme_base_color;
+  font-family: Iconoclaste;
+  font-size: 110%;
+}
+
+tooltip {
+  background: shade(alpha(@theme_text_color, 0.8), 0.7);
+}
+
+box.module,
+label.module {
+  padding: 8px 0px 8px 0px;
+  border-radius: 18px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: shade(@theme_text_color, 2.8);
+  background: shade(@theme_text_color, 0.8);
+  
+}
+
+/* The workspace module forces the bar's width to be high without 'min-width'. */
+#workspaces button { 
+  min-width: 20px;
+  color: @theme_base_color;
+}
+  
+#clock,
+#backlight,
+#keyboard-state {
+  font-family: ProFontWindows;
+  font-size: 120%;
+}
+
+#pwr,
+#clock {
+  border-radius: 6px;
+  color: @theme_text_color;
+}
+
+label#clock {
+  border-color: shade(@theme_base_color, 2.8);
+  background: @theme_base_color;
+}
+
+label#custom-pwr-off,
+label#custom-pwr-sleep,
+label#custom-pwr-hibernate,
+label#custom-pwr-restart {
+  border-radius: 6px;
+  margin-bottom: 4px;
+  background: maroon;
+  border-color: crimson;
+}
+
+label#custom-mpris-prev,
+label#custom-mpris-next,
+label#custom-mpris-loop,
+label#custom-mpris-shuf {
+  margin-top: 4px;
+}
+
+label#custom-mpris-plause.None {
+  border-color: shade(@theme_text_color, 0.7);
+  background: shade(@theme_text_color, 0.6);
+}
+
+#wireplumber.muted {
+  border-color: shade(@theme_text_color, 0.7);
+  background: shade(@theme_text_color, 0.6);
+}
+
+#network.disabled {
+  border-color: shade(@theme_text_color, 0.7);
+  background: shade(@theme_text_color, 0.6);
+}
+
+#network.ethernet {
+  border-color: shade(#C0CEED, 0.9);
+  background: shade(#C0CEED, 0.8);
+}
+
+#battery.warning {
+  border-color: shade(tomato, 0.7);
+  background: shade(tomato, 0.6);
+}
+
+#battery.critical {
+  border-color: shade(red, 0.7);
+  background: shade(red, 0.6);
+}
+
+#battery.charging {
+  border-color: shade(#EFFFE0, 0.7);
+  background: shade(#EFFFE0, 0.6);
+}
+
+#battery.full {
+  border-color: shade(#BFFFE0, 0.7);
+  background: shade(#BFFFE0, 0.6);
+}

@@ -1,0 +1,13 @@
+mpv's whitelist, sorted by priority (descending):
+
+AlbumArt, Album, cover, front, AlbumArtSmall, Folder, .folder, thumb, NULL
+
+Meaning: an image with any of these name in the same directory 
+         as the played audio file will be used as video content
+
+         An image with the same name as the audio file will be 
+         used as video content for said audio file only
+
+On that note: See auto_mode.lua line 24
+
+Any file with album art metadata will ignore this behaviour
