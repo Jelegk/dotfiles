@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Categories=Utility;
+Name=Edit with nano
+Exec=foot --title=nanoedit nano %F
+MimeType=text/plain;
+NoDisplay=true
