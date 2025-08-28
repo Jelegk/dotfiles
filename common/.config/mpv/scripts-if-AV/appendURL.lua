@@ -80,4 +80,4 @@ end
 
 mp.add_forced_key_binding("Ctrl+v", "appendURL", append)
 
-mp.msg.fatal("LOADED")
+mp.msg.fatal("LOADED (Ctrl + V)")

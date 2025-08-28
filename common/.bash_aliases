@@ -6,6 +6,7 @@ alias la='ls -AF'
 
 alias code='codium'
 alias trewq='tree -haLF 1'
+alias messenger='/opt/Caprine-2.60.3.AppImage'
 
 clean() {
   clear
@@ -54,7 +55,7 @@ complete -F __findinfiles findinfiles
 
 ytdlp() {
   ~/.local/bin/yt-dlp --output "%(channel)s - %(title)s.%(ext)s" \
-  --extract-audio --audio-format m4a --audio-quality 0 \
+  --extract-audio --audio-format best --audio-quality 0 \
   --embed-thumbnail --convert-thumbnails jpg \
   --ppa "ffmpeg: -c:v mjpeg -vf \"crop='if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)', scale='min(iw,720)':-1\"" \
   --paths ~/Music/yt-dlp "$1"
@@ -64,3 +65,8 @@ __ytdlp() {
 }
 complete -F __ytdlp ytdlp
 
+discordUpdate() {
+  sudo apt install ~/Downloads/discord-?.?.*.deb -y
+  rm ~/Downloads/discord-?.?.*.deb
+  discord &
+}

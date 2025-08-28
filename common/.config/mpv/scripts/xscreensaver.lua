@@ -29,3 +29,5 @@ end
 -- end
 
 mp.observe_property("pause", nil, heartbeat)
+
+mp.msg.fatal("LOADED")

@@ -1,0 +1,52 @@
+#!/bin/bash
+CHARHEIGHT=$1
+writeBottom() {
+  IN=$(</dev/stdin)
+  printf "\e7\e[%s;0H\e[90m%s\e[0m\n\e8" "$CHARHEIGHT" "$IN"
+}
+
+printf "\e[2GSetting locale as Canada ...\n"
+timedatectl set-ntp true |& writeBottom
+ln -sf /usr/share/zoneinfo/Canada/Eastern /etc/localtime |& writeBottom
+hwclock --systohc |& writeBottom
+sed -i -e 's/# en_US.UTF-8/en_US.UTF-8/g' -e 's/# en_CA.UTF-8/en_CA.UTF-8/g' /etc/locale.gen |& writeBottom
+locale-gen |& writeBottom
+echo LANG=en_CA.UTF-8 > /etc/locale.conf |& writeBottom
+
+printf "\e[2G\e7"
+while [[ -z $HOSTNAME ]]; do
+  printf "\e8"
+  read -rp "Hostname (usr@\e[34mhostname\e[0m in terminal): " HOSTNAME
+done
+echo '$HOSTNAME' > /etc/hostname |& writeBottom
+
+systemctl enable NetworkManager.service |& writeBottom
+
+while true; do
+  printf "\e[2G\e7"
+  while [[ -z $ROOTPASS ]]; do
+    printf "\e8"
+    read -sp "What shall the root password be: " ROOTPASS
+  done
+  printf "\n\e[2G\e7"
+  while [[ -z $ROOTPASSVAL ]]; do
+    printf "\e8"
+    read -sp "Re-enter root password: " ROOTPASSVAL
+  done
+  [[ $ROOTPASS == $ROOTPASSVAL ]] && break
+
+  printf "\e[2G                                 "
+  printf "\e[A\e[2G                                 \e[2G"
+
+  ROOTPASS=""
+  ROOTPASSVAL=""
+done
+echo $ROOTPASS | passwd --stdin |& writeBottom
+
+SWAPUUID=$(fdisk -x | grep '0657FD6D-A4AB-43C4-84E5-0933C84B4F4F' | tr -s ' ' | cut -d ' ' -f 6)
+ROOTUUID=$(fdisk -x | grep '4F68BCE3-E8CD-4DB1-96E7-FBCAF984B709' | tr -s ' ' | cut -d ' ' -f 6)
+printf "\n\e7\e[2;2H                                                                                     "
+printf "\e[2;2HSwap UUID: \e[1m%s\e[0m       Root UUID: \e[1m%s\e[0m\e8" "$SWAPUUID" "$ROOTUUID"
+efibootmgr --create --disk '/dev/$2' --part 1 --label 'Arch Linux  (EFISTUB)' --loader /vmlinuz-linux --unicode 'root=UUID=$ROOTUUID resume=UUID=$SWAPUUID rw rootflags=subvol=@ loglevel=3 quiet initrd=\initramfs-linux.img' |& writeBottom
+
+exit

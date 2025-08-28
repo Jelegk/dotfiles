@@ -8,10 +8,12 @@
 set $mod Mod4
 
 exec --no-startup-id xdotool key --clearmodifiers Num_Lock
+exec_always --no-startup-id xset r rate 300 35
 exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rotate normal
 #exec_always --no-startup-id xrandr --output eDP-1 --mode 1920x1080 --rotate right
 #exec_always --no-startup-id xrandr --output DP-1 --mode 1920x1080
 #exec_always --no-startup-id  xrandr --output Virtual1 --mode 1280x720
+#exec_always --no-startup-id xcompmgr &
 exec_always --no-startup-id feh --bg-scale ~/.config/wallpaper_desktop.*
 exec_always --no-startup-id sh ~/.config/polybar/launch_polybar
 # fixes (choose one) for "Connection Failed: br-connection-profile-unavailable" when attempting to connect to a bluetooth device
@@ -41,8 +43,13 @@ bindsym $mod+l exec --no-startup-id sh ~/.config/i3/lock
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 #exec --no-startup-id nm-applet
 
-bindsym XF86MonBrightnessUp exec   --no-startup-id brightnessctl set +10%
-bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+bindsym $mod+Ctrl+Up    exec --no-startup-id sh ~/.local/bin/rotate_screen.sh normal
+bindsym $mod+Ctrl+Down  exec --no-startup-id sh ~/.local/bin/rotate_screen.sh inverted
+bindsym $mod+Ctrl+Left  exec --no-startup-id sh ~/.local/bin/rotate_screen.sh left
+bindsym $mod+Ctrl+Right exec --no-startup-id sh ~/.local/bin/rotate_screen.sh right
+
+bindsym XF86MonBrightnessUp exec   --no-startup-id brightnessctl set 1%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 1%-
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec  --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +2%
 bindsym XF86AudioLowerVolume exec  --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -2%
@@ -57,7 +64,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym Shift+XF86AudioRaiseVolume exec --no-startup-id playerctl volume 0.02+
 bindsym Shift+XF86AudioLowerVolume exec --no-startup-id playerctl volume 0.02-
 bindsym Shift+XF86AudioPlay exec --no-startup-id playerctl shuffle Toggle
-bindsym Shift+XF86AudioStop exec --no-startup-id [[ $(playerctl loop) == "None" ]] && playerctl loop Track || playerctl loop None
+bindsym Shift+XF86AudioStop exec --no-startup-id [[ $(playerctl loop) != "" && $(playerctl loop) == "None" ]] && playerctl loop Track || playerctl loop None
 bindsym Shift+XF86AudioPrev exec --no-startup-id playerctld unshift
 bindsym Shift+XF86AudioNext exec --no-startup-id playerctld shift
 
@@ -277,6 +284,11 @@ for_window [title="taskman_ignore"] floating enable
 for_window [title="taskman"] floating enable
 for_window [class="dosbox"] move position 10 10
 for_window [title="JamesDSP for Linux"] floating enable
+for_window [title="pict_info"] floating enable
+for_window [title="Sign in - Google Accounts — Mozilla Firefox"] floating enable
+# Personnal SDL projects
+for_window [class="com.devel.c_flat"] floating enable
+#for_window [class="BwildB"] floating enable
 
 # Configure 5px of space between windows and to the screen edges.
 gaps inner 5px

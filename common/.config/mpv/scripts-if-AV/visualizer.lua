@@ -286,4 +286,4 @@ mp.register_event('file-loaded', visualizer_hook)
 
 mp.add_forced_key_binding(cycle_key, "cycle-visualizer", cycle_visualizer)
 
-mp.msg.fatal("LOADED")
+mp.msg.fatal("LOADED (Ctrl + 1)")

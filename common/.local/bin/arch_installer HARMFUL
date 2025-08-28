@@ -1,0 +1,128 @@
+#!/bin/bash
+abort() {
+  printf "\e[2G\e[31mProcess aborted: $1\e[0m Press any key to exit.\n"
+  read -r -n 1 TMP
+  printf "\e[?1049l" # Restore previous terminal buffer
+  kill $BASHPID
+}
+writeBottom() {
+  IN=$(</dev/stdin)
+  printf "\e7\e[%s;0H\e[90m%s\e[0m\n\e8" "$CHARHEIGHT" "$IN"
+}
+
+# Save terminal buffer, Clear the screen, Enable blinking underline cursor, Enable line wrapping, Move cursor to (0,0)
+printf "\e[?1049h\e[2J\e[3 q\e[?7h\e[H"
+
+read -r CHARHEIGHT CHARWIDTH < <(stty size) || abort "read not accessible. Ignore what follows and Escape with Ctrl+C." # Read window size
+printf "\e[23;%sr" "$CHARHEIGHT" # Limit free scrolling area to beneath brintf "\e[22;%sr" "$CHARHEIGHT" # Limit free scrolling area to beneath boxox
+LINEWIDTH=$(( $CHARWIDTH - 2 )) # printf box {
+printf '╒'
+printf '%0.s═' $(seq 1 $LINEWIDTH)
+printf '╕\n'
+for ((i = 0 ; i < 20 ; i++ )); do printf "│\e[%sG│\n" "$CHARWIDTH"; done
+printf '╘'
+printf '%0.s═' $(seq 1 $LINEWIDTH)
+printf '╛\e[2;2H' # }
+
+# Verify boot mode
+case $(cat /sys/firmware/efi/fw_platform_size) in
+  "64") BOOTMODE="UEFI x64" ;;
+  "32") BOOTMODE="UEFI x32" ;;
+  *) BOOTMODE="Not UEFI!" ;;
+esac
+
+# Get system specs
+CPU=$(grep -o -m 1 -E "AMD|Intel" /proc/cpuinfo | tr '[:upper:]' '[:lower:]') || abort "tr not accessible."
+WIFIDEV=$(ls /sys/class/net | grep wl)
+#DISKNAME=$(fdisk -l | grep -o -m 1 -E "sda|nvme.n.|mmcblk.") || abort "fdisk or grep not accessible."
+mapfile -t DISKNAMES <<< $(fdisk -l | grep -E "Disk /dev/(sda|nvme.n.|mmcblk.)") || abort "fdisk or grep not accessible."
+DISKPRINT_YPOS=$(( $CHARWIDTH / 3 ))
+printf "\e[4;%sHObserve:\e[B\e[${DISKPRINT_YPOS}G\e[1m" "$DISKPRINT_YPOS"
+for i in "${DISKNAMES[@]}"; do printf "$i\e[B\e[${DISKPRINT_YPOS}G"; done
+printf "\e[0m"
+read -rp "Name of disk (sda/nvme?n?/mmcblk?): " DISKNAME
+[[ $DISKNAME == "nvme"* || $DISKNAME == "mmcblk"* ]] && DISKPARTPREFIX="${DISKNAME}p" || DISKPARTPREFIX=$DISKNAME
+#DISKSIZE=$(fdisk -l | grep -m 1 -E "sda|nvme.n.|mmcblk." | cut -d ' ' -f 3 | cut -d '.' -f 1) || abort "cut not accessible."
+DISKSIZE=$(fdisk -l | grep -E "Disk /dev/$DISKNAME" | cut -d ' ' -f 3 | cut -d '.' -f 1) || abort "cut not accessible."
+[[ ! $DISKNAME =~ ^(sda|nvme.n.|mmcblk.)$  || $DISKSIZE == "" ]] && abort "bad disk name."
+SWAP_PART_SIZE=$(free --giga | grep -oE "[0-9]*" | head -n 1) || abort "free or head not accessible."
+SYS_PART_SIZE=$(( DISKSIZE - 1 - SWAP_PART_SIZE ))
+
+printf "\e[2;2H[ Booted in %s ]       Detected CPU: \e[1m%s\e[0m       Wifi card: \e[1m%s\e[0m       DiskName = \e[1m%s\e[0m       DiskSize = \e[1m%s\e[0mG       RamAmount = \e[1m%s\e[0mG\n" \
+       "$BOOTMODE" "$CPU" "$WIFIDEV" "$DISKNAME" "$DISKSIZE" "$SWAP_PART_SIZE"
+printf "\e[2G\t\e[34mPartition\t\tSize\t\tType\e[0m\n"
+printf "\e[2G\t/dev/%s1  \t1G\t\tEFI System\n" "$DISKPARTPREFIX"
+printf "\e[2G\t/dev/%s2  \t%sG\t\tLinux swap\n" "$DISKPARTPREFIX" "$SWAP_PART_SIZE"
+printf "\e[2G\t/dev/%s3  \t%sG\t\tLinux Filesystem\n" "$DISKPARTPREFIX" "$SYS_PART_SIZE"
+
+printf "\e[2GProceed? (y/n): \e7"
+while [[ ! $INPUT =~ ^(3 2 1 lets jam|y|Y|yes|YES|n|N|no|NO)$ ]]; do
+  printf "\e8                              \e8"
+  read -r INPUT
+done
+[[ $INPUT =~ ^(n|N|no|NO)$ ]] && abort "user termination."
+
+printf "\e[2GPartitionning disk ...\n"
+printf ",1G,U\n,%sG,S\n,+,linux-root-x86-64\n" "$SWAP_PART_SIZE" | sfdisk "/dev/$DISKNAME" |& writeBottom
+
+printf "\e[2GFormatting partitions ."
+mkfs.fat -F 32 /dev/${DISKPARTPREFIX}1  |& writeBottom
+printf "."
+mkswap /dev/${DISKPARTPREFIX}2 |& writeBottom
+printf ".\n"
+mkfs.ext4 /dev/${DISKPARTPREFIX}3 |& writeBottom
+
+printf "\e[2GMounting partitions ."
+mount --mkdir /dev/${DISKPARTPREFIX}1 /mnt/boot |& writeBottom
+printf "."
+swapon /dev/${DISKPARTPREFIX}2 |& writeBottom
+printf ".\n"
+mount /dev/${DISKPARTPREFIX}3 /mnt |& writeBottom
+
+ip link set $WIFIDEV up |& writeBottom
+rfkill unblock wlan |& writeBottom
+for i in {0..2}; do
+  printf "\e[2G\e7"
+  while [[ -z $SSID ]]; do
+    printf "\e8"
+    read -p "Wifi name (SSID): " SSID
+  done
+  printf "\e[2G\e7"
+  while [[ -z $PASS ]]; do
+    printf "\e8"
+    read -sp "Wifi password (WPA2): " PASS
+  done
+
+  printf "\n\e[2GConnecting to Internet ...\n"
+  iwctl --passphrase $PASS station $WIFIDEV connect $SSID |& writeBottom && break
+
+  for i in {0..20}; do
+    [[ $(iwgetid) == *"New Access Point"* ]] && break 2
+    sleep 0.5
+  done
+
+  printf "\e[A\e[2G                          "
+  printf "\e[A\e[2G                              "
+  printf "\e[A\e[2G                              \e2G"
+
+  [[ $i == 2 ]] && printf "Too many fails. Try it yourself. Calling iwctl (see bottom)" && iwctl
+done
+
+printf "\e[2GGenerating mirrorlist ...\n"
+reflector --country Canada --latest 10 --protocol http --protocol https --sort rate --save /etc/pacman.d/mirrorlist |& writeBottom
+
+[[ $CPU =~ ^(amd|intel)$ ]] && CPU_UCODE="$CPU-ucode" || CPU_UCODE=""
+printf "\e[2GInstalling bare fcking minimum ...\n"
+pacstrap -K /mnt base linux linux-firmware $CPU_UCODE efibootmgr networkmanager nano man-db man-pages | writeBottom
+
+genfstab -U /mnt >> /mnt/etc/fstab |& writeBottom
+arch-chroot /mnt /bin/bash $(dirname $0)/arch_installer_part2 $CHARHEIGHT $DISKNAME |& writeBottom
+
+# ********** arch_installer_part2 **********
+
+printf "\e[2GSUCCESS. Press any key to reboot.\n\e[2G\e[33mDon't forget to remove installation USB during reboot!\e[0m"
+read -r -n 1 TMP
+
+systemctl reboot -i |& writeBottom
+
+printf "\e[?1049l" # Restore previous terminal buffer

@@ -34,4 +34,4 @@ mp.add_forced_key_binding("Ctrl+6" , "filmgrain-toggle", filmgraintoggle)
 --mp.msg.fatal()     -- orange
 --mp.msg.error()     -- rouge
 
-mp.msg.fatal("LOADED")
+mp.msg.fatal("LOADED (Ctrl + [2-6])")
