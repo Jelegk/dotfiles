@@ -9,6 +9,6 @@ export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quo
 unset WINEESYNC # Kiloheart VST patch ( https://github.com/robbert-vdh/yabridge?tab=readme-ov-file#known-issues-and-fixes )
 
 # Start niri after tty login
-[ -z "$DISPLAY" ] && [ $(tty) = /dev/tty1 ] && exec niri-session
+[ -z "$DISPLAY" ] && [ $(tty) = /dev/tty1 ] && exec niri-session -l
 
 . "$HOME/.cargo/env"
