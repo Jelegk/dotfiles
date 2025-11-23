@@ -32,8 +32,8 @@
         "focusBorder": "#3133b6",
     },
     "C_Cpp.default.cppStandard": "c++20",
-    "C_Cpp.clang_format_style": "file:/home/usrj/.config/clang-format",
-    "makefile.configureOnOpen": true,
+    "cmake.configureOnOpen": false,
+    "makefile.configureOnOpen": false,
     "git.autoRepositoryDetection": "subFolders",
     "git.openRepositoryInParentFolders": "never",
     "git.openAfterClone": "whenNoFolderOpen",
@@ -70,16 +70,16 @@
             "foreground": "green"
         },
         "XXX": {
-            "background": "#008b8b20",
-            "foreground": "#008b8b"
+            "background": "#0992",
+            "foreground": "#099"
         },
         "[ ]": {
-            "background": "#8082",
-            "foreground": "#808"
-        },
-        "[x]": {
             "background": "#EE82EE20",
             "foreground": "violet"
+        },
+        "[x]": {
+            "background": "#8082",
+            "foreground": "#808"
         },
         "NOTE": {
             "background": "#AAA2",
@@ -90,6 +90,9 @@
             "foreground": "#FFF59A"
         }
     },
+    "todo-tree.filtering.excludeGlobs": [
+        "**/build/**"
+    ],
     "todo-tree.general.statusBar": "current file",
     "todo-tree.tree.showCurrentScanMode": false,
     "todo-tree.tree.hideTreeWhenEmpty": true,
@@ -102,4 +105,9 @@
         "-Ilib/snesapu/SNES/SNESAPU",
         "-Ilib/snesapu"
     ],
+    "editor.tabSize": 2,
+    "redhat.telemetry.enabled": false,
+    "window.confirmSaveUntitledWorkspace": false,
+    "hexeditor.defaultEndianness": "little",
+    "hexeditor.inspectorType": "aside",
 }

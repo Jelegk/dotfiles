@@ -7,8 +7,10 @@ spawn-at-startup "swaybg" "--image" "/home/usrj/.config/wallpaper_desktop"
 spawn-at-startup "waybar"
 spawn-at-startup "waycorner"
 // spawn-at-startup "wl-paste" "--watch" "cliphist" "store"
-spawn-at-startup "~/.config/niri/import-GTK.sh"
-spawn-at-startup "xwayland-satellite"
+spawn-sh-at-startup "~/.config/niri/import-GTK.sh"
+// spawn-at-startup "xwayland-satellite" // v0.7+ integrated in niri since 25.08!
+// spawn-sh-at-startup "~/.local/bin/usrj_niri_lowbattery_borders.sh"
+
 
 hotkey-overlay { skip-at-startup; }
 prefer-no-csd
@@ -24,10 +26,10 @@ input {
     }
 
     touchpad {
+        // off // (gets toggled by script, dont erase)
         click-method "clickfinger"
-        // scroll-factor 1.2
+        scroll-factor 0.7
         natural-scroll
-        // drag
         tap
         dwt
     }
@@ -37,26 +39,54 @@ input {
     }
 }
 
-output "Virtual-1" { // eDP-1
-    background-color "#000"
+cursor {
+    xcursor-theme "phinger-cursors-light"
+    // xcursor-size 16
+
+    // hide-when-typing
+    hide-after-inactive-ms 1000
+}
+
+output "eDP-1" {
+    background-color "transparent"
     mode "1920x1080@60.000"
     //mode "1280x720"
     position x=0 y=0
     scale 1
 }
 
+overview {
+    workspace-shadow { off; }
+    zoom 0.4
+}
+
+layer-rule {
+    match namespace="^wallpaper$" // niri msg layers
+    place-within-backdrop true
+}
+
 layout {
+    background-color "transparent"
+
     gaps 5
 
-    default-column-width { proportion 0.8; }
+    default-column-width { proportion 1.0; }
 
     focus-ring { off; }
-    border {
+    border { // Regular
         width 1
         active-color "#3B9C65"
         inactive-color "#665C54"
 
         active-gradient from="#297D33" to="#2A5096" angle=135
+    }
+    /-border { // Low Battery (gets toggled by script, dont erase)
+        width 2
+        active-color "#A00"
+        inactive-color "#A40"
+
+        active-gradient from="#F00" to="#F60" angle=135
+        inactive-gradient from="#A00" to="#A60" angle=135        
     }
 
     insert-hint { off; }
@@ -65,18 +95,76 @@ layout {
 animations { slowdown 0.8; }
 
 window-rule {
-    match app-id="foot"
+    match is-window-cast-target=true
 
-    default-column-width { proportion 0.45; }
+    border {
+        active-color "#7D0D2D"
+        inactive-color "#5E0414"
+
+        active-gradient from="#A61C00" to="#7D0D2D" angle=135
+    }
+}
+
+window-rule {
+    match is-active=false
+
+    opacity 0.9
+}
+
+window-rule {
+    match app-id="foot"
+    match app-id="pcmanfm"
+    match app-id="com.obsproject.Studio"
+    
+    default-column-width { proportion 0.5; }
+}
+
+window-rule {
+    match app-id="scrcpy"
+
+    default-column-width { fixed 496; }
+}
+
+window-rule {
+    match title="settuings"
+
+    baba-is-float true
 }
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
     match app-id="nm-connection-editor"
+    match app-id="blueman-manager"
     match app-id="pwvucontrol"
+    match title="settuings"
     match title="taskman"
+    match title="Execute File"
+    match app-id="fontforge"
+    exclude app-id="fontforge" title=r#".+[[:space:]]+.+[[:space:]]+\(.+\)"#
+    exclude app-id="fontforge" title=r#".+ at [0-9]+ from .+"#
+    match title=r#" — Krita"#
+    match title="exif-popup"
+    match title=r#"Sign in"#
 
     open-floating true
+}
+
+window-rule {
+    match title="vgmplay"
+
+    open-floating true
+    default-column-width { fixed 600; }
+    default-window-height { fixed 300; }
+    default-floating-position x=20 y=20 relative-to="bottom-right"
+}
+
+window-rule { // "Open file" pop-ups
+    match app-id="xdg-desktop-portal-gtk"
+    match app-id="fontforge" title="Open Font"
+
+    open-floating true // Not necessary, already by default
+    default-column-width { fixed 1000; }
+    default-window-height { fixed 600; }
 }
 
 window-rule {
@@ -87,28 +175,38 @@ window-rule {
 }
 
 window-rule {
-    match is-active=false
+    match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
 
-    opacity 0.9
+    default-floating-position x=10 y=10 relative-to="bottom-right"
+}
+
+/-window-rule {
+    match app-id="blueman-applet"
+    match is-floating=true
+
+    close-window // That won't work. There isn't even a "run this in sh" option
 }
 
 // repeat=false, cooldown-ms=500
 binds {
-    // Mod+Shift+V       repeat=false { spawn "sh" "-c" "cliphist list | tofi | cliphist decode | wl-copy"; }
+    Mod+E             repeat=false { spawn-sh "nmcli c up eduroam"; } // cause this trash wifi keeps disconnecting
+
+    // Mod+Shift+V       repeat=false { spawn-sh "cliphist list | tofi | cliphist decode | wl-copy"; }
     // Mod+V             repeat=false { spawn "wl-paste"; }
-    Mod+L             repeat=false { spawn "sh" "-c" "'niri msg power-off-monitors && swaylock'"; } // power-off is a toggle it's DPMS
-    Ctrl+Shift+Escape repeat=false { spawn "sh" "-c" "foot -W 75x25 -T 'taskman' top"; }
+    Mod+L             repeat=false { spawn-sh "'niri msg power-off-monitors && swaylock'"; } // power-off is a toggle it's DPMS
+    Ctrl+Shift+Escape repeat=false { spawn-sh "foot -W 75x40 -T 'taskman' top"; }
     Mod+Return        repeat=false { spawn "foot"; }
     Mod+BackSlash     repeat=false { spawn "pcmanfm"; }
     Mod+Shift_R       repeat=false { spawn "pcmanfm"; }
-    // Mod+d             repeat=false { spawn "tofi"; }
+    Mod+D             repeat=false { spawn "fuzzel"; }
     Mod+I             repeat=false { spawn "firefox"; }
+    Ctrl+Shift+Caps_Lock  repeat=false { spawn "obs-cmd" "recording" "toggle"; }
 
     XF86MonBrightnessUp   { spawn "brightnessctl" "set" "5%+"; }
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
 
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02+"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.02-"; }
     XF86AudioMute        allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
     XF86AudioMicMute     allow-when-locked=true { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"; }
 
@@ -123,6 +221,9 @@ binds {
     // Shift+XF86AudioStop        { spawn "bash" "-c" "[[ $(playerctl loop) != '' && $(playerctl loop) == 'None' ]] && playerctl loop Track || playerctl loop None"; }
     Shift+XF86AudioPrev        { spawn "playerctld" "unshift"; }
     Shift+XF86AudioNext        { spawn "playerctld" "shift"; }
+
+    // Doesn't seem to work either
+    // XF86Calculator   repeat=false { spawn-sh "NIRI_CONFIG=$XDG_CONFIG_HOME/niri/config.kdl; grep -e '// off // (gets toggled' $NIRI_CONFIG && sed  -i 's/\/\/ off \/\/ (gets toggled by script, dont erase)/off \/\/ (gets toggled by script, dont erase)/' $NIRI_CONFIG || sed -i 's/off \/\/ (gets toggled by script, dont erase)/\/\/ off \/\/ (gets toggled by script, dont erase)/' $NIRI_CONFIG"; }
 
     Mod+MouseMiddle      repeat=false { close-window; } 
     Mod+Delete           repeat=false { close-window; }
@@ -139,6 +240,11 @@ binds {
     Mod+End              { focus-column-last; }
     Mod+Page_Up          { focus-workspace-up; }
     Mod+Page_Down        { focus-workspace-down; }
+
+    Mod+Ctrl+Up          { spawn "niri" "msg" "output" "eDP-1" "transform" "normal"; }
+    Mod+Ctrl+Down        { spawn "niri" "msg" "output" "eDP-1" "transform" "180"; }
+    Mod+Ctrl+Left        { spawn "niri" "msg" "output" "eDP-1" "transform" "90"; }
+    Mod+Ctrl+Right       { spawn "niri" "msg" "output" "eDP-1" "transform" "270"; }
 
     Mod+Shift+Up         { move-window-up-or-to-workspace-up; }
     Mod+Shift+Down       { move-window-down-or-to-workspace-down; }
@@ -158,10 +264,10 @@ binds {
     Mod+Shift+WheelScrollUp        { focus-column-left; }
     Mod+Shift+WheelScrollDown      { focus-column-right; }
 
-    Mod+TouchpadScrollUp           cooldown-ms=50 { focus-workspace-up; }
-    Mod+TouchpadScrollDown         cooldown-ms=50 { focus-workspace-down; }
-    Mod+TouchpadScrollLeft         cooldown-ms=50 { focus-column-left; }
-    Mod+TouchpadScrollRight        cooldown-ms=50 { focus-column-right; }
+    Mod+TouchpadScrollUp           cooldown-ms=200 { focus-workspace-up; }
+    Mod+TouchpadScrollDown         cooldown-ms=200 { focus-workspace-down; }
+    Mod+TouchpadScrollLeft         cooldown-ms=80  { focus-column-left; }
+    Mod+TouchpadScrollRight        cooldown-ms=80  { focus-column-right; }
 
     Mod+Ctrl+WheelScrollUp         cooldown-ms=150 { move-column-to-workspace-up; }
     Mod+Ctrl+WheelScrollDown       cooldown-ms=150 { move-column-to-workspace-down; }
@@ -177,6 +283,7 @@ binds {
 
     Mod+F       { maximize-column; }
     Mod+Shift+F { fullscreen-window; }
+    Mod+Alt+F   { toggle-windowed-fullscreen; }
 
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
@@ -186,7 +293,7 @@ binds {
     Mod+Space       { toggle-window-floating; }
     Mod+Shift+Space { switch-focus-between-floating-and-tiling; }
 
-    Mod+Print   { screenshot-screen; }
+    Mod+Print   { screenshot-screen; } // TODO: doesn't work
     Mod+Ctrl+S  { screenshot-window; }
     Mod+Shift+S { screenshot; }
 

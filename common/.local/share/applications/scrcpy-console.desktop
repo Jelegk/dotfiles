@@ -11,4 +11,5 @@ Terminal=true
 Type=Application
 Categories=Utility;RemoteAccess;
 StartupNotify=false
+
 NoDisplay=true

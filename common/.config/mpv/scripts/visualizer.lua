@@ -284,5 +284,3 @@ local function cycle_visualizer()
 end
 
 mp.add_key_binding(cycle_key, "cycle-visualizer", cycle_visualizer)
-
-mp.msg.fatal("LOADED (Alt + S)")

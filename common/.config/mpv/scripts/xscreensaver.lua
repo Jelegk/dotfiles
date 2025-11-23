@@ -1,3 +1,4 @@
+--[[ -- Useless under wayland
 -- this script deactivates xscreensaver when video playback is active
 
 local function heartbeat()
@@ -29,5 +30,4 @@ end
 -- end
 
 mp.observe_property("pause", nil, heartbeat)
-
-mp.msg.fatal("LOADED")
+--]]

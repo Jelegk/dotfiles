@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Categories=Audio;AudioVideo;Player;Utility
+Name=Play with VGMPlay
+Exec=foot --title=vgmplay --override=colors.background=300B10 vgmplay %F
+MimeType=application/gzip;
+
+NoDisplay=true

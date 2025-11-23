@@ -7,3 +7,4 @@ Profiles=uncompress
 [X-Action-Profile uncompress]
 MimeTypes=application/*
 Exec=bash usrj_uncompress_in_new_folder %f
+SelectionCount==1

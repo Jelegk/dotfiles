@@ -1,8 +1,9 @@
 #waybar {
-  background: transparent;
+  background: alpha(@theme_base_color, 0.5);
   color: @theme_base_color;
-  font-family: Iconoclaste;
-  font-size: 110%;
+  border-radius: 20px;
+  font-family: Iconoclaste, ProFontWindows;
+  font-size: 120%;
 }
 
 tooltip {
@@ -12,7 +13,7 @@ tooltip {
 box.module,
 label.module {
   padding: 8px 0px 8px 0px;
-  border-radius: 18px;
+  border-radius: 14px;
   border-width: 1px;
   border-style: solid;
   border-color: shade(@theme_text_color, 2.8);
@@ -26,13 +27,6 @@ label.module {
   color: @theme_base_color;
 }
   
-#clock,
-#backlight,
-#keyboard-state {
-  font-family: ProFontWindows;
-  font-size: 120%;
-}
-
 #pwr,
 #clock {
   border-radius: 6px;

@@ -1,0 +1,114 @@
+#!/bin/bash
+# //////////////////[ EDIT THESE ]//////////////////
+
+# (no spaces, it just takes the first word otherwise and I can't be bothered to fix it)
+MENUENTRIES=("AUDIO" \
+"BLUETOOTH" \
+"NETWORK" \
+"SCREENSHOT_UTILITY" \
+"THEME_&_CURSOR" \
+"EDIT:_ENVIRONMENT_VAR" \
+"EDIT:_I3WM" \
+"EDIT:_I3LOCK-COLOR" \
+"EDIT:_MIMEAPPS" \
+"EDIT:_POLYBAR" \
+"EDIT:_TERMINAL" \
+"EDIT:_TOUCHPAD" \
+"EDIT:_THIS")
+
+RESIZE="niri msg action set-column-width 1900 && niri msg action set-window-height 1060 && niri msg action move-floating-window -x 10 -y 10 &&"
+
+COMMANDS=("setsid pwvucontrol &&" \
+"setsid gtk-launch blueman-manager || blueman-manager &&" \
+"setsid gtk-launch nm-connection-editor || nm-connection-editor &&" \
+"setsid flameshot config & sleep 0.001 &&" \
+"setsid gtk-launch lxappearance || lxappearance &&" \
+"$RESIZE nano ~/.bash_profile ||                       codium ~/.bash_profile ||                       code ~/.bash_profile &&" \
+"$RESIZE nano ~/.config/i3/config ||                   codium ~/.config/i3/config ||                   code ~/.config/i3/config &&" \
+"$RESIZE nano ~/.config/i3/lock.sh ||                  codium ~/.config/i3/lock.sh ||                  code ~/.config/i3/lock.sh &&" \
+"$RESIZE nano ~/.config/mimeapps.list ||               codium ~/.config/mimeapps.list ||               code ~/.config/mimeapps.list &&" \
+"$RESIZE nano ~/.config/polybar/config_laptop.ini ||   codium ~/.config/polybar/config_laptop.ini ||   code ~/.config/polybar/config_laptop.ini &&" \
+"$RESIZE nano ~/.Xresources ||                         codium ~/.Xresources ||                         code ~/.Xresources &&" \
+"$RESIZE nano /etc/X11/xorg.conf.d/30-touchpad.conf || codium /etc/X11/xorg.conf.d/30-touchpad.conf || code /etc/X11/xorg.conf.d/30-touchpad.conf &&" \
+"$RESIZE nano ~/.local/bin/usrj_settuings ||           codium ~/.local/bin/usrj_settuings ||           code ~/.local/bin/usrj_settuings &&")
+
+# ///////////////////////////////////////////////////
+
+
+# Great ressource:
+# https://github.com/dylanaraps/writing-a-tui-in-bash
+
+# const:
+NBMENUENTRIES=${#MENUENTRIES[@]}
+# var:
+MENUINDEX=0
+SELECT=0
+MOVED=0
+
+redraw() {
+  #                                              + 2 being the "> " cursor next to the selection
+  WIDTHPOS=$(((CHARWIDTH - LARGESTENTRYCHARCOUNT + 2) / 2))
+  # Move cursor to middle
+  printf "\e[%s;%sH" "$((($CHARHEIGHT - $NBMENUENTRIES) / 2))" "$WIDTHPOS"
+  for i in ${!MENUENTRIES[@]}; do
+    if [[ $i -eq $MENUINDEX ]]; then
+      printf "> \e[7m%s\e[0m" "${MENUENTRIES[i]}"
+    else
+      printf "  ${MENUENTRIES[i]}"
+    fi
+   # "Newline" to WIDTHPOS (align to WIDTHPOS & move cursor down a line)
+    printf "\e[%sG\e[B" "$WIDTHPOS"
+  done
+}
+
+onResize() {
+  read -r CHARHEIGHT CHARWIDTH < <(stty size)
+  printf "\e[2J"
+  redraw
+}
+# Handle window resize event
+trap 'onResize' WINCH
+
+# Save (and clear) the user's terminal screen, hide the cursor and disable line wrapping
+printf '\e[?1049h\e[?25l\e[?7l'
+
+LARGESTENTRYCHARCOUNT=0
+for i in ${!MENUENTRIES[@]}; do
+  [[ ${#MENUENTRIES[i]} -gt $LARGESTENTRYCHARCOUNT ]] && LARGESTENTRYCHARCOUNT=${#MENUENTRIES[i]}
+done
+
+onResize
+
+while [ $SELECT -eq 0 ]
+do
+  # https://stackoverflow.com/a/61483332
+  escape_char=$(printf "\u1b")
+  read -rsn1 INPUT # get 1 character
+  if [[ $INPUT == $escape_char ]]; then
+    read -rsn4 -t 0.001 INPUT # read 2 more chars
+  fi
+  case $INPUT in
+    # q, delete or shift+delete
+    'q' | '[3~' | '[3$')
+      break ;;
+    # up or left, with/without shift
+    '[A' | '[a' | '[D' | '[d')
+      ((MENUINDEX-=1)) 
+      [[ $MENUINDEX -lt 0 ]] && MENUINDEX=$(($NBMENUENTRIES - 1))
+      MOVED=1 ;;
+    # down or right, with/without shift
+    '[B' | '[b' | '[C' | '[c')
+      ((MENUINDEX+=1))
+      [[ $MENUINDEX -ge $NBMENUENTRIES ]] && MENUINDEX=0
+      MOVED=1 ;;
+    # enter, space and unfortunately escape...
+    '')
+      SELECT=1 ;;
+  esac
+
+  [[ $MOVED == 1 ]] && redraw && MOVED=0
+  [[ $SELECT == 1 ]] && eval "${COMMANDS[$MENUINDEX]} kill -9 $PPID"
+done
+
+# Restore the user's terminal screen, show cursor and reenable line wrapping
+printf '\e[?1049l\e[?25h\e[?7h'

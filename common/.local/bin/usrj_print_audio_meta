@@ -1,0 +1,2 @@
+#!/bin/bash
+exiftool -f -title -artist -duration -filesize -filetype -audiobitrate -samplerate -- "$1" | sed -e "s/               ://g" -e "s/(approx)//"

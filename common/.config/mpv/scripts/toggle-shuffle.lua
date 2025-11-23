@@ -6,4 +6,4 @@ end
 
 mp.add_forced_key_binding(nil , "toggle-shuffle", shuffletoggle)
 
-mp.msg.fatal("LOADED (S)")
+mp.msg.fatal("LOADED")

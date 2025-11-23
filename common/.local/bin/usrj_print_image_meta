@@ -1,0 +1,2 @@
+#!/bin/bash
+exiftool -f -filename -filesize -filetype -imagesize -megapixels -- "$1" | sed -e "s/               ://g"

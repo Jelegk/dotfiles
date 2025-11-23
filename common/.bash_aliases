@@ -1,4 +1,4 @@
-PS1="${debian_chroot:+($debian_chroot)}\[\033[01;92m\]\u\[\033[21;96m\]@\[\033[01;92m\]\h\[\033[37m\]:\[\033[94m\]\w\[\033[0m\] \[\033[3 q\]"
+PS1="${debian_chroot:+($debian_chroot)}\[\033[01;92m\]\u\[\033[22;96m\]@\[\033[01;92m\]\h\[\033[37m\]:\[\033[94m\]\w\[\033[0m\] \[\033[3 q\]"
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
@@ -6,7 +6,7 @@ alias la='ls -AF'
 
 alias code='codium'
 alias trewq='tree -haLF 1'
-alias messenger='/opt/Caprine-2.60.3.AppImage'
+alias discord='vesktop'
 
 clean() {
   clear
@@ -41,32 +41,65 @@ cear() {
   echo "Here, cear'd the screen for you fatfingers."
 }
 
-findinfiles() {
+findInFiles() {
   grep -rnw "$1" -e "$2"
 }
-__findinfiles() {
+__findInFiles() {
   case ${COMP_CWORD} in
     1) COMPREPLY=("<dir>") ;;
     2) COMPREPLY=("<pattern>") ;;
     *) COMPREPLY=() ;;
   esac
 }
-complete -F __findinfiles findinfiles
+complete -F __findInFiles findInFiles
 
 ytdlp() {
-  ~/.local/bin/yt-dlp --output "%(channel)s - %(title)s.%(ext)s" \
+  case "$2" in
+    left)  from=":0:0" ;;
+    right) from=":'iw-min(iw,720)':'ih-min(iw,720)'" ;;
+    *)     from="" ;;
+  esac
+
+  yt-dlp --output "%(channel)s - %(title)s.%(ext)s" \
   --extract-audio --audio-format best --audio-quality 0 \
   --embed-thumbnail --convert-thumbnails jpg \
-  --ppa "ffmpeg: -c:v mjpeg -vf \"crop='if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)', scale='min(iw,720)':-1\"" \
+  --ppa "ffmpeg: -c:v mjpeg -vf \"crop='if(gt(ih,iw),iw,ih)':'if(gt(iw,ih),ih,iw)'$from, scale='min(iw,720)':-1\"" \
   --paths ~/Music/yt-dlp "$1"
 }
 __ytdlp() {
-  [[ ${COMP_CWORD} -le 1 ]] && COMPREPLY="<yt url>"
+  [[ ${COMP_CWORD} -eq 1 ]] && COMPREPLY="<yt url>"
+  [[ ${COMP_CWORD} -eq 2 ]] && COMPREPLY="<left/right/* (default center)>"
 }
 complete -F __ytdlp ytdlp
 
-discordUpdate() {
-  sudo apt install ~/Downloads/discord-?.?.*.deb -y
-  rm ~/Downloads/discord-?.?.*.deb
-  discord &
+# find [things] -print0 | xargs -0 [do stuff] is really powerful!
+cpFilesOfTypeWithinDirectory() {
+  if [ $# -eq 0 ]; then
+    echo "No arguments! Nothing done."
+  else
+    [ -z "$2" ] && set -- "$1" "extracted_$1"
+    mkdir -p "$2"
+    find -name "*.$1" -print0 | xargs -0 cp --parents -t "$2"
+  fi
 }
+__cpFilesOfTypeWithinDirectory() {
+  case ${COMP_CWORD} in
+    1) COMPREPLY=("file.<ext>") ;;
+    2) COMPREPLY=("<destination>") ;;
+    *) COMPREPLY=() ;;
+  esac
+}
+
+rmFilesOfTypeWithinDirectory() {
+  if [ $# -eq 0 ]; then
+    echo "No arguments! Nothing done."
+  else
+    find -name "*.$1" -print0 | xargs -0 rm
+  fi
+}
+__rmFilesOfTypeWithinDirectory() {
+  [[ ${COMP_CWORD} -eq 1 ]] && COMPREPLY="file.<ext>"
+}
+
+complete -F __cpFilesOfTypeWithinDirectory cpFilesOfTypeWithinDirectory
+complete -F __rmFilesOfTypeWithinDirectory rmFilesOfTypeWithinDirectory

@@ -292,4 +292,4 @@ mp.add_forced_key_binding(KEY_CANCEL_CUT, "cancel_cut", cancel_cut)
 
 --mp.register_event('file-loaded', bookmarks_load)
 
-mp.msg.fatal("LOADED (V)")
+mp.msg.fatal("LOADED")

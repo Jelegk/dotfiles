@@ -5,6 +5,6 @@ GenericName=Furnace Tracker
 Comment=A multipurpose tracker featuring many recognizable soundchips
 Exec=wine /opt/furnace/furnace
 Terminal=false
-Icon=.icons/custom_icons/furnace.png
+Icon=furnace
 Categories=Audio
 StartupNotify=false

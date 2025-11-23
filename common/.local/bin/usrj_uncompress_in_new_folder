@@ -1,5 +1,30 @@
 #!/bin/bash
-path="${1%.*}"
-folder="${path##*/}"
-[ -f "$1" ] && mkdir -p "$folder"
-7zz x -ssp -o"$folder/" "$1"
+
+# If file is tar
+if [[ "$1" == *.tar.* ]]; then
+  FILE_PATH_NO_EXT="${1%.tar*}"
+
+  # Uncompress first, so next step actually extracts tar
+  7z x -ssp "$1"
+
+  # Create new folder
+  FOLDER_DIR="${FILE_PATH_NO_EXT%/*}"
+  FOLDER_NAME="${FILE_PATH_NO_EXT##*/}"
+  [ -f "$1" ] && mkdir -p "$FOLDER_DIR/$FOLDER_NAME"
+
+  # Extract any format supported by 7z (.zip .7z, .rar, etc.)
+  7z x -ssp -o"$FOLDER_DIR/$FOLDER_NAME/" "$FILE_PATH_NO_EXT.tar"
+
+  # Delete .tar artifact generated at first step
+  rm "$FILE_PATH_NO_EXT.tar"
+
+else
+  FILE_PATH_NO_EXT="${1%.*}"
+
+  FOLDER_DIR="${FILE_PATH_NO_EXT%/*}"
+  FOLDER_NAME="${FILE_PATH_NO_EXT##*/}"
+  [ -f "$1" ] && mkdir -p "$FOLDER_DIR/$FOLDER_NAME"
+
+  7z x -ssp -o"$FOLDER_DIR/$FOLDER_NAME/" "$1"
+
+fi

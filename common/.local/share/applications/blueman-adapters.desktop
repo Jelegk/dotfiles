@@ -8,6 +8,7 @@ Type=Application
 Categories=X-XFCE;Settings;HardwareSettings;X-XFCE-SettingsDialog;GTK;
 StartupNotify=true
 OnlyShowIn=XFCE;MATE;
-NoDisplay=true
 X-XfceSettingsName=Bluetooth
 X-XfcePluggable=true
+
+NoDisplay=true

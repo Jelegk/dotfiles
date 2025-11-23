@@ -10,10 +10,11 @@
   "start_hidden": true,
   "modifier-reset": "release",
   //"ipc": true, // Useless if not on sway wm.
-  "modules-left": [ "systemd-failed-units", "clock", "wireplumber", "group/mpris", "niri/workspaces" ],
-  "modules-right": [ "keyboard-state", "network", /*"bluetooth",*/ "backlight", "battery", "group/pwr" ],
+  "modules-left": [ "systemd-failed-units", "clock", "wireplumber", "group/mpris", "niri/workspaces", "wlr/taskbar" ],
+  "modules-right": [ "keyboard-state", "network", "bluetooth", "backlight", "battery", "group/pwr" ],
 
   "backlight": {
+    "tooltip": false,
     "device": "intel_backlight",
     "format": "{icon}",
     "format-icons": [ "🌕", "🌔", "🌓", "🌒", "🌑" ],
@@ -21,20 +22,21 @@
     "on-scroll-down": "brightnessctl set -1%"
   },
   "battery": {
+    "tooltip-format": "{capacity}%\n{timeTo}",
     "full-at": 95,
     "interval": 30,
     "states": { "warning": 20, "critical": 10 },
     "format": "{capacity}%\n{icon}\n{time}",
-    "format-icons": [ "G", "H", "I", "J" ],
-    "format-time": "\"{m}"
+    "format-icons": [ "", "", "", "", "" ],
+    "format-time": "{H}\"{m}"
   },
   "bluetooth": {
-    "format-disabled": "C",
-    "format-off": "C",
-    "format-on": "E",
-    "format-connected": "D",
+    "format-disabled": "",
+    "format-off": "",
+    "format-on": "",
+    "format-connected": "",
     "on-double-click": "",
-    "on-click-right": ""
+    "on-click-right": "blueman-manager"
   },
   "clock": {
     "format": "{:%H\n%M}",
@@ -71,36 +73,36 @@
   },
     "custom/mpris-plause": {
       "tooltip": false,
-      "format": "{icon}",
       "interval": 1,
       "exec": "mpres=$(playerctl status || echo None) && echo \"{\\\"text\\\": \\\"\\\", \\\"alt\\\": \\\"$mpres\\\", \\\"tooltip\\\": \\\"\\\", \\\"class\\\": \\\"$mpres\\\"}\"",
       "exec-on-event": false,
       "return-type": "json",
+      "format": "{icon}",
       "format-icons": {
-        "Playing": "N",
-        "Paused": "M",
-        "None": "O"
+        "Playing": "",
+        "Paused": "",
+        "None": ""
       },
       "on-click": "playerctl play-pause"
     },
     "custom/mpris-prev": {
       "tooltip": false,
-      "format": "L",
+      "format": "",
       "on-click": "playerctl previous"
     },
     "custom/mpris-next": {
       "tooltip": false,
-      "format": "P",
+      "format": "",
       "on-click": "playerctl next"
     },
     "custom/mpris-loop": {
       "tooltip": false,
-      "format": "Q",
+      "format": "",
       //"on-click": "playerctl loop Toggle"
     },
     "custom/mpris-shuf": {
       "tooltip": false,
-      "format": "R",
+      "format": "",
       //"on-click": "playerctl shuffle Toggle"
     },
   "group/pwr": {
@@ -118,24 +120,30 @@
   },
     "custom/pwr-off": {
       "tooltip": false,
-      "format": "\"",
-      //"on-click": "shutdown now"
+      "format": "",
+      "on-click": "shutdown now"
     },
     "custom/pwr-sleep": {
       "tooltip": false,
-      "format": "#",
-      //"on-click": "systemctl sleep"
+      "format": "",
+      "on-click": "systemctl sleep"
     },
     "custom/pwr-hibernate": {
       "tooltip": false,
-      "format": "(",
-      //"on-click": "systemctl hibernate"
+      "format": "",
+      "on-click": "systemctl hibernate"
     },
     "custom/pwr-restart": {
       "tooltip": false,
-      "format": "$",
-      //"on-click": "reboot"
+      "format": "",
+      "on-click": "reboot"
     },
+  "wlr/taskbar": {
+    "tooltip": false,
+    "icon-size": 32,
+    "on-click": "activate",
+    "on-click-middle": "close"
+  },
   "keyboard-state": {
     "capslock": true,
     "format": "{icon}",
@@ -144,10 +152,10 @@
   "network": {
     "tooltip": false,
     "interval": 10,
-    "format-disconnected": "<",
-    "format-ethernet": "*",
+    "format-disconnected": "",
+    "format-ethernet": "",
     "format-wifi": "{icon}",
-    "format-icons": [ ">", "?", "@" ],
+    "format-icons": [ "", "", "" ],
     "on-click": "nmcli radio wifi on",
     "on-click-right": "nm-connection-editor",
     "on-click-middle": "nmcli radio wifi off"
@@ -160,13 +168,14 @@
     }
   },
   "systemd-failed-units": {
-    "format": "&"
+    "format": ""
   },
   "wireplumber": {
-    "tooltip": false,
+    "tooltip": true,
+    "tooltip-format": "{volume}%",
     "format": "{icon}",
-    "format-muted": "0",
-    "format-icons": [ "1", "2", "3" ],
+    "format-muted": "",
+    "format-icons": [ "", "", "", "!" ],
     "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
     "on-click-right": "pwvucontrol"
   }

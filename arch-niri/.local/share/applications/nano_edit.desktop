@@ -2,6 +2,7 @@
 Type=Application
 Categories=Utility;
 Name=Edit with nano
-Exec=foot --title=nanoedit nano %F
+Exec=foot --title=nanoedit --override=colors.background=0D261A nano %F
 MimeType=text/plain;
+
 NoDisplay=true

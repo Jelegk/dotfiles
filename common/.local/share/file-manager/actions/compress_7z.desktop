@@ -6,4 +6,4 @@ Profiles=compress
 
 [X-Action-Profile compress]
 MimeTypes=inode/directory;video/*;audio/*;image/*;application/*;text/*
-Exec=7zz a -ssp %f.7z %F
+Exec=7z a -ssp %f.7z %F

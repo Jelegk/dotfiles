@@ -1,6 +1,7 @@
 [flcl]
 enter_command = [ "killall", "-SIGUSR1", "waybar" ]
-#exit_command = [ "killall", "-SIGUSR1", "waybar" ]
+exit_command = [ "killall", "-SIGUSR1", "waybar" ]
 timeout_ms    = 0
 locations     = [ "left" ]
-size          = 2
+size          = 10
+margin        = 127

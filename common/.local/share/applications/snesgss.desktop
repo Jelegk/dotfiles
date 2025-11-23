@@ -5,6 +5,6 @@ GenericName=SNESGSS Tracker
 Comment=A SNES Tracker for Windows
 Exec=wine /opt/snesgss-master/snesgss.exe
 Terminal=false
-Icon=.icons/custom_icons/snesgss.png
+Icon=snesgss
 Categories=Audio
 StartupNotify=false

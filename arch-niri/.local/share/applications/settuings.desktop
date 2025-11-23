@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Categories=System;
+Name=Settuings
+Icon=GNOME_Settings_icon
+Exec=foot --title=settuings --override=colors.background=152440 bash .local/bin/usrj_settuings
