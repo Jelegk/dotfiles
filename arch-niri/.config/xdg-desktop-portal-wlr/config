@@ -1,0 +1,3 @@
+[screencast]
+# exec_before=someScriptToHideSensibleInfo.sh
+# exec_after=someScriptToRevertSensibleInfo.sh
