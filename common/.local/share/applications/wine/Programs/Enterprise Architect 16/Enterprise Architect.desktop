@@ -1,8 +1,0 @@
-[Desktop Entry]
-Name=Enterprise Architect
-Exec=env "WINEPREFIX=/home/usrj/.wine" wine "C:\\\\users\\\\usrj\\\\AppData\\\\Roaming\\\\Microsoft\\\\Windows\\\\Start Menu\\\\Programs\\\\Enterprise Architect 16\\\\Enterprise Architect.lnk"
-Type=Application
-StartupNotify=true
-Path=/home/usrj/.wine/drive_c/Program Files/Sparx Systems/EA/
-Icon=8D0C_EA.0
-StartupWMClass=ea.exe

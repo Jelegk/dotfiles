@@ -1,9 +1,10 @@
 [Desktop Entry]
 Type=Action
-Name=Compress to .7z (7zip)
-Icon=archive-insert.png
-Profiles=compress
+Name=Compress to .7z format (7zip)
+Tooltip=to .7z format
+Icon=7zip
+Profiles=flcl
 
-[X-Action-Profile compress]
+[X-Action-Profile flcl]
 MimeTypes=inode/directory;video/*;audio/*;image/*;application/*;text/*
 Exec=7z a -ssp %f.7z %F

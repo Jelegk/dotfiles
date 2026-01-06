@@ -65,4 +65,5 @@ Exec=/opt/audacity-linux-3.7.1-x64-22.04.AppImage -u %u
 StartupNotify=false
 Terminal=false
 MimeType=x-scheme-handler/audacity;
+
 NoDisplay=true

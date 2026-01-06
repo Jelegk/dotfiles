@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Action
+Name=Set as wallpaper (swaybg)
+Profiles=flcl
+
+[X-Action-Profile flcl]
+MimeTypes=image/gif;image/jpe;image/jpg;image/jpeg;image/png;image/tiff;image/tif;image/bmp;image/x-ms-bmp;
+Exec=usrj_set_as_wallpaper_swaybg %f
+SelectionCount==1

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Enterprise Architect - UML Development Tool
-MimeType=application/x-wine-extension-qea;
-Exec=env "WINEPREFIX=/home/usrj/.wine" wine start /ProgIDOpen "EA.Document.qea" %f
-NoDisplay=true
-StartupNotify=true
-Icon=9A4E_EA.0

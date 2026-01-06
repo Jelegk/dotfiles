@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Action
+Name=Set as wallpaper with nearest filter (awww) (for pixel art)
+Tooltip=with nearest filter (for pixel art)
+Icon=labplot-spreadsheet
+Profiles=flcl
+
+[X-Action-Profile flcl]
+MimeTypes=image/gif;image/jpe;image/jpg;image/jpeg;image/png;image/tiff;image/tif;image/bmp;image/x-ms-bmp;
+Exec=usrj_set_as_wallpaper -f Nearest -t any --transition-duration 1.5 %f
+SelectionCount==1

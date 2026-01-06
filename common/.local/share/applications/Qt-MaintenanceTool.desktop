@@ -7,4 +7,5 @@ GenericName=Install or uninstall Qt components.
 Icon=QtIcon
 Terminal=false
 Categories=Development;Qt;
+
 NoDisplay=true

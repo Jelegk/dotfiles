@@ -12,8 +12,6 @@ MimeType=text/plain;inode/directory;
 Actions=new-empty-window;
 Keywords=vscode;code
 
-NoDisplay=true
-
 [Desktop Action new-empty-window]
 Name=New Empty Window
 Exec=/usr/bin/codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland --new-window %F

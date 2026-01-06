@@ -8,38 +8,7 @@ alias code='codium'
 alias trewq='tree -haLF 1'
 alias discord='vesktop'
 
-clean() {
-  clear
-  echo "Here, cleaned the screen for you dumass."
-}
-CLEAR() {
-  clear
-  echo "CAPS LOCK DUMASS."
-}
-cleaar() {
-  clear
-  echo "Here, \"cleaared\" the screen for you fatfingers."
-}
-claer() {
-  clear
-  echo "Here, claered the screen for you fatfingers."
-}
-clea() {
-  clear
-  echo "Here, clea'd the screen for you fatfingers."
-}
-cler() {
-  clear
-  echo "Here, cler'd the screen for youu fatfingers."
-}
-clea() {
-  clear
-  echo "Here, clea'd the screen for you fatfingers."
-}
-cear() {
-  clear
-  echo "Here, cear'd the screen for you fatfingers."
-}
+# alias emacs=":(){ :|:& };:"
 
 findInFiles() {
   grep -rnw "$1" -e "$2"
@@ -103,3 +72,47 @@ __rmFilesOfTypeWithinDirectory() {
 
 complete -F __cpFilesOfTypeWithinDirectory cpFilesOfTypeWithinDirectory
 complete -F __rmFilesOfTypeWithinDirectory rmFilesOfTypeWithinDirectory
+
+clean() {
+  clear
+  echo "Here, cleaned the screen for you dumass."
+}
+CLEAR() {
+  clear
+  echo "CAPS LOCK DUMASS."
+}
+cleaar() {
+  clear
+  echo "Here, \"cleaared\" the screen for you fatfingers."
+}
+claer() {
+  clear
+  echo "Here, claered the screen for you fatfingers."
+}
+clea() {
+  clear
+  echo "Here, clea'd the screen for you fatfingers."
+}
+cler() {
+  clear
+  echo "Here, cler'd the screen for youu fatfingers."
+}
+clea() {
+  clear
+  echo "Here, clea'd the screen for you fatfingers."
+}
+cear() {
+  clear
+  echo "Here, cear'd the screen for you fatfingers."
+}
+
+# discordUpdate() {
+#   sudo apt install ~/Downloads/discord-?.?.*.deb -y
+#   rm ~/Downloads/discord-?.?.*.deb
+# }
+
+[ -s "$HOME/.cargo/env" ] && . "$HOME/.cargo/env"
+
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

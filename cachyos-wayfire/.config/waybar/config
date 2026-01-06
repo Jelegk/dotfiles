@@ -1,0 +1,242 @@
+// NOTE: Since custom format-icons or tooltip-format depending on the module state
+//       (e.g.: charging, disconnected, ...) are not yet implemented, as a
+//       workaround, multiple modules are duplicated, each handling a single
+//       state. They unfortunately all slightly eat away CPU, even if invisible.
+//       (see https://github.com/Alexays/Waybar/issues/2178)
+
+{
+  "layer": "top",
+  "position": "bottom",
+  "height": 39, // NOTE: proportional to a 16:9 1080p screen.
+  "modules-left": [
+    "image#start_menu",
+    "custom/search_bar",
+    "custom/desktops",
+    "wlr/taskbar"
+  ],
+  "modules-center": [ ],
+  "modules-right": [
+    "tray",
+    "battery",
+    "battery#charging",     // workaround for format-icons
+    "network",
+    "network#disconnected", // workaround for tooltip-format
+    "wireplumber",
+    // "wireplumber#muted", // workaround for tooltip-format // BUG: empty format does not hide module, padding remains.
+    "custom/kb_layout",
+    "clock",
+    "custom/notif_center",
+    "custom/desktop_view_toggle"
+  ],
+  "margin": "0 0 0 0",
+  "spacing": 0,
+  "mode": "dock",
+  "exclusive": true,
+  "fixed-center": true,
+
+
+
+  "image#start_menu": {
+    "path": ".local/share/icons/Win11-dark/apps/scalable/distributor-logo-blackarch.svg",
+    "size": 32, // TODO: find a way to make it scalable. font icon?
+    "on-click": "fuzzel", // TODO
+    "tooltip": true,
+    "tooltip-format": "Start",
+    "cursor": false // NOTE: to suppress cursor changing behavior, but adds a false warning about unknown option (2026-01-01).
+  },
+
+  "custom/search_bar": {
+    "format": "\uE721  Type here to search",
+    "format-alt": "<span bgcolor=\"white\" fgcolor=\"black\">\uE721  Type here to search</span>", // FIXME (potential solution: search_bar:active existe pour le gtk button, mais pas label (c'qui est en ce moment)
+    "on-click": "fuzzel", // TODO
+    "tooltip": false,
+    "cursor": false
+  },
+
+  "custom/desktops": {
+    "format": "\uE7C4",
+    "format-alt": "\uEB91", // TODO: format-alt just on [regular format and :hover] too
+    "on-click": "", // TODO
+    "tooltip": true,
+    "tooltip-format": "Task View",
+    "cursor": false
+  },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-theme": "Win11", // TODO: corriger certains icons
+    "icon-size": 26, // 24
+    "all-outputs": true,
+    "on-click": "minimize-raise",
+    "on-click-middle": "close",
+    "tooltip": false,
+    "cursor": false
+  },
+
+  "tray": { // TODO: replace with an actual tray submenu?
+    "icon-size": 15,
+    "spacing": 0
+    // doesn't exist, but: "tooltip-format": "Show hidden icons"
+  },
+
+  "battery": {
+    "format": "{icon}",
+    "format-charging": "",
+    "format-plugged": "\uF607", // NOTE: not Windows10 accurate (en bas aussi).
+    "format-icons": [
+      "\uE850",
+      "\uE851",
+      "\uE852",
+      "\uE853",
+      "\uE854",
+      "\uE855",
+      "\uE856",
+      "\uE857",
+      "\uE858",
+      "\uE859",
+      "\uE83F"
+    ],
+    "full-at": 97,
+    "interval": 30,
+    "states": {
+      "good": 90,
+      "warning": 21, // My laptop hardware detects at 21, not 20.
+      "critical": 10
+    },
+    "tooltip": true,
+    "tooltip-format": "{capacity}%" // TODO: validate if matches with win10
+  },
+
+  "battery#charging": {
+    "format": "",
+    "format-charging": "{icon}", // TODO: and eco mode gradation?
+    "format-plugged": "\uF607",
+    "format-icons": [
+      "\uE85A",
+      "\uE85B",
+      "\uE85C",
+      "\uE85D",
+      "\uE85E",
+      "\uE85F",
+      "\uE860",
+      "\uE861",
+      "\uE862",
+      "\uE83E",
+      "\uEA93"
+    ],
+    "full-at": 97,
+    "interval": 30,
+    "states": {
+      "good": 90,
+      "warning": 21,
+      "critical": 10
+    },
+    "tooltip": true,
+    "tooltip-format": "{capacity}%"
+  },
+
+  "network": {
+    "format": "",
+    "format-ethernet": "\uEE77", // TODO: gradation? Is there one in Segoe MDL2 assets?
+    "format-wifi": "{icon}",
+    "format-disconnected": "",
+    "format-disabled": "",
+    "format-icons": [ // TODO: icon juxtaposition (empty bars on win10 are greyed, not invisible). (applies to wireplumber too)
+      "\uE872",
+      "\uE873",
+      "\uE874",
+      "\uE701"
+    ],
+    "interval": 30,
+    "on-click": "nm-connection-editor", // TODO (en bas aussi)
+    "tooltip": true,
+    "tooltip-format": "{essid}\nInternet access",
+    "cursor": false
+  },
+
+  "network#disconnected": {
+    "format": "\uEB63", // TODO: choose accurate icon. Same as disconnected, to not have a disjointed transition?
+    "format-ethernet": "",
+    "format-wifi": "",
+    "format-disconnected": "\uF384",
+    "format-disabled": "\uF384",
+    "interval": 30,
+    "on-click": "nm-connection-editor",
+    "tooltip": true,
+    "tooltip-format": "No internet access",
+    "cursor": false
+  },
+
+  "wireplumber": {
+    "format": "{icon}",
+    "format-muted": "\uE74F",
+    "format-source": "",
+    "format-source-muted": "",
+    "format-icons": [
+      "\uE992",
+      "\uE993",
+      "\uE994",
+      "\uE995"
+    ],
+    "scroll-step": 0.0,
+    "on-click": "pwvucontrol", // TODO (en bas aussi)
+    "on-click-right": "",
+    "max-volume": 100.0,
+    "tooltip": true,
+    "tooltip-format": "{node_name}: {volume}%",
+    "cursor": false
+  },
+
+  "wireplumber#muted": {
+    "format": "",
+    "format-muted": "\uE74F",
+    "format-source": "",
+    "format-source-muted": "",
+    "scroll-step": 0.0,
+    "on-click": "pwvucontrol",
+    "on-click-right": "",
+    "max-volume": 100.0,
+    "tooltip": true,
+    "tooltip-format": "{node_name}: Muted",
+    "cursor": false
+  },
+
+  "custom/kb_layout": {
+    "format": "KBL", // TODO: {text}
+    // "exec": "~/.config/waybar/scripts/fetch_language.sh",
+    "return-type": "json",
+    "restart-interval": 0,
+    "max-length": 3,
+    // "on-click": "~/.config/waybar/scripts/language_menu.sh",
+    "tooltip": true, // TODO: {text} = l'abbreviation 2-3 char, et {alt} = le nom long ex: English (United States)
+    "tooltip-format": "{alt}\n{text} keyboard\n\nTo switch input methods, press\nWindows key+Space." // TODO: use {alt} as the whole tooltip, but translated depending on the system language?
+  },
+  // NOTE: https://github.com/WayfireWM/wayfire/pull/2664
+  //       https://github.com/WayfireWM/wayfire/pull/2610
+
+  "clock": {
+    "format": "{:%I:%M %p\n%Y-%m-%d}",
+    "interval": 60,
+    "on-click": "", // TODO: calendar
+    "justify": "center",
+    "tooltip": true,
+    "tooltip-format": "{:%A, %B %e, %Y}",
+    "cursor": false
+  },
+
+  "custom/notif_center": { // TODO: add alt icons when muted
+    "format": "{icon}",
+    "format-icons": [ "\uE91C", "\uE7E7" ], // TODO
+    "on-click": "", // TODO
+    "tooltip": true, // TODO: {text} = No if 0 else le nb, {alt} = 's' sauf si {text} == 1 then = ''
+    "tooltip-format": "{text} new notification{alt}",
+    "cursor": false
+  },
+
+  "custom/desktop_view_toggle": {
+    "format": " ",
+    "on-click": "", // TODO: send "toggle_showdesktop" ipc to wayfire
+    "tooltip": false,
+    "cursor": false
+  }
+}

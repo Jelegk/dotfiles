@@ -110,4 +110,5 @@
     "window.confirmSaveUntitledWorkspace": false,
     "hexeditor.defaultEndianness": "little",
     "hexeditor.inspectorType": "aside",
+    "C_Cpp.clang_format_fallbackStyle": "WebKit",
 }

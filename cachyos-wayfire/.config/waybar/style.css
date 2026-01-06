@@ -1,0 +1,147 @@
+/* IMPORTANT: Change the last number of the main font-size (line 35) to reflect the screen height. */
+/*            In general,  1K(HD) = 1080,  2K = 1440  and  4K = 2160. */
+
+/* https://docs.gtk.org/gtk3/css-overview.html   */
+/* https://docs.gtk.org/gtk3/css-properties.html */
+
+@define-color bg_color                      #101010;
+@define-color bg_color_hover                #272727; /* TODO: mix bg bg_active [0, 1] */
+@define-color bg_color_active               #333333;
+@define-color bg_color_active_hover         #474747; /* TODO: mix bg bg_active   >1   */
+@define-color fg_color                      #FFFFFF;
+@define-color accent_color                  #CDC6C4;
+@define-color critical_battery_color        #FF0000;
+
+@define-color search_bar_bg_color           #3F3F3F;
+@define-color search_bar_border_color       #656565;
+@define-color search_bar_fg_color           #DCDCDC;
+@define-color search_bar_bg_color_hover     #4B4B4B; /* TODO: mix etc. */
+@define-color search_bar_border_color_hover #808080;
+
+@define-color tray_bg_color                 #191919;
+@define-color tray_border_color             #2D2D2D;
+@define-color tray_fg_color                 #CDCDCD;
+
+@define-color tooltip_bg_color              #1F1F1F;
+@define-color tooltip_border_color          #333333;
+@define-color tooltip_fg_color              #C0C0C0;
+
+@define-color desktop_view_toggle_border_color #707070;
+
+
+
+window#waybar {
+  font-family: "Segoe MDL2 Assets", "Segoe UI Variable";
+  font-size: calc((16px / 1080) * 1080); /* IMPORTANT: this rightmost number here */
+
+  background-color: @bg_color;
+  color: @fg_color;
+}
+
+#image.start_menu,
+#custom-desktops   {
+  min-width: 3em;
+}
+
+#custom-search_bar {
+  min-width: 11em;
+  border: 1px solid @search_bar_border_color;
+  background-color: @search_bar_bg_color;
+  color: @search_bar_fg_color;
+  padding-right: 8em;
+}
+
+#taskbar button {
+  padding: 0 0.75em;
+  border-radius: 0;
+}
+
+#tray *,
+#battery {
+  min-width: 1.6em;
+}
+
+#network,
+#wireplumber {
+  min-width: 1.7em;
+}
+
+#custom-kb_layout {
+  min-width: 3em;
+  font-size: 0.8125em;
+}
+
+#clock {
+  min-width: 5.6em;
+  font-size: 0.8125em;
+}
+
+#custom-notif_center {
+  min-width: 2.5em;
+  margin-right: 0.5em;
+}
+
+#custom-desktop_view_toggle {
+  min-width: 0.3em;
+  border-left: 1px solid @desktop_view_toggle_border_color;
+}
+
+label.module:hover,
+#tray *:hover,
+#taskbar button:hover {
+  background-color: @bg_color_hover;
+}
+
+#taskbar button.active {
+  background-color: @bg_color_active;
+  border-bottom: 2px solid @accent_color;
+}
+
+#taskbar button.active:hover {
+  background-color: @bg_color_active_hover;
+}
+
+#custom-search_bar:hover {
+  background-color: @search_bar_bg_color_hover;
+  border: 2px solid @search_bar_border_color_hover;
+  padding-right: calc(8em - 2px);
+}
+
+@keyframes blink {
+  to {
+    background-color: mix(@bg_color, @critical_battery_color, 0.05);
+    color: @critical_battery_color;
+  }
+}
+#battery.warning:not(.charging),
+#battery.critical:not(.charging) {
+  background-color: @bg_color;
+  color: @fg_color;
+  border: none; /* FIX (yellow border appeared 2026-01-01) */
+  animation-name: blink;
+  animation-duration: 0.4s;
+  animation-timing-function: steps(2);
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#tray menu {
+  border: 1px solid @tray_border_color;
+  border-radius: 0;
+
+  background-color: @tray_bg_color;
+  color: @tray_fg_color;
+}
+
+tooltip {
+  border: 1px solid @tooltip_border_color;
+  border-radius: 5px;
+
+  background-color: @tooltip_bg_color;
+  color: @tooltip_fg_color;
+}
+
+/* TODO: support different main font-size (which alters the bar height) for each monitor output */
+/* FIXME, #taskbar button: min-width aligns left, can't, and padding depends on the icon's shape. (produces potentially more elongated) */
+/* NOTE: Since taskbar only shows running apps, border-bottom would always be visible.  */
+/* TODO, could be cool: https://docs.gtk.org/gtk3/css-overview.html#recoloring-an-image */

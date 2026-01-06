@@ -6,4 +6,5 @@ Terminal=false
 Icon=winetricks
 Type=Application
 Categories=Utility;
+
 NoDisplay=true

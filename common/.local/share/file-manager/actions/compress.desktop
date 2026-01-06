@@ -1,0 +1,7 @@
+[Desktop Entry]
+MimeTypes=inode/directory;video/*;audio/*;image/*;application/*;text/*
+Type=Menu
+Name=Compress (7zip) (menu)
+Tooltip=Compress (7zip)
+Icon=archive-insert
+ItemsList=compress_7z;compress_zip;

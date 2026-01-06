@@ -1,10 +1,11 @@
 [Desktop Entry]
 Type=Action
 Name=Uncompress in new folder (7zip)
-Icon=extract-archive.png
-Profiles=uncompress
+Tooltip=in new folder
+Icon=folder-new
+Profiles=flcl
 
-[X-Action-Profile uncompress]
+[X-Action-Profile flcl]
 MimeTypes=application/*
-Exec=bash usrj_uncompress_in_new_folder %f
+Exec=usrj_uncompress_in_new_folder %f
 SelectionCount==1

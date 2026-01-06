@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Action
+Name=View image(s) informations (exiftool)
+Tooltip=View image(s) informations (exiftool)
+Icon=exifinfo
+Profiles=flcl
+
+[X-Action-Profile flcl]
+MimeTypes=image/*;
+Exec=foot -H -W 40x8 -T 'exif-popup' usrj_print_image_meta %F
+# SelectionCount==1
+

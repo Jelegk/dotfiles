@@ -1,10 +1,11 @@
 [Desktop Entry]
 Type=Action
 Name=Uncompress here (7zip)
-Icon=extract-archive.png
-Profiles=uncompress
+Tooltip=here
+Icon=document-open
+Profiles=flcl
 
-[X-Action-Profile uncompress]
+[X-Action-Profile flcl]
 MimeTypes=application/*
-Exec=bash usrj_uncompress_here %f
+Exec=usrj_uncompress_here %f
 SelectionCount==1

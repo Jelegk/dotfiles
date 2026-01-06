@@ -1,0 +1,6 @@
+#!/bin/bash
+cp "${@: -1}" ~/.config/wallpaper_desktop.tmp
+rm -f ~/.config/wallpaper_desktop_prev
+mv ~/.config/wallpaper_desktop ~/.config/wallpaper_desktop_prev
+mv ~/.config/wallpaper_desktop.tmp ~/.config/wallpaper_desktop
+awww img "${@:1:$#-1}" "$HOME/.config/wallpaper_desktop"

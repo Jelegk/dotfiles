@@ -1,0 +1,7 @@
+[Desktop Entry]
+MimeTypes=image/gif;image/jpe;image/jpg;image/jpeg;image/png;image/tiff;image/tif;image/bmp;image/x-ms-bmp;
+Type=Menu
+Name=Set as wallpaper (awww) (menu)
+Tooltip=Set as wallpaper (awww)
+Icon=user-desktop
+ItemsList=set_as_wallpaper_lanczos;set_as_wallpaper_nearest;

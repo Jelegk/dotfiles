@@ -5,32 +5,26 @@
 MENUENTRIES=("AUDIO" \
 "BLUETOOTH" \
 "NETWORK" \
-"SCREENSHOT_UTILITY" \
-"THEME_&_CURSOR" \
-"EDIT:_ENVIRONMENT_VAR" \
-"EDIT:_I3WM" \
-"EDIT:_I3LOCK-COLOR" \
-"EDIT:_MIMEAPPS" \
-"EDIT:_POLYBAR" \
-"EDIT:_TERMINAL" \
-"EDIT:_TOUCHPAD" \
+"SCREENSHOT_PROGRAM" \
+"EDIT:_COMPOSITOR_CONFIG" \
+"EDIT:_TASKBAR_CONFIG" \
+"EDIT:_TASKBAR_STYLE" \
+"EDIT:_ENV_VARIABLES" \
+"EDIT:_ALIASES" \
+"EDIT:_MIMEAPPS_LISTS" \
 "EDIT:_THIS")
-
-RESIZE="niri msg action set-column-width 1900 && niri msg action set-window-height 1060 && niri msg action move-floating-window -x 10 -y 10 &&"
 
 COMMANDS=("setsid pwvucontrol &&" \
 "setsid gtk-launch blueman-manager || blueman-manager &&" \
 "setsid gtk-launch nm-connection-editor || nm-connection-editor &&" \
 "setsid flameshot config & sleep 0.001 &&" \
-"setsid gtk-launch lxappearance || lxappearance &&" \
-"$RESIZE nano ~/.bash_profile ||                       codium ~/.bash_profile ||                       code ~/.bash_profile &&" \
-"$RESIZE nano ~/.config/i3/config ||                   codium ~/.config/i3/config ||                   code ~/.config/i3/config &&" \
-"$RESIZE nano ~/.config/i3/lock.sh ||                  codium ~/.config/i3/lock.sh ||                  code ~/.config/i3/lock.sh &&" \
-"$RESIZE nano ~/.config/mimeapps.list ||               codium ~/.config/mimeapps.list ||               code ~/.config/mimeapps.list &&" \
-"$RESIZE nano ~/.config/polybar/config_laptop.ini ||   codium ~/.config/polybar/config_laptop.ini ||   code ~/.config/polybar/config_laptop.ini &&" \
-"$RESIZE nano ~/.Xresources ||                         codium ~/.Xresources ||                         code ~/.Xresources &&" \
-"$RESIZE nano /etc/X11/xorg.conf.d/30-touchpad.conf || codium /etc/X11/xorg.conf.d/30-touchpad.conf || code /etc/X11/xorg.conf.d/30-touchpad.conf &&" \
-"$RESIZE nano ~/.local/bin/usrj_settuings ||           codium ~/.local/bin/usrj_settuings ||           code ~/.local/bin/usrj_settuings &&")
+"nano ~/.config/niri/config.kdl ||             codium ~/.config/niri/config.kdl ||             code ~/.config/niri/config.kdl &&" \
+"nano ~/.config/waybar/config ||               codium ~/.config/waybar/config ||               code ~/.config/waybar/config &&" \
+"nano ~/.config/waybar/styles.css ||           codium ~/.config/waybar/styles.css ||           code ~/.config/waybar/styles.css &&" \
+"nano ~/.bash_profile ||                       codium ~/.bash_profile ||                       code ~/.bash_profile &&" \
+"nano ~/.bash_aliases ||                       codium ~/.bash_aliases ||                       code ~/.bash_aliases &&" \
+"nano ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list || codium ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list || code ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list &&" \
+"nano ~/.local/bin/usrj_settuings ||           codium ~/.local/bin/usrj_settuings ||           code ~/.local/bin/usrj_settuings &&")
 
 # ///////////////////////////////////////////////////
 

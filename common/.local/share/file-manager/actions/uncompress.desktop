@@ -1,0 +1,7 @@
+[Desktop Entry]
+MimeTypes=application/*
+Type=Menu
+Name=Uncompress (7zip) (menu)
+Tooltip=Uncompress (7zip)
+Icon=extract-archive
+ItemsList=uncompress_here;uncompress_new_folder;
