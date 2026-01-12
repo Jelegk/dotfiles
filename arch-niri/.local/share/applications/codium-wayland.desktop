@@ -1,6 +1,6 @@
 [Desktop Entry]
-Name=VSCodium - Wayland
-Comment=Code Editing. Redefined.
+Name=VSCodium
+Comment=Code Editing. Redefined. Wayland also.
 GenericName=Text Editor
 Exec=/usr/bin/codium --enable-features=UseOzonePlatform,WaylandWindowDecorations --ozone-platform=wayland %F
 Icon=VSCodium

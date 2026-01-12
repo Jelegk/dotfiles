@@ -1,3 +1,4 @@
+
 /* IMPORTANT: Change the last number of the main font-size (line 35) to reflect the screen height. */
 /*            In general,  1K(HD) = 1080,  2K = 1440  and  4K = 2160. */
 
@@ -9,8 +10,7 @@
 @define-color bg_color_active               #333333;
 @define-color bg_color_active_hover         #474747; /* TODO: mix bg bg_active   >1   */
 @define-color fg_color                      #FFFFFF;
-@define-color accent_color                  #CDC6C4;
-@define-color critical_battery_color        #FF0000;
+@define-color accent_color                  #CDC6C4; /* @theme_selected_bg_color */ /* https://gitlab.gnome.org/GNOME/gtk/-/blob/gtk-3-24/gtk/theme/Adwaita/_colors-public.scss */
 
 @define-color search_bar_bg_color           #3F3F3F;
 @define-color search_bar_border_color       #656565;
@@ -22,11 +22,15 @@
 @define-color tray_border_color             #2D2D2D;
 @define-color tray_fg_color                 #CDCDCD;
 
+@define-color critical_battery_color        #FF0000;
+
+@define-color network_inactive_color        #909090;
+
 @define-color tooltip_bg_color              #1F1F1F;
 @define-color tooltip_border_color          #333333;
 @define-color tooltip_fg_color              #C0C0C0;
 
-@define-color desktop_view_toggle_border_color #707070;
+@define-color showdesktop_border_color #707070;
 
 
 
@@ -38,8 +42,12 @@ window#waybar {
   color: @fg_color;
 }
 
-#image.start_menu,
-#custom-desktops   {
+#custom-start_menu {
+  font-family: "oslogo";
+}
+
+#custom-start_menu,
+#custom-taskview   {
   min-width: 3em;
 }
 
@@ -81,14 +89,16 @@ window#waybar {
   margin-right: 0.5em;
 }
 
-#custom-desktop_view_toggle {
+#custom-showdesktop {
   min-width: 0.3em;
-  border-left: 1px solid @desktop_view_toggle_border_color;
+  border-left: 1px solid @showdesktop_border_color;
 }
 
 label.module:hover,
-#tray *:hover,
-#taskbar button:hover {
+#custom-search_bar.alt,
+#custom-taskview.alt,
+#taskbar button:hover,
+#tray *:hover {
   background-color: @bg_color_hover;
 }
 
@@ -104,6 +114,13 @@ label.module:hover,
 #custom-search_bar:hover {
   background-color: @search_bar_bg_color_hover;
   border: 2px solid @search_bar_border_color_hover;
+  padding-right: calc(8em - 2px);
+}
+
+#custom-search_bar.alt {
+  background-color: white;
+  color: black;
+  border: 2px solid black;
   padding-right: calc(8em - 2px);
 }
 
@@ -125,6 +142,30 @@ label.module:hover,
   animation-direction: alternate;
 }
 
+#network.disabled {
+  color: @network_inactive_color
+}
+
+menuitem {
+  font-size: 1.3em;
+  min-width: 15em;
+  min-height: 2.4em;
+  border-radius: 0;
+  margin: 0.15em 0.2em 0.05em 0.25em;
+}
+
+/* Since the menu module doesn't have
+   a higher specificity than the tray
+   menu, we have to explicitly unset. */
+
+#tray menuitem {
+  font-size: unset;
+  min-width: unset;
+  min-height: unset;
+  margin: unset;
+}
+
+menu,
 #tray menu {
   border: 1px solid @tray_border_color;
   border-radius: 0;

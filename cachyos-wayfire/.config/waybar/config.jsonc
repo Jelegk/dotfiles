@@ -9,9 +9,9 @@
   "position": "bottom",
   "height": 39, // NOTE: proportional to a 16:9 1080p screen.
   "modules-left": [
-    "image#start_menu",
+    "custom/start_menu",
     "custom/search_bar",
-    "custom/desktops",
+    "custom/taskview",
     "wlr/taskbar"
   ],
   "modules-center": [ ],
@@ -26,20 +26,26 @@
     "custom/kb_layout",
     "clock",
     "custom/notif_center",
-    "custom/desktop_view_toggle"
+    "custom/showdesktop"
   ],
   "margin": "0 0 0 0",
   "spacing": 0,
-  "mode": "dock",
   "exclusive": true,
   "fixed-center": true,
+  // "reload_style_on_change": true,
 
 
 
-  "image#start_menu": {
-    "path": ".local/share/icons/Win11-dark/apps/scalable/distributor-logo-blackarch.svg",
-    "size": 32, // TODO: find a way to make it scalable. font icon?
-    "on-click": "fuzzel", // TODO
+  "custom/start_menu": {
+    "format": "\uF8B5",
+    "menu": "on-click",
+    "menu-file": "~/.config/waybar/power_menu.xml", // TODO: make a real fixed one (with another program, most likely)
+    "menu-actions": {
+      "suspend": "systemctl suspend",
+      "hibernate": "systemctl hibernate",
+      "poweroff": "systemctl poweroff",
+      "reboot": "systemctl reboot"
+    },
     "tooltip": true,
     "tooltip-format": "Start",
     "cursor": false // NOTE: to suppress cursor changing behavior, but adds a false warning about unknown option (2026-01-01).
@@ -47,25 +53,29 @@
 
   "custom/search_bar": {
     "format": "\uE721  Type here to search",
-    "format-alt": "<span bgcolor=\"white\" fgcolor=\"black\">\uE721  Type here to search</span>", // FIXME (potential solution: search_bar:active existe pour le gtk button, mais pas label (c'qui est en ce moment)
-    "on-click": "fuzzel", // TODO
+    "exec": "~/.config/waybar/usrj_search_bar.py",
+    "exec-on-event": false,
+    "return-type": "json",
+    "on-click": "fuzzel",
     "tooltip": false,
     "cursor": false
   },
 
-  "custom/desktops": {
-    "format": "\uE7C4",
-    "format-alt": "\uEB91", // TODO: format-alt just on [regular format and :hover] too
-    "on-click": "", // TODO
+  "custom/taskview": {
+    "format": "{text}",
+    "exec": "~/.config/waybar/usrj_taskview.py",
+    "exec-on-event": false,
+    "return-type": "json",
+    "on-click": "~/.config/waybar/usrj_taskview_on_click.py",
     "tooltip": true,
     "tooltip-format": "Task View",
     "cursor": false
-  },
+  }, // NOTE: since activating the scale plugins removes input privilege on waybar, it can't be toggled back like Windows.
 
   "wlr/taskbar": {
     "format": "{icon}",
-    "icon-theme": "Win11", // TODO: corriger certains icons
-    "icon-size": 26, // 24
+    // "icon-theme": "Win11", // TODO: corriger certains icons
+    "icon-size": 26,
     "all-outputs": true,
     "on-click": "minimize-raise",
     "on-click-middle": "close",
@@ -82,7 +92,7 @@
   "battery": {
     "format": "{icon}",
     "format-charging": "",
-    "format-plugged": "\uF607", // NOTE: not Windows10 accurate (en bas aussi).
+    "format-plugged": "\uF607", // NOTE: not Windows10 accurate? (en bas aussi).
     "format-icons": [
       "\uE850",
       "\uE851",
@@ -109,7 +119,7 @@
 
   "battery#charging": {
     "format": "",
-    "format-charging": "{icon}", // TODO: and eco mode gradation?
+    "format-charging": "{icon}", // TODO: eco mode gradation? what would eco mode be?
     "format-plugged": "\uF607",
     "format-icons": [
       "\uE85A",
@@ -137,7 +147,7 @@
 
   "network": {
     "format": "",
-    "format-ethernet": "\uEE77", // TODO: gradation? Is there one in Segoe MDL2 assets?
+    "format-ethernet": "\uEE77",
     "format-wifi": "{icon}",
     "format-disconnected": "",
     "format-disabled": "",
@@ -148,14 +158,14 @@
       "\uE701"
     ],
     "interval": 30,
-    "on-click": "nm-connection-editor", // TODO (en bas aussi)
+    "on-click": "nm-connection-editor", // TODO: Win10 accurate menu (en bas aussi)
     "tooltip": true,
     "tooltip-format": "{essid}\nInternet access",
     "cursor": false
   },
 
   "network#disconnected": {
-    "format": "\uEB63", // TODO: choose accurate icon. Same as disconnected, to not have a disjointed transition?
+    "format": "\uEB63",
     "format-ethernet": "",
     "format-wifi": "",
     "format-disconnected": "\uF384",
@@ -179,7 +189,7 @@
       "\uE995"
     ],
     "scroll-step": 0.0,
-    "on-click": "pwvucontrol", // TODO (en bas aussi)
+    "on-click": "pwvucontrol", // TODO: Win10 accurate menus (slider, rightclick et/ou mixer) (en bas aussi)
     "on-click-right": "",
     "max-volume": 100.0,
     "tooltip": true,
@@ -202,40 +212,38 @@
   },
 
   "custom/kb_layout": {
-    "format": "KBL", // TODO: {text}
-    // "exec": "~/.config/waybar/scripts/fetch_language.sh",
+    "format": "{text}",
+    "exec": "~/.config/waybar/usrj_kb_layout.py",
+    "exec-on-event": false,
     "return-type": "json",
-    "restart-interval": 0,
     "max-length": 3,
-    // "on-click": "~/.config/waybar/scripts/language_menu.sh",
-    "tooltip": true, // TODO: {text} = l'abbreviation 2-3 char, et {alt} = le nom long ex: English (United States)
-    "tooltip-format": "{alt}\n{text} keyboard\n\nTo switch input methods, press\nWindows key+Space." // TODO: use {alt} as the whole tooltip, but translated depending on the system language?
+    // "on-click": "", // TODO: Win10 accurate something
+    "tooltip": true
+    // (tooltip-format fed by json)
   },
-  // NOTE: https://github.com/WayfireWM/wayfire/pull/2664
-  //       https://github.com/WayfireWM/wayfire/pull/2610
 
   "clock": {
     "format": "{:%I:%M %p\n%Y-%m-%d}",
     "interval": 60,
-    "on-click": "", // TODO: calendar
+    "on-click": "", // TODO: Win10 accurate calendar
     "justify": "center",
     "tooltip": true,
     "tooltip-format": "{:%A, %B %e, %Y}",
     "cursor": false
   },
 
-  "custom/notif_center": { // TODO: add alt icons when muted
+  "custom/notif_center": {
     "format": "{icon}",
-    "format-icons": [ "\uE91C", "\uE7E7" ], // TODO
+    "format-icons": [ "\uE91C", "\uE7E7" ], // TODO: choose with json return type of a script
     "on-click": "", // TODO
     "tooltip": true, // TODO: {text} = No if 0 else le nb, {alt} = 's' sauf si {text} == 1 then = ''
     "tooltip-format": "{text} new notification{alt}",
     "cursor": false
   },
 
-  "custom/desktop_view_toggle": {
+  "custom/showdesktop": {
     "format": " ",
-    "on-click": "", // TODO: send "toggle_showdesktop" ipc to wayfire
+    "on-click": "~/.config/waybar/usrj_showdesktop_on_click.py",
     "tooltip": false,
     "cursor": false
   }

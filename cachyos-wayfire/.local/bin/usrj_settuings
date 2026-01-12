@@ -19,8 +19,8 @@ COMMANDS=("setsid pwvucontrol &&" \
 "setsid gtk-launch nm-connection-editor || nm-connection-editor &&" \
 "setsid flameshot config & sleep 0.001 &&" \
 "nano ~/.config/wayfire/wayfire.ini ||         codium ~/.config/wayfire/wayfire.ini ||         code ~/.config/wayfire/wayfire.ini &&" \
-"nano ~/.config/waybar/config ||               codium ~/.config/waybar/config ||               code ~/.config/waybar/config &&" \
-"nano ~/.config/waybar/styles.css ||           codium ~/.config/waybar/styles.css ||           code ~/.config/waybar/styles.css &&" \
+"nano ~/.config/waybar/config.jsonc ||         codium ~/.config/waybar/config.jsonc |          code ~/.config/waybar/config.jsonc &&" \
+"nano ~/.config/waybar/style.css ||            codium ~/.config/waybar/style.css ||            code ~/.config/waybar/style.css &&" \
 "nano ~/.bash_profile ||                       codium ~/.bash_profile ||                       code ~/.bash_profile &&" \
 "nano ~/.bash_aliases ||                       codium ~/.bash_aliases ||                       code ~/.bash_aliases &&" \
 "nano ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list || codium ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list || code ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list &&" \

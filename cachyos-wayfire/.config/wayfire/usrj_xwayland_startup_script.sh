@@ -8,4 +8,4 @@ fi
 # Log that a X client opened.
 DATE=$(date '+%F %T')
 command -v xlsclients >/dev/null 2>&1 && XCLIENTS=$(xlsclients -a) # (requires xorg-xlsclients package)
-echo "$DATE  $XCLIENTS" >> "${HOME}/.config/wayfire/usrj_log_xwayland_usages.txt"
+echo "$DATE  $XCLIENTS" >> "${HOME}/.config/wayfire/usrj_xwayland_usages.log"

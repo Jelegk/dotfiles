@@ -1,12 +1,13 @@
 set afterends
 set autoindent
-# set linenumbers
+set linenumbers
 set numbercolor italic,lightblack,normal
 set mouse
 set tabsize 2
 set tabstospaces
+include /usr/share/nano/*.nanorc
 
-# Auto bracket wraps
+# Auto bracket wraps shortcuts
 bind M-( "(){left}" main
 bind M-{ "{{}}{left}" main
 bind M-[ "[]{left}" main
