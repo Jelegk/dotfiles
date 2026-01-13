@@ -1,0 +1,3 @@
+#!/bin/sh
+
+[ "$2" = up ] && systemctl start ntpdate.service
