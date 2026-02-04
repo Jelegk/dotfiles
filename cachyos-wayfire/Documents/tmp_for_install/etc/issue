@@ -1,38 +1,37 @@
-\e[?25l
-\e[86G                                \e[36m,XXXX,
-\e[86G                               XXXXXXXX
-\e[86G                               XXXXXXXX
-\e[86G                               \e[34m;;\e[36mXXXX\e[34m;;
-\e[86G                                 ;;;;
-\e[86G                            \e[36m,;;;XXXXXX;;;,
-\e[86G                       ,;;XXXXXXXXXXXXXXXXXX;;,
-\e[86G             ;XXXX;  ;;XXXXXXXXXXXXXXXXXXXXXXXX;;  ;XXXX;
-\e[86G         ;;XXXXXXX; ;XXXXXXXX´\e[34m;;;;;;;;;;\e[36m`XXXXXXXX; ;XXXXXXX;;
-\e[86G       ;XXXXXXXX\e[34m;´\e[36m;XXXXXXX\e[34m;;;´          `;;;\e[36mXXXXXXX;\e[34m`;\e[36mXXXXXXXX;
-\e[86G     ;XXXXXXX\e[34m;;´ \e[36m;XXXXXX\e[34m;;;´  \e[36m,;XXXXXX;,  \e[34m`;;;\e[36mXXXXXX; \e[34m`;;\e[36mXXXXXXX;
-\e[86G    ;XXXXXX\e[34m;;´  \e[36m,;XXXXX\e[34m;;´  \e[36m;XXXXXXXXXXXX;  \e[34m`;;\e[36mXXXXX;,  \e[34m`;;\e[36mXXXXXX;
-\e[86G   XXXXXX\e[34m;;´    \e[36m;XXXXX\e[34m;;   \e[36m;XXXXXXXXXXXXXX;   \e[34m;;\e[36mXXXXX;    \e[34m`;;\e[36mXXXXXX
-\e[86G  ;XXXXX\e[34m;;      \e[36m;XXXXX;   \e[34m;\e[36mXXXXXXXXXXXXXXXX\e[34m;   \e[36m;XXXXX;      \e[34m;;\e[36mXXXXX;
-\e[86G  XXXXXX\e[34m;       \e[36m;XXXXX;   \e[34m;\e[36mXXXXXXXXXXXXXXXX\e[34m;   \e[36m;XXXXX;       \e[34m;\e[36mXXXXXX
-\e[86G  \e[34m;\e[36mXXXXX;       ;XXXXX;   \e[34m;;\e[36mXXXXXXXXXXXXXX\e[34m;;   \e[36m;XXXXX;       \e[36m;XXXXX\e[34m;
-\e[86G  \e[34m`;\e[36mXXXXXX;      XXXXXX;   \e[34m;;\e[36mXXXXXXXXXXXX\e[34m;;   \e[36m;XXXXXX      ;XXXXXX\e[34m;´
-\e[86G   \e[34m`;;\e[36mXXXXXX;    \e[34m;\e[36mXXXXXX;   \e[34m`;;\e[36m`XXXXXX´\e[34m;;´   \e[36m;XXXXXX\e[34m;    \e[36m;XXXXXX\e[34m;;´
-\e[86G     \e[34m`;\e[36mXXXXXXXX;  \e[34m;;\e[36mXXXXXX;   \e[34m`;;;;;;;;´   \e[36m;XXXXXX\e[34m;;  \e[36m;XXXXXXXX\e[34m;´
-\e[86G       \e[34m`;;\e[36mXXXXXXX; \e[34m;;\e[36mXXXXXXXX;          ;XXXXXXXX\e[34m;; \e[36m;XXXXXXX\e[34m;;´
-\e[86G  \e[36m,XXXX, \e[34m`;;\e[36mXXXXXX; \e[34m`;;\e[36mXXXXXXXXX;    ;XXXXXXXXX\e[34m;;´ \e[36m;XXXXXX\e[34m;;´ \e[36m,XXXX,
-\e[86G XXXXXXXX  \e[34m`;;;\e[36mXXX;   \e[34m`;;\e[36mXXXXXXXX;  ;XXXXXXXX\e[34m;;´   \e[36m;XXX\e[34m;;;´  \e[36mXXXXXXXX
-\e[86G XXXXXXXX     \e[34m`;;;´     `;;;\e[36mXXXXX;  ;XXXXX\e[34m;;;´     `;;;´     \e[36mXXXXXXXX
-\e[86G \e[34m;\e[36m`XXXX´\e[34m;                 `;;\e[36mXXXX;  ;XXXX\e[34m;;´                 ;\e[36m`XXXX´\e[34m;
-\e[86G  `;;;;´                   \e[34m;;\e[36mXXXX;  ;XXXX\e[34m;;                   `;;;;´
-\e[86G                           \e[34m;;\e[36mXXXX;  ;XXXX\e[34m;;
-\e[86G               \e[36m,;xx;,      \e[34m;\e[36mXXXXX;  ;XXXXX\e[34m;       \e[36m,;xx;,
-\e[86G               ;XXXXX;;,  ,;XXXXX;  ;XXXXX;,   ,;;XXXXX;
-\e[86G               \e[34m;\e[36mXXXXXXXXXXXXXXXX\e[34m;´  `;\e[36mXXXXXXXXXXXXXXXX\e[34m;
-\e[86G                ;;\e[36mXXXXXXXXXXXXX\e[34m;;    ;;\e[36mXXXXXXXXXXXXX\e[34m;;
-\e[86G                 `;;;;\e[36mXXXXXX\e[34m;;;´      `;;;\e[36mXXXXXX\e[34m;;;;´
-\e[86G                    `;;;;;;;;´          `;;;;;;;;´
+[?25l[2J[H                                [36m,XXXX,
+                               XXXXXXXX
+                               XXXXXXXX
+                               [34m;[36m`XXXX´[34m;
+                                `;;;;´
+                            [36m,;;;XXXXXX;;;,
+                       ,;;XXXXXXXXXXXXXXXXXX;;,
+             ;XXXX;  ;;XXXXXXXXXXXXXXXXXXXXXXXX;;  ;XXXX;
+         ;;XXXXXXX; ;XXXXXXXX´[34m;;;;;;;;;;[36m`XXXXXXXX; ;XXXXXXX;;
+       ;XXXXXXXX[34m;´[36m;XXXXXXX[34m;;;´          `;;;[36mXXXXXXX;[34m`;[36mXXXXXXXX;
+     ;XXXXXXX[34m;;´ [36m;XXXXXX[34m;;;´  [36m,;XXXXXX;,  [34m`;;;[36mXXXXXX; [34m`;;[36mXXXXXXX;
+    ;XXXXXX[34m;;´  [36m,;XXXXX[34m;;´  [36m;XXXXXXXXXXXX;  [34m`;;[36mXXXXX;,  [34m`;;[36mXXXXXX;
+   XXXXXX[34m;;´    [36m;XXXXX[34m;;   [36m;XXXXXXXXXXXXXX;   [34m;;[36mXXXXX;    [34m`;;[36mXXXXXX
+  ;XXXXX[34m;;      [36m;XXXXX;   [34m;[36mXXXXXXXXXXXXXXXX[34m;   [36m;XXXXX;      [34m;;[36mXXXXX;
+  XXXXXX[34m;       [36m;XXXXX;   [34m;[36mXXXXXXXXXXXXXXXX[34m;   [36m;XXXXX;       [34m;[36mXXXXXX
+  [34m;[36mXXXXX;       ;XXXXX;   [34m;;[36mXXXXXXXXXXXXXX[34m;;   [36m;XXXXX;       [36m;XXXXX[34m;
+  [34m`;[36mXXXXXX;      XXXXXX;   [34m;;[36mXXXXXXXXXXXX[34m;;   [36m;XXXXXX      ;XXXXXX[34m;´
+   [34m`;;[36mXXXXXX;    [34m;[36mXXXXXX;   [34m`;;[36m`XXXXXX´[34m;;´   [36m;XXXXXX[34m;    [36m;XXXXXX[34m;;´
+     [34m`;[36mXXXXXXXX;  [34m;;[36mXXXXXX;   [34m`;;;;;;;;´   [36m;XXXXXX[34m;;  [36m;XXXXXXXX[34m;´
+       [34m`;;[36mXXXXXXX; [34m;;[36mXXXXXXXX;          ;XXXXXXXX[34m;; [36m;XXXXXXX[34m;;´
+  [36m,XXXX, [34m`;;[36mXXXXXX; [34m`;;[36mXXXXXXXXX;    ;XXXXXXXXX[34m;;´ [36m;XXXXXX[34m;;´ [36m,XXXX,
+ XXXXXXXX  [34m`;;;[36mXXX;   [34m`;;[36mXXXXXXXX;  ;XXXXXXXX[34m;;´   [36m;XXX[34m;;;´  [36mXXXXXXXX
+ XXXXXXXX     [34m`;;;´     `;;;[36mXXXXX;  ;XXXXX[34m;;;´     `;;;´     [36mXXXXXXXX
+ [34m;[36m`XXXX´[34m;                 `;[36m;XXXX;  ;XXXX;[34m;´                 ;[36m`XXXX´[34m;
+  `;;;;´                   [34m;[36m;XXXX;  ;XXXX;[34m;                   `;;;;´
+                           [34m;[36m;XXXX;  ;XXXX;[34m;
+               [36m,;xx;,      [34m;[36mXXXXX;  ;XXXXX[34m;      [36m,;xx;,
+               ;XXXXX;;,  ,;XXXXX;  ;XXXXX;,  ,;;XXXXX;
+               [34m;[36mXXXXXXXXXXXXXXXX[34m;´  `;[36mXXXXXXXXXXXXXXXX[34m;
+                ;;[36mXXXXXXXXXXXXX[34m;;    ;;[36mXXXXXXXXXXXXX[34m;;
+                 `;;;;[36mXXXXXX[34m;;;´      `;;;[36mXXXXXX[34m;;;;´
+                    `;;;;;;;;´          `;;;;;;;;´
 
-\e[86G                   \S{PRETTY_NAME} \r (\l)
+                   \S{PRETTY_NAME} \r (\l)
 
 
-\e[86G                   \e[?25h
+                   [?25h

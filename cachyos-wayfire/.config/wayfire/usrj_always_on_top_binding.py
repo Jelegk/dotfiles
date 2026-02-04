@@ -23,15 +23,15 @@ if "always_on_top" in data:
   if focused_view["id"] in data["always_on_top"]:
     data["always_on_top"].remove(focused_view["id"])
     sock.set_view_always_on_top(focused_view["id"], False)
-    subprocess.Popen(["pw-cat", "-p", "--media-role=Event", "--volume=1", wf_path + "Speech Sleep.wav"])
+    subprocess.Popen(["pw-cat", "-p", "--media-role=Event", "--volume=5", wf_path + "Speech Sleep.wav"])
   else:
     data["always_on_top"].append(focused_view["id"])
     sock.set_view_always_on_top(focused_view["id"], True)
-    subprocess.Popen(["pw-cat", "-p", "--media-role=Event", "--volume=1", wf_path + "Speech On.wav"])
+    subprocess.Popen(["pw-cat", "-p", "--media-role=Event", "--volume=5", wf_path + "Speech On.wav"])
 else:
   data["always_on_top"] = [ focused_view["id"] ]
   sock.set_view_always_on_top(focused_view["id"], True)
-  subprocess.Popen(["pw-cat", "-p", "--media-role=Event", "--volume=1", wf_path + "Speech On.wav"])
+  subprocess.Popen(["pw-cat", "-p", "--media-role=Event", "--volume=5", wf_path + "Speech On.wav"])
 
 with open(wf_path + "persistent_config.json", 'w') as file:
   json.dump(data, file, indent=2)

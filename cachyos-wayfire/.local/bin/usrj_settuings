@@ -1,108 +1,115 @@
 #!/bin/bash
 # //////////////////[ EDIT THESE ]//////////////////
 
-# (no spaces, it just takes the first word otherwise and I can't be bothered to fix it)
-MENUENTRIES=("AUDIO" \
+MENUENTRIES=(\
+"AUDIO" \
 "BLUETOOTH" \
 "NETWORK" \
-"SCREENSHOT_PROGRAM" \
-"EDIT:_COMPOSITOR_CONFIG" \
-"EDIT:_TASKBAR_CONFIG" \
-"EDIT:_TASKBAR_STYLE" \
-"EDIT:_ENV_VARIABLES" \
-"EDIT:_ALIASES" \
-"EDIT:_MIMEAPPS_LISTS" \
-"EDIT:_THIS")
+"SCREENSHOT PROGRAM" \
+"EDIT: COMPOSITOR CONFIG" \
+"EDIT: TASKBAR CONFIG" \
+"EDIT: TASKBAR STYLE" \
+"EDIT: ENV VARIABLES" \
+"EDIT: ALIASES" \
+"EDIT: MIMEAPPS LISTS" \
+"EDIT: THIS" \
+)
 
-COMMANDS=("setsid pwvucontrol &&" \
-"setsid gtk-launch blueman-manager || blueman-manager &&" \
-"setsid gtk-launch nm-connection-editor || nm-connection-editor &&" \
-"setsid flameshot config & sleep 0.001 &&" \
-"nano ~/.config/wayfire/wayfire.ini ||         codium ~/.config/wayfire/wayfire.ini ||         code ~/.config/wayfire/wayfire.ini &&" \
-"nano ~/.config/waybar/config.jsonc ||         codium ~/.config/waybar/config.jsonc |          code ~/.config/waybar/config.jsonc &&" \
-"nano ~/.config/waybar/style.css ||            codium ~/.config/waybar/style.css ||            code ~/.config/waybar/style.css &&" \
-"nano ~/.bash_profile ||                       codium ~/.bash_profile ||                       code ~/.bash_profile &&" \
-"nano ~/.bash_aliases ||                       codium ~/.bash_aliases ||                       code ~/.bash_aliases &&" \
-"nano ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list || codium ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list || code ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list &&" \
-"nano ~/.local/bin/usrj_settuings ||           codium ~/.local/bin/usrj_settuings ||           code ~/.local/bin/usrj_settuings &&")
+COMMANDS=(\
+"pipemixer" \
+"bluetui" \
+"nmtui" \
+"setsid flameshot config & sleep 0.001" \
+"nano ~/.config/wayfire/wayfire.ini" \
+"nano ~/.config/waybar/config.jsonc" \
+"nano ~/.config/waybar/style.css" \
+"nano ~/.bash_profile" \
+"nano ~/.bash_aliases" \
+"nano ~/.local/share/applications/mimeinfo.cache ~/.config/mimeapps.list" \
+"nano ~/.local/bin/usrj_settuings" \
+)
 
 # ///////////////////////////////////////////////////
-
 
 # Great ressource:
 # https://github.com/dylanaraps/writing-a-tui-in-bash
 
-# const:
-NBMENUENTRIES=${#MENUENTRIES[@]}
-# var:
-MENUINDEX=0
-SELECT=0
-MOVED=0
+menuIdx=0
+selected=0
+moved=0
+
+longestEntryCharCount=0
+for i in ${!MENUENTRIES[@]}; do
+  [ ${#MENUENTRIES[i]} -gt $longestEntryCharCount ] && longestEntryCharCount=${#MENUENTRIES[i]}
+done
 
 redraw() {
-  #                                              + 2 being the "> " cursor next to the selection
-  WIDTHPOS=$(((CHARWIDTH - LARGESTENTRYCHARCOUNT + 2) / 2))
+  #                                             (+ 2 = "> " next to the selection)
+  widthPos=$(((charWidth - longestEntryCharCount + 2) / 2))
+
   # Move cursor to middle
-  printf "\e[%s;%sH" "$((($CHARHEIGHT - $NBMENUENTRIES) / 2))" "$WIDTHPOS"
+  printf "[%u;%uH" $((($charHeight - ${#MENUENTRIES[@]}) / 2)) $widthPos
+
   for i in ${!MENUENTRIES[@]}; do
-    if [[ $i -eq $MENUINDEX ]]; then
-      printf "> \e[7m%s\e[0m" "${MENUENTRIES[i]}"
+    if [ $i -eq $menuIdx ]; then
+      printf "> [7m%s[0m" "${MENUENTRIES[i]}"
     else
       printf "  ${MENUENTRIES[i]}"
     fi
-   # "Newline" to WIDTHPOS (align to WIDTHPOS & move cursor down a line)
-    printf "\e[%sG\e[B" "$WIDTHPOS"
+
+   # Align to widthPos & move cursor down a line
+    printf "[%uG[B" $widthPos
   done
 }
 
 onResize() {
-  read -r CHARHEIGHT CHARWIDTH < <(stty size)
-  printf "\e[2J"
+  read -r charHeight charWidth < <(stty size)
+  printf "[2J"
   redraw
 }
+
 # Handle window resize event
 trap 'onResize' WINCH
 
 # Save (and clear) the user's terminal screen, hide the cursor and disable line wrapping
-printf '\e[?1049h\e[?25l\e[?7l'
-
-LARGESTENTRYCHARCOUNT=0
-for i in ${!MENUENTRIES[@]}; do
-  [[ ${#MENUENTRIES[i]} -gt $LARGESTENTRYCHARCOUNT ]] && LARGESTENTRYCHARCOUNT=${#MENUENTRIES[i]}
-done
+printf '[?1049h[?25l[?7l'
 
 onResize
 
-while [ $SELECT -eq 0 ]
-do
+while [ $selected -eq 0 ]; do
   # https://stackoverflow.com/a/61483332
-  escape_char=$(printf "\u1b")
-  read -rsn1 INPUT # get 1 character
-  if [[ $INPUT == $escape_char ]]; then
-    read -rsn4 -t 0.001 INPUT # read 2 more chars
-  fi
-  case $INPUT in
+  read -rsn1 userInput # get 1 character
+  [ "$userInput" == "" ] && read -rsn4 -t 0.001 userInput # read 2 more chars
+
+  case $userInput in
     # q, delete or shift+delete
     'q' | '[3~' | '[3$')
-      break ;;
+      break
+      ;;
+
     # up or left, with/without shift
     '[A' | '[a' | '[D' | '[d')
-      ((MENUINDEX-=1)) 
-      [[ $MENUINDEX -lt 0 ]] && MENUINDEX=$(($NBMENUENTRIES - 1))
-      MOVED=1 ;;
+      ((menuIdx-=1))
+      [ $menuIdx -lt 0 ] && menuIdx=$((${#MENUENTRIES[@]} - 1))
+      moved=1
+      ;;
+
     # down or right, with/without shift
     '[B' | '[b' | '[C' | '[c')
-      ((MENUINDEX+=1))
-      [[ $MENUINDEX -ge $NBMENUENTRIES ]] && MENUINDEX=0
-      MOVED=1 ;;
+      ((menuIdx+=1))
+      [ $menuIdx -ge ${#MENUENTRIES[@]} ] && menuIdx=0
+      moved=1
+      ;;
+
     # enter, space and unfortunately escape...
     '')
-      SELECT=1 ;;
+      selected=1
+      ;;
   esac
 
-  [[ $MOVED == 1 ]] && redraw && MOVED=0
-  [[ $SELECT == 1 ]] && eval "${COMMANDS[$MENUINDEX]} kill -9 $PPID"
+  [ $moved -eq 1 ] && redraw && moved=0
+  [ $selected -eq 1 ] && eval "${COMMANDS[$menuIdx]}" && break
 done
 
 # Restore the user's terminal screen, show cursor and reenable line wrapping
-printf '\e[?1049l\e[?25h\e[?7h'
+printf '[?1049l[?25h[?7h'

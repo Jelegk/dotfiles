@@ -1,0 +1,30 @@
+#!/bin/bash
+# Copies $1's thumbnail to $2 and up
+
+if [ "$1" = -h ] || [ "$1" = --help ]; then
+  echo "Usage: usrj_transfer_audiofile_thumbnail [copied file] [receiver file ...]"
+  exit
+fi
+
+if [ $# -lt 2 ]; then
+  echo "Not enough files in arguments. Aborting."
+  exit
+fi
+
+
+for file in "${@:2}"; do
+  ffmpeg -hide_banner -i "$1" -c:v copy -update true -frames:v 1 /tmp/thumb.jpg
+
+  filename=$(basename -- "$file")
+  extension="${filename##*.}"
+
+  if [ $extension = "opus" ]; then
+    opustags --set-cover /tmp/thumb.jpg --in-place "$file" # TODO: replace with a write to metadata of METADATA_BLOCK_PICTURE with ffmpeg
+  else
+    ffmpeg -hide_banner -i "$file" -i /tmp/thumb.jpg -map 0:a -c:a copy -c:v mjpeg "copy.$file"
+    # ffmpeg -hide_banner -i "$file" -i "$1" -map 0:a -map 1:v -c:a copy -c:v mjpeg "copy.$file"
+    mv "copy.$file" "$file"
+  fi
+
+  rm /tmp/thumb.jpg
+done

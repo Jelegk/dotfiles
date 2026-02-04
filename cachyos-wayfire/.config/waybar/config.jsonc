@@ -43,8 +43,8 @@
     "menu-actions": {
       "suspend": "systemctl suspend",
       "hibernate": "systemctl hibernate",
-      "poweroff": "systemctl poweroff",
-      "reboot": "systemctl reboot"
+      "poweroff": "wlr-randr --output $(wlr-randr | head -1 | cut -d' ' -f1) --off; systemctl poweroff",
+      "reboot": "wlr-randr --output $(wlr-randr | head -1 | cut -d' ' -f1) --off; systemctl reboot"
     },
     "tooltip": true,
     "tooltip-format": "Start",
@@ -248,3 +248,8 @@
     "cursor": false
   }
 }
+
+// TODO: pinned apps in taskbar
+// TODO: change network to be a group with network + bluetooth
+// TODO: change wireplumber to be a group with output sink + input sink (mic)
+// TODO: change battery to be a group with battery + brigthness
