@@ -1,0 +1,10 @@
+#!/bin/sh
+
+ if [ ! command -v wlr-randr >/dev/null 2>&1 ]; then
+   echo "wlr-randr: command not found"
+   exit
+ fi
+
+for m in $(wlr-randr --json | grep name | cut -d'"' -f4); do
+  wlr-randr --output $m --toggle
+done
