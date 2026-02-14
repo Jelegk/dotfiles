@@ -1,13 +1,11 @@
 #!/bin/sh
 
-trap "kill -- -$$" EXIT # Kill all children if process dies.
-
-(rofi -show drun -config ~/.config/rofi/win10-searchbar-config.rasi; kill $$) &
-child_pid=$!
+(rofi -show drun -config ~/.config/rofi/win10-searchbar-config.rasi; kill $$) & # FIXME: Doesn't kill the parent.
+trap "kill -- $!" EXIT # Kill child if process dies.
 
 selection=$(printf "\n\n\n" | rofi -dmenu -format i -config "~/.config/rofi/win10-startmenu-config.rasi")
 
-kill -- $child_pid # FIXME: why won't it kill the child?
+kill -- -$$ # Kill all children. # FIXME: Doesn't kill the child.
 
 case $selection in
   0) pcmanfm ~/Documents ;;
