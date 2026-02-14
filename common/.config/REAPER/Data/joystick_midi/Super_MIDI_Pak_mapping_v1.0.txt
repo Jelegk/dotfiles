@@ -1,0 +1,171 @@
+/////////////////////////////////////
+//     Super MIDI Pak mapping:     //
+//            C4 Major             //
+//           3       1             //
+//         7   6   4   5           //
+//           2       8             //
+//                                 //
+// Additions:                      //
+//   Select: Major scale           //
+//   Start:  Minor scale           //
+/////////////////////////////////////
+
+!did_init ? (
+  did_init = 1;
+
+  // Controller mapping:
+  A =  0x0002;
+  B =  0x0001;
+  X =  0x0008;
+  Y =  0x0004;
+  L =  0x0010;
+  R =  0x0020;
+  Sl = 0x0040;
+  St = 0x0080;
+  // Hardcoded:
+  //   axis0: left (-1), right (1)
+  //   axis1: up (-1),   down (1)
+  //   pov0:  up (0), right (90), down (180), left (270)
+
+  // Pitch shift CC values: ([0, 16383], 14bits centered at 8192)
+  PITCH_SHIFT_UP = 16383;
+  PITCH_SHIFT_DOWN = 0;
+
+  // Base note: (C4)
+  TONIC = 60;
+
+  // Number of halfsteps per scale degree:
+  // Major tuning      Minor tuning
+  deg[1] = 0;          deg[9]  = 0;
+  deg[2] = 2;          deg[10] = 2;
+  deg[3] = 4;          deg[11] = 3;
+  deg[4] = 5;          deg[12] = 5;
+  deg[5] = 7;          deg[13] = 7;
+  deg[6] = 9;          deg[14] = 8;
+  deg[7] = 11;         deg[15] = 10;
+  deg[8] = 12;         deg[16] = 12;
+
+  // Do not change the following:
+
+  pov_map = deg + 17;
+  pov_map[0] = deg[3];
+  pov_map[1] = deg[6];
+  pov_map[2] = deg[2];
+  pov_map[3] = deg[7];
+
+  scale_offset = 0;
+
+  prev_buttons = buttons;
+  numaxis ? (
+    prev_axis0 = axis(0);
+    prev_axis1 = axis(1);
+  );
+  numpov ? prev_pov0 = pov0;
+);
+
+
+
+function cancelAllInputs() (
+  this.i = 1;
+  loop(8, 
+    event(0x80, TONIC + deg[this.i + scale_offset], 127);
+    this.i += 1;
+  );
+);
+
+prev_buttons != buttons ? (
+  buttons & A != prev_buttons & A ? event(buttons & A ? 0x90 : 0x80, TONIC + deg[5 + scale_offset], 127);
+  buttons & B != prev_buttons & B ? event(buttons & B ? 0x90 : 0x80, TONIC + deg[8 + scale_offset], 127);
+  buttons & X != prev_buttons & X ? event(buttons & X ? 0x90 : 0x80, TONIC + deg[1 + scale_offset], 127);
+  buttons & Y != prev_buttons & Y ? event(buttons & Y ? 0x90 : 0x80, TONIC + deg[4 + scale_offset], 127);
+  buttons & L != prev_buttons & L ? buttons & L ? event(0xe0, PITCH_SHIFT_UP&127,   (PITCH_SHIFT_UP/128)|0)   : event(0xe0, 8192&127, (8192/128)|0);
+  buttons & R != prev_buttons & R ? buttons & R ? event(0xe0, PITCH_SHIFT_DOWN&127, (PITCH_SHIFT_DOWN/128)|0) : event(0xe0, 8192&127, (8192/128)|0);
+
+  //                               Major || Minor
+  (buttons & Sl && !(prev_buttons & Sl)) || (buttons & St && !(prev_buttons & St)) ? (
+    cancelAllInputs();
+    scale_offset = buttons & St ? 8 : 0;
+    pov_map[0] = deg[3 + scale_offset];
+    pov_map[1] = deg[6 + scale_offset];
+    pov_map[2] = deg[2 + scale_offset];
+    pov_map[3] = deg[7 + scale_offset];
+  );
+);
+prev_buttons = buttons;
+
+numaxis ? (
+  prev_axis0 != axis(0) ? (
+    // neutral
+    abs(axis(0)) < 0.001 ?  (
+      axis0_active ? (
+        axis0_active = 0;
+        event(0x80, prev_axis0 > 0.999 ? TONIC + deg[6 + scale_offset] : TONIC + deg[7 + scale_offset], 127);
+      );
+    ) : (
+      !axis0_active ? (
+        axis0_active = 1;                                  // right : left
+        event(0x90, axis(0) > 0.999 ? TONIC + deg[6 + scale_offset] : TONIC + deg[7 + scale_offset], 127);
+      );
+    );
+  );
+
+  prev_axis1 != axis(1) ? (
+    // neutral
+    abs(axis(1)) < 0.001 ?  (
+      axis1_active ? (
+        axis1_active = 0;
+        event(0x80, prev_axis1 > 0.999 ? TONIC + deg[2 + scale_offset] : TONIC + deg[3 + scale_offset], 127);
+      );
+    ) : (
+      !axis1_active ? (
+        axis1_active = 1;                                   // down : up
+        event(0x90, axis(1) > 0.999 ? TONIC + deg[2 + scale_offset] : TONIC + deg[3 + scale_offset], 127);
+      );
+    );
+  );
+  prev_axis0 = axis(0);
+  prev_axis1 = axis(1);
+);
+
+numpov ? (
+  pov0 = pov(0) / 90;
+  prev_pov0 != pov0 ? (
+    // Total release (pov(0) == 655.35)
+    pov0 > 4 ? (
+      // Single direction release
+      prev_pov0 - floor(prev_pov0) == 0 ? (
+        event(0x80, TONIC + pov_map[prev_pov0], 127);
+
+      // Two directions release
+      ) : (
+        event(0x80, TONIC + pov_map[                       prev_pov0 - 0.5], 127);
+        event(0x80, TONIC + pov_map[prev_pov0 == 3.5 ? 0 : prev_pov0 + 0.5], 127); // Special case: wraparound 360<->0
+      );
+
+    ) : abs(pov0 - prev_pov0) == 0.5 ? (
+      // Adjacent direction released
+      pov0 - floor(pov0) == 0 ? (
+        clockwise_quarter = (pov0 + (pov0 - prev_pov0 < 0 ? 1 : -1));
+        event(0x80, TONIC + pov_map[clockwise_quarter == 4 ? 0 : clockwise_quarter], 127);
+      // Adjacent direction pressed
+      ) : (
+        clockwise_quarter = (pov0 + (pov0 - prev_pov0 < 0 ? -0.5 : 0.5));
+        event(0x90, TONIC + pov_map[clockwise_quarter == 4 ? 0 : clockwise_quarter], 127);
+      );
+
+    // Adjacent direction, special case: wraparound 360<->0
+    ) : abs(pov0 - prev_pov0) == 3.5 ? (
+      event(pov0 - floor(pov0) == 0 ? 0x80 : 0x90, TONIC + pov_map[3], 127);
+
+    // Single direction press
+    ) : pov0 - floor(pov0) == 0 ? (
+      event(0x90, TONIC + pov_map[pov0], 127);
+
+    // Two directions presses
+    ) : pov0 - floor(pov0) == 0.5 ? (
+      event(0x90, TONIC + pov_map[                  pov0 - 0.5], 127);
+      event(0x90, TONIC + pov_map[pov0 == 3.5 ? 0 : pov0 + 0.5], 127); // Special case: wraparound 360<->0
+    );
+  );
+  prev_pov0 = pov0;
+);

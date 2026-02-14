@@ -1,3 +1,4 @@
+#!/bin/sh
 # https://askubuntu.com/a/1005724
 
 cat > /tmp/fonts.html << __HEADER
@@ -44,4 +45,4 @@ __FOOTER
 
 
 echo "/tmp/fonts.html created"
-sensible-browser /tmp/fonts.html
+firefox /tmp/fonts.html

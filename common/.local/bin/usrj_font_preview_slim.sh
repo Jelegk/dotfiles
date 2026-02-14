@@ -1,3 +1,4 @@
+#!/bin/sh
 # https://askubuntu.com/a/1534544
 # https://askubuntu.com/a/1005724
 # (This one can take as an argument some sample text!)
@@ -43,4 +44,4 @@ cat >> /tmp/fonts.html << __FOOTER
 __FOOTER
 
 echo "/tmp/fonts.html created"
-sensible-browser /tmp/fonts.html
+firefox /tmp/fonts.html
