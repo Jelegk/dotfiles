@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
-Icon=~/.icons/custom_icons/blender.svg
+Icon=blender
 Name=Blender
 Comment=3D CG Editor
-Exec=/opt/blender-4.4.3-linux-x64/blender
+Exec=blender %F
 StartupNotify=true
 Terminal=false

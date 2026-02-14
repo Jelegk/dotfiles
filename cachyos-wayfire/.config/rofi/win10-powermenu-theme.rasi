@@ -1,0 +1,43 @@
+* {
+    fg-color: #FFFFFF;
+    bg-color: #1F1F1F;
+    bg-color-hover: #2B2B2B;
+
+    foreground-color: transparent;
+    background-color: transparent;
+    border-color:     transparent;
+}
+window {
+    font: "Segoe MDL2 Assets", "Segoe UI Variable 11"; // TODO: First font's size isn't respected.
+    location: south west;
+    anchor:   south west;
+    width:    14%;
+    x-offset: 0;
+    y-offset: -5%;
+    children: [ listview ];
+}
+listview {
+    columns: 1;
+    fixed-height: false;
+    dynamic:   false;
+    scrollbar: false;
+    spacing: 1px;
+    layout:  vertical;
+    background-color: var(bg-color);
+    padding: 0.7% 0.2%;
+    cursor:  default;
+}
+element {
+    text-color: var(fg-color);
+    padding:    0.8%;
+}
+element normal, element alternate {
+    background-color: inherit;
+}
+element selected {
+    background-color: var(bg-color-hover);
+}
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}

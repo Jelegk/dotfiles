@@ -1,0 +1,47 @@
+* {
+    fg-color: #FFFFFF;
+    bg-color: #1F1F1F;
+    bg-color-hover: #2B2B2B;
+    border-color-hover: #444444;
+
+    foreground-color: transparent;
+    background-color: transparent;
+    border-color:     transparent;
+}
+window {
+    font: "Segoe MDL2 Assets 13";
+    location: south west;
+    anchor:   south west;
+    width:    2.5%;
+    x-offset: 0;
+    y-offset: 0;
+    children: [ listview ];
+}
+listview {
+    columns: 1;
+    fixed-height: false;
+    dynamic:   false;
+    scrollbar: false;
+    spacing: 0;
+    layout:  vertical;
+    background-color: var(bg-color);
+    padding: 47.1% 0 0 0;
+    cursor:  default;
+}
+element {
+    text-color: var(fg-color);
+    padding:    1.2% 0;
+}
+element normal, element alternate {
+    background-color: inherit;
+}
+element selected {
+    background-color: var(bg-color-hover);
+    border-color: var(border-color-hover);
+    border: 0 1 0 0;
+}
+element-text {
+    text-color: inherit;
+    horizontal-align: 0.5;
+    vertical-align: 0.5;
+}

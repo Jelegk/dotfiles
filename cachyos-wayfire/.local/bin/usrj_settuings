@@ -74,6 +74,7 @@ trap 'onResize' WINCH
 # Save (and clear) the user's terminal screen, hide the cursor and disable line wrapping
 printf '[?1049h[?25l[?7l'
 
+sleep 0.01 # Wait for the window to be properly sized first
 onResize
 
 while [ $selected -eq 0 ]; do

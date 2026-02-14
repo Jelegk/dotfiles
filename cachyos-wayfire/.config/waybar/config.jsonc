@@ -38,14 +38,7 @@
 
   "custom/start_menu": {
     "format": "\uF8B5",
-    "menu": "on-click",
-    "menu-file": "~/.config/waybar/power_menu.xml", // TODO: make a real fixed one (with another program, most likely)
-    "menu-actions": {
-      "suspend": "systemctl suspend",
-      "hibernate": "systemctl hibernate",
-      "poweroff": "wlr-randr --output $(wlr-randr | head -1 | cut -d' ' -f1) --off; systemctl poweroff",
-      "reboot": "wlr-randr --output $(wlr-randr | head -1 | cut -d' ' -f1) --off; systemctl reboot"
-    },
+    "on-click": "~/.config/rofi/usrj_start_menu.sh",
     "tooltip": true,
     "tooltip-format": "Start",
     "cursor": false // NOTE: to suppress cursor changing behavior, but adds a false warning about unknown option (2026-01-01).
@@ -56,7 +49,7 @@
     "exec": "~/.config/waybar/usrj_search_bar.py",
     "exec-on-event": false,
     "return-type": "json",
-    "on-click": "fuzzel",
+    "on-click": "~/.config/rofi/usrj_start_menu.sh",
     "tooltip": false,
     "cursor": false
   },
@@ -189,7 +182,7 @@
       "\uE995"
     ],
     "scroll-step": 0.0,
-    "on-click": "pwvucontrol", // TODO: Win10 accurate menus (slider, rightclick et/ou mixer) (en bas aussi)
+    "on-click": "pavucontrol", // TODO: Win10 accurate menus (slider, rightclick et/ou mixer) (en bas aussi)
     "on-click-right": "",
     "max-volume": 100.0,
     "tooltip": true,
@@ -203,7 +196,7 @@
     "format-source": "",
     "format-source-muted": "",
     "scroll-step": 0.0,
-    "on-click": "pwvucontrol",
+    "on-click": "pavucontrol",
     "on-click-right": "",
     "max-volume": 100.0,
     "tooltip": true,
