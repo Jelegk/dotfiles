@@ -38,7 +38,7 @@
 
   "custom/start_menu": {
     "format": "\uF8B5",
-    "on-click": "~/.config/rofi/usrj_start_menu.sh",
+    "on-click": "~/.config/rofi/usrj_start_panel",
     "tooltip": true,
     "tooltip-format": "Start",
     "cursor": false // NOTE: to suppress cursor changing behavior, but adds a false warning about unknown option (2026-01-01).
@@ -49,7 +49,7 @@
     "exec": "~/.config/waybar/usrj_search_bar.py",
     "exec-on-event": false,
     "return-type": "json",
-    "on-click": "~/.config/rofi/usrj_start_menu.sh",
+    "on-click": "~/.config/rofi/usrj_start_panel",
     "tooltip": false,
     "cursor": false
   },

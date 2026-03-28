@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Categories=Audio;AudioVideo;Music;Player;Multimedia;Utility
+Name=Play with sidplayfp
+Exec=foot --title=sidplayfp --override=colors-dark.background=300B10 sidplayfp %f
+Icon=music-player
+MimeType=audio/prs.sid;
+
+NoDisplay=true

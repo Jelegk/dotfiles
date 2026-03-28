@@ -1,19 +1,21 @@
 #!/bin/bash
 
-# If file is tar
-if [[ "$1" == *.tar.* ]]; then
-  FILE_PATH_NO_EXT="${1%.tar*}"
+for arg; do
+  # If file is tar
+  if [[ "$arg" == *.tar.* ]]; then
+    FILE_PATH_NO_EXT="${arg%.tar*}"
 
-  # Uncompress first, so next step actually extracts tar  
-  7z x -ssp "$1"
+    # Uncompress first, so next step actually extracts tar
+    7z x -ssp "$arg"
 
-  # Extract any format supported by 7z (.zip .7z, .rar, etc.)
-  7z x -ssp "$FILE_PATH_NO_EXT.tar"
+    # Extract any format supported by 7z (.zip .7z, .rar, etc.)
+    7z x -ssp "$FILE_PATH_NO_EXT.tar"
 
-  # Delete .tar artifact generated at first step
-  rm "$FILE_PATH_NO_EXT.tar"
+    # Delete .tar artifact generated at first step
+    rm "$FILE_PATH_NO_EXT.tar"
 
-else
-  7z x -ssp "$1"
+  else
+    7z x -ssp "$arg"
 
-fi
+  fi
+done

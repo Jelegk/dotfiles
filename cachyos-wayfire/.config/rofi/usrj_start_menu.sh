@@ -1,17 +1,24 @@
 #!/bin/sh
 
-(rofi -show drun -config ~/.config/rofi/win10-searchbar-config.rasi; kill $$) & # FIXME: Doesn't kill the parent.
-trap "kill -- $!" EXIT # Kill child if process dies.
+entries=(
+  ""
+  ""
+  ""
+  ""
+)
 
-selection=$(printf "\n\n\n" | rofi -dmenu -format i -config "~/.config/rofi/win10-startmenu-config.rasi")
+tmp=$(mktemp)
 
-kill -- -$$ # Kill all children. # FIXME: Doesn't kill the child.
+printf "%s\n" "${entries[@]}" | rofi -dmenu -format i -config "~/.config/rofi/win10-startmenu-config.rasi" > $tmp &
 
-case $selection in
-  0) pcmanfm ~/Documents ;;
-  1) pcmanfm ~/Pictures ;;
-  2) foot ~/.local/bin/usrj_settuings ;;
-  3) ~/.config/waybar/usrj_power_menu.sh ;;
+trap "(kill $!; rm $tmp) 2>/dev/null" EXIT
+wait
+
+case $(cat $tmp) in
+  0) setsid pcmanfm ~/Documents & ;;
+  1) setsid pcmanfm ~/Pictures & ;;
+  2) setsid gtk-launch settuings & ;;
+  3) setsid ~/.config/rofi/usrj_power_menu.sh ;;
 esac
 
-# TODO: don't close $$ on usrj_power_menu.sh: open akin to a "sub-menu".
+rm $tmp

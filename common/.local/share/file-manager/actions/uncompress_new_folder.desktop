@@ -7,5 +7,4 @@ Profiles=flcl
 
 [X-Action-Profile flcl]
 MimeTypes=application/*
-Exec=usrj_uncompress_in_new_folder %f
-SelectionCount==1
+Exec=usrj_uncompress_in_new_folder %F

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+~/.config/rofi/usrj_start_menu.sh &
+rofi -show drun -config ~/.config/rofi/win10-searchbar-config.rasi &
+
+wait -n
+kill -- %1 %2 2>/dev/null
+# NOTE: %1 corresponds to the first job, aka usrj_start_menu.sh
+#       %2 is therefore win10-searchbar-config.rasi
+#       Beware: this does not kill THEIR children.
